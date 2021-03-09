@@ -1,5 +1,8 @@
+// API
+import API from "../../services";
+
 // material ui
-import { TextField, Typography } from "@material-ui/core";
+import { TextField, Typography, FormControl, Button } from "@material-ui/core";
 
 // react router dom
 import { useHistory, Link } from "react-router-dom";
@@ -29,49 +32,58 @@ const FormRegister = () => {
     resolver: yupResolver(schema),
   });
 
-  const onRegister = (data) => {
-    console.log(data);
-    reset();
-    history.push("/login");
+  const onRegister = async (data) => {
+    try {
+      const response = API.post("/users/", data);
+      console.log(response);
+      reset();
+      history.push("/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onRegister)}>
-        <TextField
-          name="username"
-          label="Username"
-          variant="outlined"
-          size="small"
-          inputRef={register}
-          error={!!errors.username}
-          helperText={errors.username?.message}
-        />
-        <TextField
-          name="password"
-          label="Password"
-          variant="outlined"
-          size="small"
-          type="password"
-          inputRef={register}
-          error={!!errors.password}
-          helperText={errors.password?.message}
-        />
-        <TextField
-          name="email"
-          label="E-mail"
-          variant="outlined"
-          size="small"
-          type="email"
-          inputRef={register}
-          error={!!errors.email}
-          helperText={errors.email?.message}
-        />
-        <button type="submit">Enviar</button>
-        <Typography>Já registrado?</Typography>
-        <Link to="/login">login</Link>
-      </form>
-    </div>
+    <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
+      <TextField
+        name="username"
+        label="Nome de usuário"
+        variant="outlined"
+        size="small"
+        margin="dense"
+        inputRef={register}
+        error={!!errors.username}
+        helperText={errors.username?.message}
+      />
+      <TextField
+        name="password"
+        label="Password"
+        variant="outlined"
+        size="small"
+        margin="dense"
+        type="password"
+        inputRef={register}
+        error={!!errors.password}
+        helperText={errors.password?.message}
+      />
+      <TextField
+        name="email"
+        label="E-mail"
+        variant="outlined"
+        size="small"
+        margin="dense"
+        type="email"
+        inputRef={register}
+        error={!!errors.email}
+        helperText={errors.email?.message}
+      />
+      <Button type="submit" variant="contained" size="small" color="primary">
+        Enviar
+      </Button>
+      <Typography>
+        Já registrado?<Link to="/login">login</Link>
+      </Typography>
+    </FormControl>
   );
 };
 
