@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import NewGroup from "../pages/NewGroup";
 
 //-----------------------------------------------
 const Routes = () => {
@@ -14,8 +15,11 @@ const Routes = () => {
       <Route path="/register">
         <Register />
       </Route>
-      <Route>
-        <Login exact path="/login" />
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      <Route exact path="/new-group">
+        <NewGroup />
       </Route>
     </Switch>
   );
