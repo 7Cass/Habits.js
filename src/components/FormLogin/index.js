@@ -35,18 +35,16 @@ const FormLogin = () => {
     try {
       const response = await API.post("/sessions/", data);
 
-      // Remover estas 2 linahas após função logout ser feita
-      localStorage.clear();
-      sessionStorage.clear();
+      // let persistence = isChecked ? localStorage : sessionStorage;
+      // persistence.setItem("token", JSON.stringify(response.data.access));
 
-      let persistence = isChecked ? localStorage : sessionStorage;
-      persistence.setItem("token", JSON.stringify(response.data.access));
-
-      // if (isChecked) {
-      //   localStorage.setItem("token", JSON.stringify(response.data.access));
-      // } else {
-      //   sessionStorage.setItem("token", JSON.stringify(response.data.access));
-      // }
+      if (isChecked) {
+        sessionStorage.clear();
+        localStorage.setItem("token", JSON.stringify(response.data.access));
+      } else {
+        localStorage.clear();
+        sessionStorage.setItem("token", JSON.stringify(response.data.access));
+      }
 
       reset();
       history.push("/home");
