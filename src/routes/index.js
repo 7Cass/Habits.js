@@ -5,6 +5,9 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import NewGroup from "../pages/NewGroup";
 
+// página de testes dos forms
+import TestForms from "../pages/TestForms";
+
 //-----------------------------------------------
 const Routes = () => {
   return (
@@ -12,7 +15,7 @@ const Routes = () => {
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route path="/register">
+      <Route exact path="/register">
         <Register />
       </Route>
       <Route exact path="/login">
@@ -20,6 +23,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/new-group">
         <NewGroup />
+      </Route>
+      <Route exact path="/testforms">
+        <TestForms />
       </Route>
     </Switch>
   );
