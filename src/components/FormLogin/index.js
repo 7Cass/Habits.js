@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -6,10 +7,18 @@ import API from "../../services/index.js";
 
 import { Link, useHistory } from "react-router-dom";
 
-import { Button, FormControl, TextField } from "@material-ui/core";
+import {
+  Button,
+  FormControl,
+  TextField,
+  Checkbox,
+  FormControlLabel,
+} from "@material-ui/core";
 
 const FormLogin = () => {
   const history = useHistory();
+
+  const [isChecked, setIsChecked] = useState(true);
 
   const schema = yup.object().shape({
     username: yup.string().required("Campo Obrigatório!"),
@@ -20,12 +29,23 @@ const FormLogin = () => {
     resolver: yupResolver(schema),
   });
 
+  const handleChange = () => setIsChecked(!isChecked);
+
   const handleForm = async (data) => {
     try {
       const response = await API.post("/sessions/", data);
 
-      localStorage.clear();
-      localStorage.setItem("token", JSON.stringify(response.data.access));
+      // let persistence = isChecked ? localStorage : sessionStorage;
+      // persistence.setItem("token", JSON.stringify(response.data.access));
+
+      if (isChecked) {
+        sessionStorage.clear();
+        localStorage.setItem("token", JSON.stringify(response.data.access));
+      } else {
+        localStorage.clear();
+        sessionStorage.setItem("token", JSON.stringify(response.data.access));
+      }
+
       reset();
       history.push("/home");
     } catch (error) {
@@ -55,6 +75,16 @@ const FormLogin = () => {
         inputRef={register}
         error={!!errors.password}
         helperText={errors.password?.message}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            color="primary"
+            checked={isChecked}
+            onChange={handleChange}
+          />
+        }
+        label="Manter logado?"
       />
       <Button type="submit" variant="contained" color="primary">
         Entrar
