@@ -9,21 +9,23 @@ import { Link, useHistory } from "react-router-dom";
 import { useChecked } from "../../providers/user/index.js";
 
 import {
-  Button,
   FormControl,
   TextField,
   Checkbox,
   FormControlLabel,
 } from "@material-ui/core";
 
+import Button from "../Button";
+
 const FormLogin = () => {
   const { isChecked, setIsChecked } = useChecked();
 
   const history = useHistory();
 
+  const errorRequired = "Campo Obrigatório";
   const schema = yup.object().shape({
-    username: yup.string().required("Campo Obrigatório!"),
-    password: yup.string().required("Campo Obrigatório!"),
+    username: yup.string().required(errorRequired),
+    password: yup.string().required(errorRequired),
   });
 
   const { register, handleSubmit, errors, reset } = useForm({
@@ -87,9 +89,7 @@ const FormLogin = () => {
         }
         label="Manter logado?"
       />
-      <Button type="submit" variant="contained" color="primary">
-        Entrar
-      </Button>
+      <Button type="submit" children="Entrar" />
       <p>
         Não possui conta? <Link to="/register">Fazer cadastro</Link>
       </p>
