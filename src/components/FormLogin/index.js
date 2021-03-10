@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -6,6 +5,8 @@ import * as yup from "yup";
 import API from "../../services/index.js";
 
 import { Link, useHistory } from "react-router-dom";
+
+import { useChecked } from "../../providers/user/index.js";
 
 import {
   Button,
@@ -16,9 +17,9 @@ import {
 } from "@material-ui/core";
 
 const FormLogin = () => {
-  const history = useHistory();
+  const { isChecked, setIsChecked } = useChecked();
 
-  const [isChecked, setIsChecked] = useState(true);
+  const history = useHistory();
 
   const schema = yup.object().shape({
     username: yup.string().required("Campo Obrigatório!"),
