@@ -34,7 +34,7 @@ const FormRegister = () => {
 
   const onRegister = async (data) => {
     try {
-      const response = API.post("/users/", data);
+      const response = await API.post("/users/", data);
       console.log(response);
       reset();
       history.push("/login");
