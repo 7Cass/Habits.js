@@ -1,7 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import jwt_decode from "jwt-decode";
 
 import API from "../../services/index.js";
 
@@ -34,13 +33,10 @@ const CreateHabitForm = () => {
 
   const handleForm = async (data) => {
     const token = isChecked
-      ? localStorage.getItem("token")
-      : sessionStorage.getItem("token");
-
-    console.log(JSON.parse(token));
+      ? JSON.parse(localStorage.getItem("token"))
+      : JSON.parse(sessionStorage.getItem("token"));
 
     try {
-      const { user_id } = await jwt_decode(token);
       await API.post(
         "/habits/",
         {
@@ -50,16 +46,15 @@ const CreateHabitForm = () => {
           frequency: data.frequency,
           achieved: false,
           how_much_achieved: 0,
-          user: user_id,
+          user: userId,
         },
         {
           headers: {
-            Authorization: `Bearer ${JSON.parse(token)}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       reset();
-      // setTimeout(() => {}, 1000);
     } catch (error) {
       console.error(error);
     }
@@ -84,8 +79,6 @@ const CreateHabitForm = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      {console.log(isChecked)}
-      {console.log(userId)}
       <TextField
         variant="outlined"
         size="small"

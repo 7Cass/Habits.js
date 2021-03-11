@@ -5,7 +5,6 @@ import * as yup from "yup";
 import jwt_decode from "jwt-decode";
 
 import API from "../../services/index.js";
-import { postLogin } from "../../helper/users";
 
 import { Link, useHistory } from "react-router-dom";
 
@@ -39,7 +38,7 @@ const FormLogin = () => {
 
   const handleForm = async (data) => {
     try {
-      const response = await API.post(postLogin, data);
+      const response = await API.post("/sessions/", data);
 
       // let persistence = isChecked ? localStorage : sessionStorage;
       // persistence.setItem("token", JSON.stringify(response.data.access));
@@ -56,7 +55,7 @@ const FormLogin = () => {
       }
 
       reset();
-      history.push("/");
+      history.push("/testforms");
     } catch (error) {
       console.error(error);
     }
