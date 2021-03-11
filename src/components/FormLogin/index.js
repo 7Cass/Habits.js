@@ -5,6 +5,7 @@ import * as yup from "yup";
 import jwt_decode from "jwt-decode";
 
 import API from "../../services/index.js";
+import { postLogin } from "../../helper/users";
 
 import { Link, useHistory } from "react-router-dom";
 
@@ -20,7 +21,7 @@ import {
 import Button from "../Button";
 
 const FormLogin = () => {
-  const { isChecked, setIsChecked } = useChecked();
+  const { isChecked, setIsChecked, setUserId } = useChecked();
 
   const history = useHistory();
 
@@ -38,10 +39,13 @@ const FormLogin = () => {
 
   const handleForm = async (data) => {
     try {
-      const response = await API.post("/sessions/", data);
+      const response = await API.post(postLogin, data);
 
       // let persistence = isChecked ? localStorage : sessionStorage;
       // persistence.setItem("token", JSON.stringify(response.data.access));
+
+      const { user_id } = jwt_decode(response.data.access);
+      setUserId(user_id);
 
       if (isChecked) {
         sessionStorage.clear();
