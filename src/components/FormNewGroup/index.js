@@ -32,10 +32,14 @@ const FormNewGroup = () => {
     }
     return JSON.parse(Token);
   });
-
+  //response.data.id
   const onRegister = async (data) => {
     try {
-      const response = API.post("/groups/", data, {
+      const response = await API.post("/groups/", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const userID = response.data.id;
+      await API.post(`/groups/${userID}/subscribe/`, data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(response);

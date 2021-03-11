@@ -1,37 +1,35 @@
 // API
 import API from "../../services";
 
+// react
 import { useState } from "react";
 
 // material ui
 import {
-  TextField,
-  FormControl,
+  Typography,
+  Box,
   Button,
   FormControlLabel,
   Checkbox,
+  Slider,
 } from "@material-ui/core";
 
-// react hook form + yup + resolvers
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+// global state
+import { useChecked } from "../../providers/user";
+
+// helper
+import { patchUpdateHabit } from "../../helper/habits";
 //--------------------------------------------
-const errorRequired = "Campo obrigatório";
-const schema = yup.object().shape({
-  how_much_achieved: yup.string().required(errorRequired),
-  achieved: yup.boolean(),
-});
 
 //--------------------------------------------
 const FormUpdateHabit = ({ id }) => {
-  const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
-  });
   const [isAchieved, setIsAchieved] = useState(false);
-
+  const [slider, setSlider] = useState(0);
+  const { isChecked } = useChecked();
   const [token] = useState(() => {
-    const Token = localStorage.getItem("token") || "";
+    const Token = isChecked
+      ? localStorage.getItem("token") || ""
+      : sessionStorage.getItem("token") || "";
 
     if (!Token) {
       return "";
@@ -41,46 +39,69 @@ const FormUpdateHabit = ({ id }) => {
 
   const handleChange = () => setIsAchieved(!isAchieved);
 
-  const onRegister = async (data) => {
+  const valueText = (value) => {
+    setSlider(value);
+    value === 100 ? setIsAchieved(true) : setIsAchieved(false);
+    return `${value}%`;
+  };
+
+  const onRegister = async () => {
+    const data = {
+      how_much_achieved: slider,
+      achieved: isAchieved,
+    };
+
     try {
-      const response = API.patch(`/habits/${id}`, data, {
+      const response = await API.patch(patchUpdateHabit(id), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(response);
-      reset();
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
-      <TextField
-        name="how_much_achieved"
-        label="Progresso"
-        variant="outlined"
-        size="small"
-        margin="dense"
-        inputRef={register}
-        error={!!errors.how_much_achieved}
-        helperText={errors.how_much_achieved?.message}
+    <Box
+      display="flex"
+      flexDirection="column"
+      maxWidth="320px"
+      width="100%"
+      margin="15px auto"
+    >
+      <Typography id="discrete-slider" gutterButton>
+        Editar hábito
+      </Typography>
+      <Slider
+        defaultValue={0}
+        getAriaValueText={valueText}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="auto"
+        step={5}
+        marks
+        min={0}
+        max={100}
       />
       <FormControlLabel
+        disabled
         control={
           <Checkbox
             color="primary"
             checked={isAchieved}
             onChange={handleChange}
-            name="achieved"
-            inputRef={register}
           />
         }
-        label="Descrição"
+        label="Concluído"
       />
-      <Button type="submit" variant="contained" size="small" color="primary">
+      <Button
+        variant="contained"
+        size="small"
+        color="primary"
+        onClick={onRegister}
+      >
         Atualizar hábito
       </Button>
-    </FormControl>
+    </Box>
   );
 };
 
