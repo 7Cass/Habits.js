@@ -5,7 +5,7 @@ import CreateHabitForm from "../../components/CreateHabitForm";
 const TestForms = () => {
   return (
     <>
-      <FormUpdateHabit id={34} />
+      {/* <FormUpdateHabit id={34} /> */}
       <CreateHabitForm />
     </>
   );
