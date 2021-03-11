@@ -69,7 +69,7 @@ const FormUpdateHabit = ({ id }) => {
       width="100%"
       margin="15px auto"
     >
-      <Typography id="discrete-slider" gutterButton>
+      <Typography id="discrete-slider" gutterBottom>
         Editar hábito
       </Typography>
       <Slider

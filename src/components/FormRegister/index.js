@@ -37,7 +37,7 @@ const FormRegister = () => {
 
   const onRegister = async (data) => {
     try {
-      const response = await API.post(postCreateUser, data);
+      const response = await API.post(postCreateUser(), data);
       console.log(response);
       reset();
       history.push("/login");
