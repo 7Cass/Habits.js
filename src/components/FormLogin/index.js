@@ -2,11 +2,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import jwt_decode from "jwt-decode";
+
 import API from "../../services/index.js";
 
 import { Link, useHistory } from "react-router-dom";
 
-import { useChecked } from "../../providers/user/index.js";
+import { useChecked } from "../../providers/user/";
 
 import {
   FormControl,
@@ -50,7 +52,7 @@ const FormLogin = () => {
       }
 
       reset();
-      history.push("/home");
+      history.push("/");
     } catch (error) {
       console.error(error);
     }
@@ -58,6 +60,7 @@ const FormLogin = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
+      {console.log(isChecked)}
       <TextField
         variant="outlined"
         size="small"
@@ -89,7 +92,7 @@ const FormLogin = () => {
         }
         label="Manter logado?"
       />
-      <Button type="submit" children="Entrar" />
+      <Button type="submit" styled="outlined" children="Entrar" />
       <p>
         Não possui conta? <Link to="/register">Fazer cadastro</Link>
       </p>

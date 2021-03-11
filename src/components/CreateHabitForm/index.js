@@ -18,7 +18,7 @@ import {
 import Button from "../Button";
 
 const CreateHabitForm = () => {
-  const { isChecked } = useChecked();
+  const { isChecked, userId } = useChecked();
 
   const errorRequired = "Campo Obrigatório";
   const schema = yup.object().shape({
@@ -58,6 +58,8 @@ const CreateHabitForm = () => {
           },
         }
       );
+      reset();
+      // setTimeout(() => {}, 1000);
     } catch (error) {
       console.error(error);
     }
@@ -83,6 +85,7 @@ const CreateHabitForm = () => {
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
       {console.log(isChecked)}
+      {console.log(userId)}
       <TextField
         variant="outlined"
         size="small"
@@ -137,8 +140,12 @@ const CreateHabitForm = () => {
           }
         />
       </FormControl>
-      <Button type="submit" children="Adicionar" size="small" />
-      {/* <Button type="submit" size="small" children="Adicionar" /> */}
+      <Button
+        type="submit"
+        styled="outlined"
+        children="Adicionar"
+        size="small"
+      />
     </FormControl>
   );
 };
