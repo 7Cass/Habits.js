@@ -16,6 +16,9 @@ import {
 
 // global state
 import { useChecked } from "../../providers/user";
+
+// helper
+import { patchUpdateHabit } from "../../helper/habits";
 //--------------------------------------------
 
 //--------------------------------------------
@@ -49,7 +52,7 @@ const FormUpdateHabit = ({ id }) => {
     };
 
     try {
-      const response = await API.patch(`/habits/${id}`, data, {
+      const response = await API.patch(patchUpdateHabit(id), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(response);
