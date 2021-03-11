@@ -55,7 +55,7 @@ const FormLogin = () => {
       }
 
       reset();
-      history.push("/testforms");
+      history.push("/");
     } catch (error) {
       console.error(error);
     }
