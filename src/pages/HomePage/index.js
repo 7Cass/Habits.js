@@ -1,13 +1,24 @@
+import "../../styles/globalStyle.css";
+
+import Menu from "../../components/Menu";
 import Button from "../../components/Button";
 
+import { useState, useEffect } from "react";
+
+import API from "../../services";
+
 const HomePage = () => {
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    API.get("/users/4/").then((res) => setUser(res.data));
+  }, []);
+
+  console.log(user);
+
   return (
     <>
-      <p>HomePage</p>
-      <Button styled="filled" children="Button" size="small" />
-      <Button styled="outlined" children="Button" size="small" />
-      <Button styled="filled" children="Button" size="large" />
-      <Button styled="outlined" children="Button" size="large" />
+      <Menu />
     </>
   );
 };
