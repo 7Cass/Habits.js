@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import API from "../../services/index.js";
+import { postCreateHabit } from "../../helper/habits";
 
 import { useChecked } from "../../providers/user";
 
@@ -38,7 +39,7 @@ const CreateHabitForm = () => {
 
     try {
       await API.post(
-        "/habits/",
+        postCreateHabit(),
         {
           title: data.title,
           category: data.category,
@@ -79,6 +80,7 @@ const CreateHabitForm = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
+      <h1>Criar Hábito</h1>
       <TextField
         variant="outlined"
         size="small"
