@@ -11,15 +11,15 @@ export const ButtonStyled = styled.button`
   cursor: pointer;
   transition: 0.4s;
   color: ${(props) =>
-    props.type === "outlined"
+    props.styled === "outlined"
       ? "#16181C"
-      : props.type === "filled"
+      : props.styled === "filled"
       ? "#EFF7FE"
       : null};
   background: ${(props) =>
-    props.type === "outlined"
+    props.styled === "outlined"
       ? "transparent"
-      : props.type === "filled"
+      : props.styled === "filled"
       ? "#16181C"
       : null};
   width: ${(props) =>
@@ -27,15 +27,15 @@ export const ButtonStyled = styled.button`
   padding: 15px;
   &:hover {
     background: ${(props) =>
-      props.type === "outlined"
+      props.styled === "outlined"
         ? "#16181C"
-        : props.type === "filled"
+        : props.styled === "filled"
         ? "transparent"
         : null};
     color: ${(props) =>
-      props.type === "outlined"
+      props.styled === "outlined"
         ? "#EFF7FE"
-        : props.type === "filled"
+        : props.styled === "filled"
         ? "#16181C"
         : null};
   }
