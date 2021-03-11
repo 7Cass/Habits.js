@@ -11,6 +11,9 @@ import { useHistory, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
+// helper
+import { postCreateUser } from "../../helper/users";
 //--------------------------------------------
 const errorRequired = "Campo obrigatório";
 const schema = yup.object().shape({
@@ -34,7 +37,7 @@ const FormRegister = () => {
 
   const onRegister = async (data) => {
     try {
-      const response = await API.post("/users/", data);
+      const response = await API.post(postCreateUser, data);
       console.log(response);
       reset();
       history.push("/login");
