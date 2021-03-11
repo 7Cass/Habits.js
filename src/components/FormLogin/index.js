@@ -2,28 +2,32 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import jwt_decode from "jwt-decode";
+
 import API from "../../services/index.js";
 
 import { Link, useHistory } from "react-router-dom";
 
-import { useChecked } from "../../providers/user/index.js";
+import { useChecked } from "../../providers/user/";
 
 import {
-  Button,
   FormControl,
   TextField,
   Checkbox,
   FormControlLabel,
 } from "@material-ui/core";
 
+import Button from "../Button";
+
 const FormLogin = () => {
-  const { isChecked, setIsChecked } = useChecked();
+  const { isChecked, setIsChecked, setUserId } = useChecked();
 
   const history = useHistory();
 
+  const errorRequired = "Campo Obrigatório";
   const schema = yup.object().shape({
-    username: yup.string().required("Campo Obrigatório!"),
-    password: yup.string().required("Campo Obrigatório!"),
+    username: yup.string().required(errorRequired),
+    password: yup.string().required(errorRequired),
   });
 
   const { register, handleSubmit, errors, reset } = useForm({
@@ -39,6 +43,9 @@ const FormLogin = () => {
       // let persistence = isChecked ? localStorage : sessionStorage;
       // persistence.setItem("token", JSON.stringify(response.data.access));
 
+      const { user_id } = jwt_decode(response.data.access);
+      setUserId(user_id);
+
       if (isChecked) {
         sessionStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
@@ -48,7 +55,7 @@ const FormLogin = () => {
       }
 
       reset();
-      history.push("/home");
+      history.push("/");
     } catch (error) {
       console.error(error);
     }
@@ -56,6 +63,7 @@ const FormLogin = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
+      {console.log(isChecked)}
       <TextField
         variant="outlined"
         size="small"
@@ -87,9 +95,7 @@ const FormLogin = () => {
         }
         label="Manter logado?"
       />
-      <Button type="submit" variant="contained" color="primary">
-        Entrar
-      </Button>
+      <Button type="submit" styled="outlined" children="Entrar" />
       <p>
         Não possui conta? <Link to="/register">Fazer cadastro</Link>
       </p>
