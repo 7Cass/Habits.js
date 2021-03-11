@@ -6,11 +6,24 @@ import image from "../../assets/perfil.jpg";
 import API from "../../services";
 import { useState, useEffect } from "react";
 
+import { useId } from "../../providers/group";
+import { getOneUser } from "../../helper/users";
+import { useChecked } from "../../providers/user";
+
 const UserCard = () => {
   const [user, setUser] = useState([]);
+  const { setGroupId } = useId();
+  const { userId } = useChecked();
+
+  const getData = (response) => {
+    setUser(response.data);
+    setGroupId(response.data.group);
+  };
+
   useEffect(() => {
-    API.get("/users/1/").then((res) => setUser(res.data));
+    API.get(getOneUser(userId)).then((res) => getData(res));
   }, []);
+
   return (
     <Card>
       <h2>Habits</h2>
