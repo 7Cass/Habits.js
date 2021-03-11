@@ -1,8 +1,8 @@
 import { ButtonStyled } from "./styles";
 
-const Button = ({ type, children, size }) => {
+const Button = ({ styled, children, size }) => {
   return (
-    <ButtonStyled type={type} size={size}>
+    <ButtonStyled styled={styled} size={size}>
       {children}
     </ButtonStyled>
   );

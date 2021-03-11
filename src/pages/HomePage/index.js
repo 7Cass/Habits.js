@@ -4,10 +4,10 @@ const HomePage = () => {
   return (
     <>
       <p>HomePage</p>
-      <Button type="filled" children="Button" size="small" />
-      <Button type="outlined" children="Button" size="small" />
-      <Button type="filled" children="Button" size="large" />
-      <Button type="outlined" children="Button" size="large" />
+      <Button styled="filled" children="Button" size="small" />
+      <Button styled="outlined" children="Button" size="small" />
+      <Button styled="filled" children="Button" size="large" />
+      <Button styled="outlined" children="Button" size="large" />
     </>
   );
 };
