@@ -1,6 +1,6 @@
 // components
 import FormUpdateHabit from "../../components/FormUpdateHabit";
-import CreateHabitForm from "../../components/CreateHabitForm";
+import ModalCreateHabit from "../../components/ModalCreateHabit";
 //-------------------------------------
 //-------------------------------------
 import { useHistory } from "react-router-dom";
@@ -10,8 +10,8 @@ const TestForms = () => {
   return (
     <>
       <FormUpdateHabit id={34} />
-      <CreateHabitForm />
       <button onClick={() => history.push("/group")}>Para group</button>
+      <ModalCreateHabit />
     </>
   );
 };

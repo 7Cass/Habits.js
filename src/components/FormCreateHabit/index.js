@@ -13,11 +13,12 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Typography,
 } from "@material-ui/core";
 
 import Button from "../Button";
 
-const CreateHabitForm = () => {
+const FormCreateHabit = ({ handleClose }) => {
   const { isChecked, userId } = useChecked();
 
   const errorRequired = "Campo Obrigatório";
@@ -56,6 +57,9 @@ const CreateHabitForm = () => {
         }
       );
       reset();
+      setTimeout(() => {
+        handleClose();
+      }, 500);
     } catch (error) {
       console.error(error);
     }
@@ -80,7 +84,9 @@ const CreateHabitForm = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      <h1>Criar Hábito</h1>
+      <Typography variant="h4" color="primary">
+        Adicionar Hábito
+      </Typography>
       <TextField
         variant="outlined"
         size="small"
@@ -101,7 +107,7 @@ const CreateHabitForm = () => {
         error={!!errors.category}
         helperText={errors.category?.message}
       />
-      <FormControl>
+      <FormControl margin="dense">
         <InputLabel>Dificuldade</InputLabel>
         <Controller
           name="difficulty"
@@ -118,7 +124,7 @@ const CreateHabitForm = () => {
           }
         />
       </FormControl>
-      <FormControl>
+      <FormControl margin="dense">
         <InputLabel>Frequência</InputLabel>
         <Controller
           name="frequency"
@@ -135,14 +141,11 @@ const CreateHabitForm = () => {
           }
         />
       </FormControl>
-      <Button
-        type="submit"
-        styled="outlined"
-        children="Adicionar"
-        size="small"
-      />
+      <Button type="submit" styled="outlined">
+        Adicionar
+      </Button>
     </FormControl>
   );
 };
 
-export default CreateHabitForm;
+export default FormCreateHabit;
