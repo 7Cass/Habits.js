@@ -13,11 +13,12 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Typography,
 } from "@material-ui/core";
 
 import Button from "../Button";
 
-const FormCreateHabit = () => {
+const FormCreateHabit = ({ handleClose }) => {
   const { isChecked, userId } = useChecked();
 
   const errorRequired = "Campo Obrigatório";
@@ -56,6 +57,9 @@ const FormCreateHabit = () => {
         }
       );
       reset();
+      setTimeout(() => {
+        handleClose();
+      }, 500);
     } catch (error) {
       console.error(error);
     }
@@ -80,7 +84,7 @@ const FormCreateHabit = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      <h1>Criar Hábito</h1>
+      <Typography>Adicionar Hábito</Typography>
       <TextField
         variant="outlined"
         size="small"
@@ -135,12 +139,9 @@ const FormCreateHabit = () => {
           }
         />
       </FormControl>
-      <Button
-        type="submit"
-        styled="outlined"
-        children="Adicionar"
-        size="small"
-      />
+      <Button type="submit" styled="outlined">
+        Adicionar
+      </Button>
     </FormControl>
   );
 };
