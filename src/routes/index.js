@@ -4,6 +4,8 @@ import HomePage from "../pages/HomePage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import NewGroup from "../pages/NewGroup";
+import GroupsPage from "../pages/Groups";
+import GroupPage from "../pages/Group";
 
 // página de testes dos forms
 import TestForms from "../pages/TestForms";
@@ -26,6 +28,12 @@ const Routes = () => {
       </Route>
       <Route exact path="/testforms">
         <TestForms />
+      </Route>
+      <Route exact path="/groups">
+        <GroupsPage />
+      </Route>
+      <Route>
+        <GroupPage exact path="/group" />
       </Route>
     </Switch>
   );
