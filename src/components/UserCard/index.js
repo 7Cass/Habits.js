@@ -1,7 +1,7 @@
 import { Card, Avatar } from "./styles";
 import Button from "../Button";
 
-import image from "../../assets/perfil.jpg";
+import image from "../../assets/perfil_large.png";
 
 import API from "../../services";
 import { useState, useEffect } from "react";
@@ -22,6 +22,7 @@ const UserCard = () => {
 
   useEffect(() => {
     API.get(getOneUser(userId)).then((res) => getData(res));
+    // eslint-disable-next-line
   }, []);
 
   return (
