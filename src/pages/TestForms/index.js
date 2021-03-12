@@ -1,12 +1,12 @@
 // components
 import FormUpdateHabit from "../../components/FormUpdateHabit";
-import CreateHabitForm from "../../components/CreateHabitForm";
+import ModalCreateHabit from "../../components/ModalCreateHabit";
 //-------------------------------------
 const TestForms = () => {
   return (
     <>
       <FormUpdateHabit id={34} />
-      <CreateHabitForm />
+      <ModalCreateHabit />
     </>
   );
 };

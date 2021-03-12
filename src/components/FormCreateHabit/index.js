@@ -17,7 +17,7 @@ import {
 
 import Button from "../Button";
 
-const CreateHabitForm = () => {
+const FormCreateHabit = () => {
   const { isChecked, userId } = useChecked();
 
   const errorRequired = "Campo Obrigatório";
@@ -145,4 +145,4 @@ const CreateHabitForm = () => {
   );
 };
 
-export default CreateHabitForm;
+export default FormCreateHabit;
