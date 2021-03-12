@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { GroupContent, CardGroup, userCard, generalCard } from "./style";
 import ModalActivity from "../ModalActivity";
 import ModalUpdateActivity from "../ModalUpdateActivity";
+import ModalCreateGoal from "../ModalCreateGoal";
 
 //helpers =>
 
@@ -51,8 +52,8 @@ const Group = () => {
     }
   };
 
-  useEffect(async () => {
-    await getGroup();
+  useEffect(() => {
+    getGroup();
   }, []);
 
   return (
@@ -62,7 +63,7 @@ const Group = () => {
         <h4>{group.description}</h4>
         <generalCard>
           <h2>Metas: </h2>
-          <button>Nova Meta</button>
+          <ModalCreateGoal getGroup={getGroup} />
           {group.goals !== undefined
             ? group.goals.map((goal) => <h3>{goal.title}</h3>)
             : null}
