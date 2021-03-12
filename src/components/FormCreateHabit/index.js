@@ -84,7 +84,9 @@ const FormCreateHabit = ({ handleClose }) => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      <Typography>Adicionar Hábito</Typography>
+      <Typography variant="h4" color="primary">
+        Adicionar Hábito
+      </Typography>
       <TextField
         variant="outlined"
         size="small"
@@ -105,7 +107,7 @@ const FormCreateHabit = ({ handleClose }) => {
         error={!!errors.category}
         helperText={errors.category?.message}
       />
-      <FormControl>
+      <FormControl margin="dense">
         <InputLabel>Dificuldade</InputLabel>
         <Controller
           name="difficulty"
@@ -122,7 +124,7 @@ const FormCreateHabit = ({ handleClose }) => {
           }
         />
       </FormControl>
-      <FormControl>
+      <FormControl margin="dense">
         <InputLabel>Frequência</InputLabel>
         <Controller
           name="frequency"
