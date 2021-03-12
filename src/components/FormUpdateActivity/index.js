@@ -12,18 +12,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 //--------------------------------------------
-import { postCreateActivity } from "../../helper/activities";
-import { useId } from "../../providers/group";
+import { patchUpdateActivity } from "../../helper/activities";
 //--------------------------------------------
 
 const errorRequired = "Campo obrigatório";
 const schema = yup.object().shape({
   title: yup.string().required(errorRequired),
-  realization_time: yup.string().required(errorRequired),
 });
 
 //--------------------------------------------
-const FormActivity = (props) => {
+const FormUpdateActivity = (props) => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
@@ -37,16 +35,9 @@ const FormActivity = (props) => {
     return JSON.parse(Token);
   });
 
-  const { group } = useId();
-
   const onRegister = async (data) => {
-    const newData = {
-      ...data,
-      group: group.id,
-    };
-
     try {
-      const response = await API.post(postCreateActivity(), newData, {
+      const response = await API.patch(patchUpdateActivity(props.actId), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       props.getGroup();
@@ -68,22 +59,11 @@ const FormActivity = (props) => {
         error={!!errors.title}
         helperText={errors.title?.message}
       />
-      <TextField
-        name="realization_time"
-        id="date"
-        label="Tempo de Realização"
-        type="datetime-local"
-        inputRef={register}
-        defaultValue="2021-05-11T11:30"
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
       <Button type="submit" variant="contained" size="small" color="primary">
-        Criar Atividade
+        Atualizar Nome {props.actId}
       </Button>
     </FormControl>
   );
 };
 
-export default FormActivity;
+export default FormUpdateActivity;

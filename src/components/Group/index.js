@@ -2,6 +2,7 @@ import API from "../../services";
 import { useEffect, useState } from "react";
 import { GroupContent, CardGroup, userCard, generalCard } from "./style";
 import ModalActivity from "../ModalActivity";
+import ModalUpdateActivity from "../ModalUpdateActivity";
 
 //helpers =>
 
@@ -9,7 +10,7 @@ import { useChecked } from "../../providers/user";
 import { useId } from "../../providers/group";
 import { getOneUser } from "../../helper/users";
 import { getOneGroup } from "../../helper/groups";
-import { deleteActivity } from "../../helper/activities";
+import { deleteActivity, patchUpdateActivity } from "../../helper/activities";
 
 //==============================================
 const Group = () => {
@@ -76,6 +77,10 @@ const Group = () => {
                   <button onClick={() => deteleActivity(activity.id)}>
                     Delete
                   </button>
+                  <ModalUpdateActivity
+                    getGroup={getGroup}
+                    actId={activity.id}
+                  />
                 </div>
               ))
             : null}

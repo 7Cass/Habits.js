@@ -1,21 +1,23 @@
 // material ui
 import { Box } from "@material-ui/core";
+
+// react router dom
+import { useHistory } from "react-router-dom";
+
 // components
 import FormUpdateHabit from "../../components/FormUpdateHabit";
-import CreateHabitForm from "../../components/CreateHabitForm";
 import DeleteHabit from "../../components/DeleteHabit";
-//-------------------------------------
-//-------------------------------------
-import { useHistory } from "react-router-dom";
+import ModalCreateHabit from "../../components/ModalCreateHabit";
+
 //-------------------------------------
 const TestForms = () => {
   const history = useHistory();
   return (
     <Box display="flex" flexWrap="wrap">
       <FormUpdateHabit id={34} />
-      <CreateHabitForm />
       <DeleteHabit />
       <button onClick={() => history.push("/group")}>Para group</button>
+      <ModalCreateHabit />
     </Box>
   );
 };
