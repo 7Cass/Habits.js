@@ -11,6 +11,7 @@ const TestForms = () => {
     <>
       <FormUpdateHabit id={34} />
       <button onClick={() => history.push("/group")}>Para group</button>
+      <ModalCreateHabit />
     </>
   );
 };
