@@ -38,10 +38,11 @@ const FormNewGroup = () => {
       const response = await API.post("/groups/", data, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const userID = response.data.id;
-      await API.post(`/groups/${userID}/subscribe/`, data, {
+      const groupID = response.data.id;
+      const response2 = await API.post(`/groups/${groupID}/subscribe/`, data, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(response2);
       console.log(response);
       reset();
     } catch (error) {
