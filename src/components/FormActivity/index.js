@@ -4,7 +4,7 @@ import API from "../../services";
 import { useEffect, useState } from "react";
 
 // material ui
-import { TextField, FormControl, Button } from "@material-ui/core";
+import { TextField, FormControl, Button, Input } from "@material-ui/core";
 
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
@@ -12,9 +12,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 //--------------------------------------------
-import { getOneUser } from "../../helper/users";
-import { getOneGroup } from "../../helper/groups";
-import { useChecked } from "../../providers/user";
+import { postCreateActivity } from "../../helper/activities";
+import { useId } from "../../providers/group";
 //--------------------------------------------
 
 const errorRequired = "Campo obrigatório";
@@ -38,35 +37,19 @@ const FormActivity = (props) => {
     return JSON.parse(Token);
   });
 
-  const [groupId, setGroupId] = useState(0);
-  const { userId } = useChecked();
-
-  const getGroup = async (data) => {
-    try {
-      const takeUser = await API.get(getOneUser(userId), data);
-      console.log(takeUser.data);
-
-      const takeGroup = await API.get(getOneGroup(takeUser.data.group), data);
-      console.log(takeGroup.data.id);
-
-      setGroupId(takeGroup.data.id);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getGroup();
-  }, []);
+  const { group } = useId();
 
   const onRegister = async (data) => {
+    const newData = {
+      ...data,
+      group: group.id,
+    };
+
     try {
-      const response = await API.post("/activities/", data, {
+      const response = await API.post(postCreateActivity(), newData, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      const { activities } = props.group;
-      const { setGroup } = props.setGroup;
-      setGroup([...activities, response.data]);
+      props.getGroup();
       console.log(response);
       reset();
     } catch (error) {
@@ -96,14 +79,6 @@ const FormActivity = (props) => {
         InputLabelProps={{
           shrink: true,
         }}
-      />
-      <TextField
-        name="group"
-        variant="outlined"
-        size="small"
-        margin="dense"
-        inputRef={register}
-        value={groupId}
       />
       <Button type="submit" variant="contained" size="small" color="primary">
         Criar Atividade

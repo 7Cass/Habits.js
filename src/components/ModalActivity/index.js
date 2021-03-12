@@ -46,13 +46,12 @@ const ModalActivity = (props) => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <FormActivity group={props.group} setGroup={props.setGroup} />
+      <FormActivity getGroup={props.getGroup} />
     </div>
   );
 
   return (
     <div>
-      {console.log("Modal: " + props.groupId)}
       <button type="button" onClick={handleOpen}>
         Adicionar Atividade
       </button>

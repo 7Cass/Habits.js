@@ -6,13 +6,14 @@ import ModalActivity from "../ModalActivity";
 //helpers =>
 
 import { useChecked } from "../../providers/user";
+import { useId } from "../../providers/group";
 import { getOneUser } from "../../helper/users";
 import { getOneGroup } from "../../helper/groups";
 import { deleteActivity } from "../../helper/activities";
 
 //==============================================
 const Group = () => {
-  const [group, setGroup] = useState([]);
+  const { group, setGroup } = useId();
   const { userId } = useChecked();
 
   const [token] = useState(() => {
@@ -37,19 +38,20 @@ const Group = () => {
       console.log(error);
     }
   };
-  const deteleActivity = async (actId, data) => {
+  const deteleActivity = async (actId) => {
     try {
       // eslint-disable-next-line
       const delActivity = await API.delete(deleteActivity(actId), {
         headers: { Authorization: `Bearer ${token}` },
       });
+      getGroup();
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    getGroup();
+  useEffect(async () => {
+    await getGroup();
   }, []);
 
   return (
@@ -66,7 +68,7 @@ const Group = () => {
         </generalCard>
         <generalCard>
           <h2>Atividades</h2>
-          <ModalActivity group={group} setGroup={setGroup} />
+          <ModalActivity getGroup={getGroup} />
           {group.activities !== undefined
             ? group.activities.map((activity) => (
                 <div>
