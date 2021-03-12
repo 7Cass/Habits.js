@@ -1,13 +1,13 @@
-import Button from "../../components/Button";
+import "../../styles/globalStyle.css";
+
+import Menu from "../../components/Menu";
+import UserCard from "../../components/UserCard";
 
 const HomePage = () => {
   return (
     <>
-      <p>HomePage</p>
-      <Button styled="filled" children="Button" size="small" />
-      <Button styled="outlined" children="Button" size="small" />
-      <Button styled="filled" children="Button" size="large" />
-      <Button styled="outlined" children="Button" size="large" />
+      <Menu />
+      <UserCard />
     </>
   );
 };
