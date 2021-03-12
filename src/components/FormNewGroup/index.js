@@ -11,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 //--------------------------------------------
+import { getGroups, postSubcribeGroup } from "../../helper/groups";
+//--------------------------------------------
 const errorRequired = "Campo obrigatório";
 const schema = yup.object().shape({
   name: yup.string().required(errorRequired),
@@ -35,11 +37,11 @@ const FormNewGroup = () => {
   //response.data.id
   const onRegister = async (data) => {
     try {
-      const response = await API.post("/groups/", data, {
+      const response = await API.post(getGroups(), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const groupID = response.data.id;
-      const response2 = await API.post(`/groups/${groupID}/subscribe/`, data, {
+      const response2 = await API.post(postSubcribeGroup(groupID), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(response2);

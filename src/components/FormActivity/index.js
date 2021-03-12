@@ -50,7 +50,6 @@ const FormActivity = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       props.getGroup();
-      console.log(response);
       reset();
     } catch (error) {
       console.log(error);
