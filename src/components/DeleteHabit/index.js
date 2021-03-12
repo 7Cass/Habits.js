@@ -11,8 +11,10 @@ import { deleteHabit } from "../../helper/habits";
 import { useChecked } from "../../providers/user";
 
 // material ui
-import { Box, Typography, IconButton } from "@material-ui/core";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { Box, Typography } from "@material-ui/core";
+
+// components
+import Button from "../Button";
 //--------------------------------------------------
 
 //--------------------------------------------------
@@ -32,12 +34,10 @@ const DeleteHabit = ({ habitID }) => {
   });
 
   const onDelete = async () => {
-    // const data = {};
     try {
-      await API.delete(deleteHabit(habit));
-      //    await API.delete(deleteHabit(habit), data, {
-      //     headers: { Authorization: `Bearer ${token}` },
-      //   });
+      await API.delete(deleteHabit(habit), {
+        headers: { Authorization: `Bearer ${token}` },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -47,9 +47,9 @@ const DeleteHabit = ({ habitID }) => {
     <Box>
       <input value={habit} onChange={(e) => setHabit(e.target.value)} />
       <Typography gutterBottom>Delete Habit</Typography>
-      <IconButton aria-label="delete" onClick={onDelete}>
-        <DeleteForeverIcon />
-      </IconButton>
+      <Button styled="outlined" size="small" onClick={() => onDelete()}>
+        Delete
+      </Button>
     </Box>
   );
 };
