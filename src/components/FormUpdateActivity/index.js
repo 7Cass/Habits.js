@@ -1,10 +1,10 @@
 // API
 import API from "../../services";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // material ui
-import { TextField, FormControl, Button, Input } from "@material-ui/core";
+import { TextField, FormControl, Button } from "@material-ui/core";
 
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
@@ -37,10 +37,12 @@ const FormUpdateActivity = (props) => {
 
   const onRegister = async (data) => {
     try {
-      const response = await API.patch(patchUpdateActivity(props.actId), data, {
+      await API.patch(patchUpdateActivity(props.actId), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       props.getGroup();
+
       reset();
     } catch (error) {
       console.log(error);

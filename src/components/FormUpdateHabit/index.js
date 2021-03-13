@@ -52,10 +52,9 @@ const FormUpdateHabit = ({ id }) => {
     };
 
     try {
-      const response = await API.patch(patchUpdateHabit(id), data, {
+      await API.patch(patchUpdateHabit(id), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }

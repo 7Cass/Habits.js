@@ -1,10 +1,10 @@
 // API
 import API from "../../services";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // material ui
-import { TextField, FormControl, Button, Input } from "@material-ui/core";
+import { TextField, FormControl, Button } from "@material-ui/core";
 
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
@@ -46,9 +46,10 @@ const FormActivity = (props) => {
     };
 
     try {
-      const response = await API.post(postCreateActivity(), newData, {
+      await API.post(postCreateActivity(), newData, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       props.getGroup();
       reset();
     } catch (error) {

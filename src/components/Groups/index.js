@@ -2,15 +2,19 @@ import API from "../../services";
 import { useEffect, useState } from "react";
 import { CardGroup, GroupsContent } from "./style";
 
+// helper
+import { getGroups } from "../../helper/groups";
+
+//-----------------------------------------------
 const Groups = () => {
   const [groups, setGroups] = useState([]);
 
-  const getGroups = () => {
-    API.get("/groups/").then((res) => setGroups(res.data.results));
+  const getAllGroups = () => {
+    API.get(getGroups()).then((res) => setGroups(res.data.results));
   };
 
   useEffect(() => {
-    getGroups();
+    getAllGroups();
   }, []);
 
   return (

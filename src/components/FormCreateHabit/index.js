@@ -18,6 +18,24 @@ import {
 
 import Button from "../Button";
 
+//----------------------------------------------
+const difficultyOptions = [
+  "Muito Fácil",
+  "Fácil",
+  "Normal",
+  "Difícil",
+  "Desafio",
+];
+const frequencyOptions = [
+  "Diária",
+  "Dia Sim/Não",
+  "A Cada 2 Dias",
+  "A Cada 3 Dias",
+  "Semanal",
+  "Quinzenal",
+  "Mensal",
+];
+//----------------------------------------------
 const FormCreateHabit = ({ handleClose }) => {
   const { isChecked, userId } = useChecked();
 
@@ -64,23 +82,6 @@ const FormCreateHabit = ({ handleClose }) => {
       console.error(error);
     }
   };
-
-  const difficultyOptions = [
-    "Muito Fácil",
-    "Fácil",
-    "Normal",
-    "Difícil",
-    "Desafio",
-  ];
-  const frequencyOptions = [
-    "Diária",
-    "Dia Sim/Não",
-    "A Cada 2 Dias",
-    "A Cada 3 Dias",
-    "Semanal",
-    "Quinzenal",
-    "Mensal",
-  ];
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
