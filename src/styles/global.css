@@ -1,9 +1,18 @@
+/* Default */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat";
 }
 
+/* Variáveis 
+root:{
+   Adicionar se for preciso
+}
+*/
+
+/* Proporção no tamanho das fontes */
 @media (max-width: 1080px) {
   html {
     font-size: 93.75%;
@@ -16,8 +25,8 @@
   }
 }
 
+/* Background, color e etc */
 body {
   background-color: #16181c;
   color: #eff7fe;
-  font-family: "Montserrat";
 }
