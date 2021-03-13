@@ -6,12 +6,11 @@ import ModalUpdateActivity from "../ModalUpdateActivity";
 import ModalCreateGoal from "../ModalCreateGoal";
 
 //helpers =>
-
 import { useChecked } from "../../providers/user";
 import { useId } from "../../providers/group";
 import { getOneUser } from "../../helper/users";
 import { getOneGroup } from "../../helper/groups";
-import { deleteActivity, patchUpdateActivity } from "../../helper/activities";
+import { deleteActivity } from "../../helper/activities";
 
 //==============================================
 const Group = () => {
@@ -30,22 +29,20 @@ const Group = () => {
   const getGroup = async (data) => {
     try {
       const takeUser = await API.get(getOneUser(userId), data);
-      console.log(takeUser.data);
 
       const takeGroup = await API.get(getOneGroup(takeUser.data.group), data);
-      console.log(takeGroup.data);
 
       setGroup(takeGroup.data);
     } catch (error) {
       console.log(error);
     }
   };
-  const deteleActivity = async (actId) => {
+  const onDelete = async (actId) => {
     try {
-      // eslint-disable-next-line
-      const delActivity = await API.delete(deleteActivity(actId), {
+      await API.delete(deleteActivity(actId), {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       getGroup();
     } catch (error) {
       console.log(error);
@@ -54,6 +51,7 @@ const Group = () => {
 
   useEffect(() => {
     getGroup();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -75,9 +73,7 @@ const Group = () => {
             ? group.activities.map((activity) => (
                 <div>
                   <h3>{activity.title}</h3>
-                  <button onClick={() => deteleActivity(activity.id)}>
-                    Delete
-                  </button>
+                  <button onClick={() => onDelete(activity.id)}>Delete</button>
                   <ModalUpdateActivity
                     getGroup={getGroup}
                     actId={activity.id}
@@ -87,7 +83,7 @@ const Group = () => {
             : null}
         </generalCard>
         <userCard>
-          <h2>Usuarios:</h2>
+          <h2>Usuários:</h2>
           {group.users !== undefined
             ? group.users.map((user) => <h3>{user.username}</h3>)
             : null}

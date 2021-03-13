@@ -6,6 +6,7 @@ import { getPersonalHabit } from "../../helper/habits";
 
 import { useChecked } from "../../providers/user";
 
+//----------------------------------------
 const HabitsCard = () => {
   const { isChecked } = useChecked();
   const [habits, setHabits] = useState([]);
@@ -25,8 +26,8 @@ const HabitsCard = () => {
       const response = await API.get(getPersonalHabit(), {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       setHabits(response.data);
-      console.log(habits);
     } catch (error) {
       console.log(error);
     }
@@ -34,6 +35,7 @@ const HabitsCard = () => {
 
   useEffect(() => {
     getUser();
+    // eslint-disable-next-line
   }, []);
 
   console.log(habits);

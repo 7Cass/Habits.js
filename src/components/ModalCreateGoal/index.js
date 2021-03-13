@@ -1,7 +1,8 @@
-import { makeStyles, Modal } from "@material-ui/core";
+import { Modal } from "@material-ui/core";
 import { useState } from "react";
 import FormCreateGoal from "../FormCreateGoal";
-
+import useStyles from "../../styles/makeStyles";
+//-----------------------------------------------
 function getModalStyle() {
   return {
     top: `50%`,
@@ -10,23 +11,7 @@ function getModalStyle() {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: "absolute",
-    width: "100%",
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    display: "flex",
-    justifyContent: "space-around",
-    // eslint-disable-next-line
-    ["@media (min-width:450px)"]: {
-      width: 400,
-    },
-  },
-}));
-
+//-----------------------------------------------
 const ModalCreateGoal = ({ getGroup }) => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
@@ -41,7 +26,7 @@ const ModalCreateGoal = ({ getGroup }) => {
   };
 
   const body = (
-    <div style={modalStyle} className={classes.paper}>
+    <div style={modalStyle} className={classes.paperStyles}>
       <FormCreateGoal handleClose={handleClose} getGroup={getGroup} />
     </div>
   );

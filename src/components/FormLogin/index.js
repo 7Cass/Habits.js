@@ -19,7 +19,9 @@ import {
 } from "@material-ui/core";
 
 import Button from "../Button";
+//-------------------------------------------------------
 
+//-------------------------------------------------------
 const FormLogin = () => {
   const { isChecked, setIsChecked, setUserId } = useChecked();
 
@@ -41,9 +43,6 @@ const FormLogin = () => {
     try {
       const response = await API.post(postLogin(), data);
 
-      // let persistence = isChecked ? localStorage : sessionStorage;
-      // persistence.setItem("token", JSON.stringify(response.data.access));
-
       const { user_id } = jwt_decode(response.data.access);
       setUserId(user_id);
 
@@ -56,7 +55,10 @@ const FormLogin = () => {
       }
 
       reset();
+
+      // *** PRECISA ATUALIZAR A ROTA ***
       history.push("/testforms");
+      // *** PRECISA ATUALIZAR A ROTA ***
     } catch (error) {
       console.error(error);
     }

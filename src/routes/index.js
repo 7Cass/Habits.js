@@ -11,6 +11,8 @@ import GroupPage from "../pages/Group";
 import TestForms from "../pages/TestForms";
 
 //-----------------------------------------------
+// *** QUANDO FOR ADICIONAR NOVAS ROTAS, PROCURE DEIXAR
+// *** A TESTE POR ÚLTIMO ***
 const Routes = () => {
   return (
     <Switch>
@@ -26,14 +28,14 @@ const Routes = () => {
       <Route exact path="/new-group">
         <NewGroup />
       </Route>
-      <Route exact path="/testforms">
-        <TestForms />
-      </Route>
       <Route exact path="/groups">
         <GroupsPage />
       </Route>
       <Route>
         <GroupPage exact path="/group" />
+      </Route>
+      <Route exact path="/testforms">
+        <TestForms />
       </Route>
     </Switch>
   );

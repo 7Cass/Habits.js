@@ -52,10 +52,9 @@ const FormUpdateHabit = ({ id }) => {
     };
 
     try {
-      const response = await API.patch(patchUpdateHabit(id), data, {
+      await API.patch(patchUpdateHabit(id), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -67,9 +66,9 @@ const FormUpdateHabit = ({ id }) => {
       flexDirection="column"
       maxWidth="320px"
       width="100%"
-      margin="15px auto"
+      margin="15px"
     >
-      <Typography id="discrete-slider" gutterButton>
+      <Typography id="discrete-slider" gutterBottom>
         Editar hábito
       </Typography>
       <Slider

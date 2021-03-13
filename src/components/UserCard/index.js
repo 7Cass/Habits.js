@@ -1,7 +1,7 @@
 import { Card, Avatar } from "./styles";
 import Button from "../Button";
 
-import image from "../../assets/perfil.jpg";
+import image from "../../assets/perfil_large.png";
 
 import API from "../../services";
 import { useState, useEffect } from "react";
@@ -10,6 +10,7 @@ import { useId } from "../../providers/group";
 import { getOneUser } from "../../helper/users";
 import { useChecked } from "../../providers/user";
 
+//---------------------------------------------
 const UserCard = () => {
   const [user, setUser] = useState([]);
   const { setGroupId } = useId();
@@ -22,6 +23,7 @@ const UserCard = () => {
 
   useEffect(() => {
     API.get(getOneUser(userId)).then((res) => getData(res));
+    // eslint-disable-next-line
   }, []);
 
   return (
