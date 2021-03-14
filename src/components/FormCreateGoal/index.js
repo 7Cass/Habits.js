@@ -1,9 +1,9 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 import API from "../../services/";
 import { postCreateGoal } from "../../helper/goals";
+import { schemaCreateGoal } from "../../helper/formValidation";
 
 import { useState } from "react";
 import { useChecked } from "../../providers/user";
@@ -20,9 +20,21 @@ import {
 } from "@material-ui/core";
 
 //--------------------------------------------------------
+const difficultyOptions = [
+  "Muito Fácil",
+  "Fácil",
+  "Normal",
+  "Difícil",
+  "Desafio",
+];
+
+//--------------------------------------------------------
 const FormCreateGoal = ({ handleClose, getGroup }) => {
   const { isChecked } = useChecked();
   const { groupId } = useId();
+  const { register, handleSubmit, errors, reset, control } = useForm({
+    resolver: yupResolver(schemaCreateGoal),
+  });
   const [token] = useState(() => {
     const Token = isChecked
       ? localStorage.getItem("token") || ""
@@ -32,16 +44,6 @@ const FormCreateGoal = ({ handleClose, getGroup }) => {
       return "";
     }
     return JSON.parse(Token);
-  });
-
-  const errorRequired = "Campo Obrigatório";
-  const schema = yup.object().shape({
-    title: yup.string().required(errorRequired),
-    difficulty: yup.string().required(errorRequired),
-  });
-
-  const { register, handleSubmit, errors, reset, control } = useForm({
-    resolver: yupResolver(schema),
   });
 
   const handleForm = async (data) => {
@@ -70,14 +72,6 @@ const FormCreateGoal = ({ handleClose, getGroup }) => {
       console.error(error);
     }
   };
-
-  const difficultyOptions = [
-    "Muito Fácil",
-    "Fácil",
-    "Normal",
-    "Difícil",
-    "Desafio",
-  ];
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>

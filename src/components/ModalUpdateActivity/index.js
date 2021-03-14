@@ -1,20 +1,12 @@
 import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
 import FormUpdateActivity from "../FormUpdateActivity";
-import useStyles from "../../styles/makeStyles";
-//--------------------------------------------------
-
-function getModalStyle() {
-  return {
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%, -50%)`,
-  };
-}
+import { useModalStyles } from "../../styles/makeStyles";
+import getModalStyle from "../../styles/modalStyles";
 
 //--------------------------------------------------
 const ModalUpdateActivity = (props) => {
-  const classes = useStyles();
+  const classes = useModalStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
 

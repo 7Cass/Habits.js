@@ -1,21 +1,12 @@
 import { Modal } from "@material-ui/core";
 import { useState } from "react";
-import useStyles from "../../styles/makeStyles";
-
+import { useModalStyles } from "../../styles/makeStyles";
+import getModalStyle from "../../styles/modalStyles";
 import CreateHabitForm from "../FormCreateHabit";
 
 //-----------------------------------------------
-function getModalStyle() {
-  return {
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%, -50%)`,
-  };
-}
-
-//-----------------------------------------------
 const ModalCreateHabit = () => {
-  const classes = useStyles();
+  const classes = useModalStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
 

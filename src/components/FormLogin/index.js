@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 import jwt_decode from "jwt-decode";
 
 import API from "../../services/index.js";
-import { postLogin } from "../../helper/users/index.js";
+import { postLogin } from "../../helper/users/";
+import { schemaLogin } from "../../helper/formValidation";
 
 import { Link, useHistory } from "react-router-dom";
 
@@ -24,17 +24,9 @@ import Button from "../Button";
 //-------------------------------------------------------
 const FormLogin = () => {
   const { isChecked, setIsChecked, setUserId } = useChecked();
-
   const history = useHistory();
-
-  const errorRequired = "Campo Obrigatório";
-  const schema = yup.object().shape({
-    username: yup.string().required(errorRequired),
-    password: yup.string().required(errorRequired),
-  });
-
   const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaLogin),
   });
 
   const handleChange = () => setIsChecked(!isChecked);
