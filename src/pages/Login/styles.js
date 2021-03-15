@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import BackgroundImage from "../../assets/wave_bg.svg";
+
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
@@ -11,6 +13,10 @@ export const Container = styled.div`
 
   justify-content: space-around;
   text-align: center;
+
+  background-image: url(${BackgroundImage});
+  background-size: cover;
+  background-repeat: no-repeat;
 
   & form * {
   }
@@ -48,21 +54,30 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 800px) {
+    /* & div.inner-container {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+      align-items: center;
+    } */
     & div.inner-container {
+      width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-gap: 3rem;
+      grid-column-gap: 2rem;
       justify-items: center;
+      align-items: center;
+    }
+
+    & .form-container {
+      max-width: 500px;
+      width: 100%;
     }
 
     img {
       display: block;
       max-width: 95%;
       max-height: 95%;
-    }
-
-    form {
-      max-width: 400px;
     }
 
     form h2 {
