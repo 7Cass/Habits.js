@@ -16,6 +16,7 @@ import {
   TextField,
   Checkbox,
   FormControlLabel,
+  Typography,
 } from "@material-ui/core";
 
 import Button from "../Button";
@@ -66,7 +67,7 @@ const FormLogin = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      {console.log(isChecked)}
+      <Typography variant="h2">Entrar</Typography>
       <TextField
         variant="outlined"
         size="small"

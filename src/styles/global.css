@@ -27,6 +27,7 @@ root:{
 
 /* Background, color e etc */
 body {
+  height: 100vh;
   background-color: #16181c;
   color: #eff7fe;
 }
