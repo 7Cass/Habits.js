@@ -2,7 +2,7 @@
 import API from "../../services";
 
 // material ui
-import { TextField, Typography, FormControl, Button } from "@material-ui/core";
+import { TextField, Typography, FormControl } from "@material-ui/core";
 
 // react router dom
 import { useHistory, Link } from "react-router-dom";
@@ -17,6 +17,9 @@ import { schemaRegister } from "../../helper/formValidation";
 
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
+
+// components
+import Button from "../Button";
 
 //--------------------------------------------
 const FormRegister = () => {
@@ -71,7 +74,7 @@ const FormRegister = () => {
         error={!!errors.email}
         helperText={errors.email?.message}
       />
-      <Button type="submit" variant="contained" size="small" color="primary">
+      <Button type="submit" styled="filled-light">
         Enviar
       </Button>
       <Typography>
