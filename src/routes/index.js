@@ -25,9 +25,6 @@ const Routes = () => {
       <Route exact path="/login">
         <Login />
       </Route>
-      <Route exact path="/new-group">
-        <NewGroup />
-      </Route>
       <Route exact path="/groups">
         <GroupsPage />
       </Route>
