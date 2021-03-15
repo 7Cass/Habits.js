@@ -1,21 +1,41 @@
 import API from "../../services";
 import { useEffect, useState } from "react";
-import { GroupContent, CardGroup, userCard, generalCard } from "./style";
+import {
+  GroupContent,
+  CardGroup,
+  UserCard,
+  ActivitiesCard,
+  ActivityCard,
+  ActivityAdd,
+  CategoryBox,
+  ButtonsContent,
+  Goals,
+  GoalsAdd,
+  GoalCard,
+  Users,
+  UsersContent,
+} from "./style";
 import ModalActivity from "../ModalActivity";
 import ModalUpdateActivity from "../ModalUpdateActivity";
 import ModalCreateGoal from "../ModalCreateGoal";
 
+import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
+import GroupIcon from "@material-ui/icons/Group";
+
 //helpers =>
 import { useChecked } from "../../providers/user";
 import { useId } from "../../providers/group";
-import { getOneUser } from "../../helper/users";
+import { useAcitivityButtons } from "../../styles/makeStyles";
+
 import { getOneGroup } from "../../helper/groups";
 import { deleteActivity } from "../../helper/activities";
+import { deleteGoals } from "../../helper/goals";
 
 //==============================================
 const Group = () => {
   const { group, setGroup } = useId();
-  const { userId } = useChecked();
+  const classes = useAcitivityButtons();
+  const { user } = useChecked();
 
   const [token] = useState(() => {
     const Token = localStorage.getItem("token") || "";
@@ -26,20 +46,29 @@ const Group = () => {
     return JSON.parse(Token);
   });
 
-  const getGroup = async (data) => {
+  const getGroup = async () => {
     try {
-      const takeUser = await API.get(getOneUser(userId), data);
-
-      const takeGroup = await API.get(getOneGroup(takeUser.data.group), data);
-
+      const takeGroup = await API.get(getOneGroup(user.group));
       setGroup(takeGroup.data);
     } catch (error) {
       console.log(error);
     }
   };
-  const onDelete = async (actId) => {
+
+  const onDeleteAct = async (actId) => {
     try {
       await API.delete(deleteActivity(actId), {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      getGroup();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onDeleteGoal = async (goalId) => {
+    try {
+      await API.delete(deleteGoals(goalId), {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -59,35 +88,67 @@ const Group = () => {
       <CardGroup>
         <h1>{group.name}</h1>
         <h4>{group.description}</h4>
-        <generalCard>
-          <h2>Metas: </h2>
-          <ModalCreateGoal getGroup={getGroup} />
-          {group.goals !== undefined
-            ? group.goals.map((goal) => <h3>{goal.title}</h3>)
-            : null}
-        </generalCard>
-        <generalCard>
-          <h2>Atividades</h2>
-          <ModalActivity getGroup={getGroup} />
+        <CategoryBox>{group.category}</CategoryBox>
+
+        <ActivitiesCard>
+          <ActivityAdd>
+            <h2>Atividades</h2>
+            <ModalActivity getGroup={getGroup} />
+          </ActivityAdd>
           {group.activities !== undefined
-            ? group.activities.map((activity) => (
-                <div>
+            ? group.activities.map((activity, index) => (
+                <ActivityCard key={index}>
                   <h3>{activity.title}</h3>
-                  <button onClick={() => onDelete(activity.id)}>Delete</button>
-                  <ModalUpdateActivity
-                    getGroup={getGroup}
-                    actId={activity.id}
-                  />
-                </div>
+                  <ButtonsContent>
+                    <ModalUpdateActivity
+                      getGroup={getGroup}
+                      actId={activity.id}
+                    />
+                    <HighlightOffOutlinedIcon
+                      onClick={() => onDeleteAct(activity.id)}
+                      className={classes.buttonStyle}
+                    >
+                      Delete
+                    </HighlightOffOutlinedIcon>
+                  </ButtonsContent>
+                </ActivityCard>
               ))
             : null}
-        </generalCard>
-        <userCard>
-          <h2>Usuários:</h2>
-          {group.users !== undefined
-            ? group.users.map((user) => <h3>{user.username}</h3>)
+        </ActivitiesCard>
+
+        <Goals>
+          <GoalsAdd>
+            <h2>Metas</h2>
+            <ModalCreateGoal getGroup={getGroup} />
+          </GoalsAdd>
+          {group.goals !== undefined
+            ? group.goals.map((goal, index) => (
+                <GoalCard key={index}>
+                  <h3>{goal.title}</h3>
+                  <ButtonsContent>
+                    <HighlightOffOutlinedIcon
+                      onClick={() => onDeleteGoal(goal.id)}
+                      className={classes.buttonStyle}
+                    />
+                  </ButtonsContent>
+                </GoalCard>
+              ))
             : null}
-        </userCard>
+        </Goals>
+
+        <UserCard>
+          <Users>
+            <h2>Usuários</h2>
+            <GroupIcon fontSize="large" />
+          </Users>
+          <UsersContent>
+            {group.users !== undefined
+              ? group.users.map((user, index) => (
+                  <h3 key={index}>{user.username}</h3>
+                ))
+              : null}
+          </UsersContent>
+        </UserCard>
       </CardGroup>
     </GroupContent>
   );

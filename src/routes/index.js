@@ -8,7 +8,7 @@ import GroupsPage from "../pages/Groups";
 import GroupPage from "../pages/Group";
 
 // página de testes dos forms
-import TestForms from "../pages/TestForms";
+import TestForms from "../pages/TestForms"
 
 //-----------------------------------------------
 // *** QUANDO FOR ADICIONAR NOVAS ROTAS, PROCURE DEIXAR
@@ -17,13 +17,14 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <HomePage />
+      <Login />
+        
       </Route>
       <Route exact path="/register">
         <Register />
       </Route>
       <Route exact path="/login">
-        <Login />
+        <HomePage />
       </Route>
       <Route exact path="/new-group">
         <NewGroup />
@@ -31,12 +32,13 @@ const Routes = () => {
       <Route exact path="/groups">
         <GroupsPage />
       </Route>
+       <Route exact path="/testforms">
+        <TestForms />
+      </Route>
       <Route>
         <GroupPage exact path="/group" />
       </Route>
-      <Route exact path="/testforms">
-        <TestForms />
-      </Route>
+     
     </Switch>
   );
 };
