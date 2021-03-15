@@ -9,8 +9,12 @@ const Login = () => {
     <Container>
       <h1>Habits.js</h1>
       <div className="inner-container">
-        <img src={Image} alt="Imagem Lateral" />
-        <FormLogin />
+        <div className="image-container">
+          <img src={Image} alt="Imagem Lateral" />
+        </div>
+        <div className="form-container">
+          <FormLogin />
+        </div>
       </div>
       <h3>
         Developed by <span>Squad1</span>
