@@ -31,7 +31,7 @@ const difficultyOptions = [
 //--------------------------------------------------------
 const FormCreateGoal = ({ handleClose, getGroup }) => {
   const { isChecked } = useChecked();
-  const { groupId } = useId();
+  const { group } = useId();
   const { register, handleSubmit, errors, reset, control } = useForm({
     resolver: yupResolver(schemaCreateGoal),
   });
@@ -54,7 +54,7 @@ const FormCreateGoal = ({ handleClose, getGroup }) => {
           title: data.title,
           difficulty: data.difficulty,
           how_much_achieved: 0,
-          group: groupId, //Para testar passe o id referente ao grupo do usuário = 29
+          group: group.id, //Para testar passe o id referente ao grupo do usuário = 29
         },
         {
           headers: {
