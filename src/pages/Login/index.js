@@ -4,13 +4,18 @@ import Image from "../../assets/login/login.svg";
 
 import { Container } from "./styles";
 
+import { useEffect } from "react";
 import { useChecked } from "../../providers/user";
 import { Redirect } from "react-router";
 
 const Login = () => {
   const { isAuth, checkAuth } = useChecked();
 
-  checkAuth();
+  useEffect(() => {
+    checkAuth();
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <>
       {isAuth ? (
