@@ -36,6 +36,14 @@ export const Container = styled.div`
     line-height: 1.5;
   }
 
+  & h3 {
+    font-size: 1.25rem;
+  }
+
+  & h3 span {
+    color: #16181c;
+  }
+
   & button {
     padding: 1rem 0;
     margin: 0.5rem 0;
@@ -46,20 +54,22 @@ export const Container = styled.div`
     text-align: left;
   }
 
+  & p a {
+    color: #55a1e3;
+  }
+
   @media screen and (min-width: 400px) {
     form {
       min-width: 85%;
       align-self: center;
     }
+
+    & h3 {
+      font-size: 1.5rem;
+    }
   }
 
   @media screen and (min-width: 800px) {
-    /* & div.inner-container {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-evenly;
-      align-items: center;
-    } */
     & div.inner-container {
       width: 100%;
       display: grid;
