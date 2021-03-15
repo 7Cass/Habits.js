@@ -5,4 +5,5 @@ export const Card = styled.section`
   padding: 20px 10px;
   border: none;
   border-radius: 25px;
+  text-align: center;
 `;

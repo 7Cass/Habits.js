@@ -3,9 +3,15 @@ import { SectionMenu, MenuItem } from "./styles";
 const Menu = () => {
   return (
     <SectionMenu>
-      <MenuItem>Home</MenuItem>
+      <MenuItem>
+        <i class="fas fa-home"></i>
+        Home
+      </MenuItem>
       <MenuItem>Groups</MenuItem>
-      <MenuItem>Exit</MenuItem>
+      <MenuItem>
+        Exit
+        <i class="fas fa-sign-out-alt"></i>
+      </MenuItem>
     </SectionMenu>
   );
 };
