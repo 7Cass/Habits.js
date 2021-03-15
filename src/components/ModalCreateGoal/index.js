@@ -1,19 +1,12 @@
 import { Modal } from "@material-ui/core";
 import { useState } from "react";
 import FormCreateGoal from "../FormCreateGoal";
-import useStyles from "../../styles/makeStyles";
-//-----------------------------------------------
-function getModalStyle() {
-  return {
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%, -50%)`,
-  };
-}
+import { useModalStyles } from "../../styles/makeStyles";
+import getModalStyle from "../../styles/modalStyles";
 
 //-----------------------------------------------
 const ModalCreateGoal = ({ getGroup }) => {
-  const classes = useStyles();
+  const classes = useModalStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
 

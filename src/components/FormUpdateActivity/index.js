@@ -9,21 +9,15 @@ import { TextField, FormControl, Button } from "@material-ui/core";
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 //--------------------------------------------
 import { patchUpdateActivity } from "../../helper/activities";
+import { schemaUpdateActivity } from "../../helper/formValidation";
 //--------------------------------------------
 
-const errorRequired = "Campo obrigatório";
-const schema = yup.object().shape({
-  title: yup.string().required(errorRequired),
-});
-
-//--------------------------------------------
 const FormUpdateActivity = (props) => {
   const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaUpdateActivity),
   });
 
   const [token] = useState(() => {

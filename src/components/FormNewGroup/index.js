@@ -9,21 +9,14 @@ import { TextField, FormControl, Button } from "@material-ui/core";
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 //--------------------------------------------
 import { getGroups, postSubscribeGroup } from "../../helper/groups";
-//--------------------------------------------
-const errorRequired = "Campo obrigatório";
-const schema = yup.object().shape({
-  name: yup.string().required(errorRequired),
-  description: yup.string().required(errorRequired),
-  category: yup.string().required(errorRequired),
-});
+import { schemaNewGroup } from "../../helper/formValidation";
 
 //--------------------------------------------
 const FormNewGroup = () => {
   const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaNewGroup),
   });
 
   const [token] = useState(() => {

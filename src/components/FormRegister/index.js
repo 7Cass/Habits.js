@@ -10,29 +10,20 @@ import { useHistory, Link } from "react-router-dom";
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 // helper
 import { postCreateUser } from "../../helper/users";
-//--------------------------------------------
-const errorRequired = "Campo obrigatório";
-const schema = yup.object().shape({
-  username: yup.string().required(errorRequired),
-  password: yup
-    .string()
-    .min(6, "Senha deve ter no mínimo 6 caracteres")
-    .required(errorRequired),
-  email: yup
-    .string()
-    .email("Formato requerido: ***@***")
-    .required(errorRequired),
-});
+import { schemaRegister } from "../../helper/formValidation";
+
+// styles
+import { useFormStyles } from "../../styles/makeStyles";
 
 //--------------------------------------------
 const FormRegister = () => {
+  const classes = useFormStyles();
   const history = useHistory();
   const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaRegister),
   });
 
   const onRegister = async (data) => {
@@ -49,32 +40,32 @@ const FormRegister = () => {
   return (
     <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
       <TextField
+        className={classes.inputStyles}
         name="username"
         label="Nome de usuário"
         variant="outlined"
         size="small"
-        margin="dense"
         inputRef={register}
         error={!!errors.username}
         helperText={errors.username?.message}
       />
       <TextField
+        className={classes.inputStyles}
         name="password"
         label="Password"
         variant="outlined"
         size="small"
-        margin="dense"
         type="password"
         inputRef={register}
         error={!!errors.password}
         helperText={errors.password?.message}
       />
       <TextField
+        className={classes.inputStyles}
         name="email"
         label="E-mail"
         variant="outlined"
         size="small"
-        margin="dense"
         type="email"
         inputRef={register}
         error={!!errors.email}
@@ -84,7 +75,7 @@ const FormRegister = () => {
         Enviar
       </Button>
       <Typography>
-        Já registrado?<Link to="/login">login</Link>
+        Já registrado? <Link to="/login">login</Link>
       </Typography>
     </FormControl>
   );
