@@ -1,6 +1,10 @@
 // API
 import API from "../../services/index.js";
 
+import { postLogin } from "../../helper/users/";
+import { schemaLogin } from "../../helper/formValidation";
+import { getOneUser } from "../../helper/users";
+
 // JWT Decode
 import jwt_decode from "jwt-decode";
 
@@ -23,10 +27,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 // ContextAPI
 import { useChecked } from "../../providers/user/";
 
-// helper
-import { postLogin } from "../../helper/users/";
-import { schemaLogin } from "../../helper/formValidation";
-
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
 
@@ -37,10 +37,9 @@ import Button from "../Button";
 
 //-------------------------------------------------------
 const FormLogin = () => {
+  const { isChecked, setIsChecked, setUserId, setUser } = useChecked();
   const classes = useFormStyles();
   const history = useHistory();
-
-  const { isChecked, setIsChecked, setUserId } = useChecked();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaLogin),
   });
@@ -52,7 +51,11 @@ const FormLogin = () => {
       const response = await API.post(postLogin(), data);
 
       const { user_id } = jwt_decode(response.data.access);
+
       setUserId(user_id);
+
+      const takeUser = await API.get(getOneUser(user_id));
+      setUser(takeUser.data);
 
       if (isChecked) {
         sessionStorage.clear();

@@ -3,6 +3,7 @@ import { useState } from "react";
 import FormUpdateActivity from "../FormUpdateActivity";
 import { useModalStyles } from "../../styles/makeStyles";
 import getModalStyle from "../../styles/modalStyles";
+import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 
 //--------------------------------------------------
 const ModalUpdateActivity = (props) => {
@@ -26,9 +27,9 @@ const ModalUpdateActivity = (props) => {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <EditOutlinedIcon type="button" onClick={handleOpen}>
         Editar Nome
-      </button>
+      </EditOutlinedIcon>
       <Modal
         open={open}
         onClose={handleClose}
