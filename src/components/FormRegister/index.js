@@ -42,12 +42,12 @@ const FormRegister = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
+      <Typography variant="h2">Cadastro</Typography>
       <TextField
         className={classes.inputStyles}
         name="username"
         label="Nome de usuário"
         variant="outlined"
-        size="small"
         inputRef={register}
         error={!!errors.username}
         helperText={errors.username?.message}
@@ -57,7 +57,6 @@ const FormRegister = () => {
         name="password"
         label="Password"
         variant="outlined"
-        size="small"
         type="password"
         inputRef={register}
         error={!!errors.password}
@@ -68,13 +67,12 @@ const FormRegister = () => {
         name="email"
         label="E-mail"
         variant="outlined"
-        size="small"
         type="email"
         inputRef={register}
         error={!!errors.email}
         helperText={errors.email?.message}
       />
-      <Button type="submit" styled="filled-light">
+      <Button type="submit" styled="outlined-light">
         Enviar
       </Button>
       <Typography>

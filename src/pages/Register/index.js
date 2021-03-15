@@ -1,11 +1,8 @@
 // component
 import FormRegister from "../../components/FormRegister";
 
-// material ui
-import { Grid, Typography } from "@material-ui/core";
-
-// styles
-import { usePageRegister } from "../../styles/makeStyles";
+// styles components
+import { Container } from "./styles";
 
 // assets
 import registerBg from "../../assets/register/register.svg";
@@ -15,47 +12,35 @@ import bgCircles2 from "../../assets/bg_circles2.svg";
 
 //--------------------------------------------
 const Register = () => {
-  const classes = usePageRegister();
   return (
-    <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item container xs={12}>
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4}>
-            <Typography variant="h3">Habits.js</Typography>
-          </Grid>
-          <Grid item xs={4}>
-            <div>
-              <img src={bgCircles2} alt="Círculos 2" />
-            </div>
-          </Grid>
-        </Grid>
-        <Grid item container xs={12}>
-          <Grid className={classes.formStyle} item xs={4}>
-            <div className={classes.formStyle}>
-              <Typography variant="h4">Cadastro</Typography>
-              <FormRegister />
-            </div>
-          </Grid>
-          <Grid item xs={8}>
-            <div>
-              <img src={registerBg} alt="Register" />
-            </div>
-          </Grid>
-        </Grid>
-        <Grid item container xs={12}>
-          <Grid item xs={4}>
-            <div>
-              <img src={bgCircles1} alt="Círculos 1" />
-            </div>
-          </Grid>
-          <Grid className={classes.devStyle} item xs={4}>
-            <Typography variant="h5">Desenvolvido por Squad1</Typography>
-          </Grid>
-          <Grid item xs={4}></Grid>
-        </Grid>
-      </Grid>
-    </div>
+    <Container>
+      <div className="header-container">
+        <div className="title-container">
+          <h1>Habits.js</h1>
+        </div>
+        <div className="bgCircles1-container">
+          <img src={bgCircles2} alt="circle 1" />
+        </div>
+      </div>
+      <div className="inner-container">
+        <div className="form-container">
+          <FormRegister />
+        </div>
+        <div className="registerBg-container">
+          <img src={registerBg} alt="register Bg" />
+        </div>
+      </div>
+      <div className="footer-container">
+        <div className="bgCircles2-container">
+          <img src={bgCircles1} alt="circle 2" />
+        </div>
+        <div className="dev-container">
+          <h3>
+            Developed by <span>Squad1</span>
+          </h3>
+        </div>
+      </div>
+    </Container>
   );
 };
 

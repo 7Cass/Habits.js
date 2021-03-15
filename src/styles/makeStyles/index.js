@@ -26,7 +26,7 @@ export const useModalStyles = makeStyles((theme) => ({
 
 export const useFormStyles = makeStyles((theme) => ({
   inputStyles: {
-    margin: "20px 0",
+    margin: "10px 0",
     "& .MuiInputBase-root": {
       color: "#eff7fe",
     },
