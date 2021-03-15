@@ -1,11 +1,10 @@
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 import API from "../../services/index.js";
 import { postCreateHabit } from "../../helper/habits";
-
 import { useChecked } from "../../providers/user";
+import { schemaCreateHabit } from "../../helper/formValidation";
 
 import {
   TextField,
@@ -38,17 +37,8 @@ const frequencyOptions = [
 //----------------------------------------------
 const FormCreateHabit = ({ handleClose }) => {
   const { isChecked, userId } = useChecked();
-
-  const errorRequired = "Campo Obrigatório";
-  const schema = yup.object().shape({
-    title: yup.string().required(errorRequired),
-    category: yup.string().required(errorRequired),
-    difficulty: yup.string().required(errorRequired),
-    frequency: yup.string().required(errorRequired),
-  });
-
   const { register, handleSubmit, errors, reset, control } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaCreateHabit),
   });
 
   const handleForm = async (data) => {
