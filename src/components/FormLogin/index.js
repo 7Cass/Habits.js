@@ -27,10 +27,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 // ContextAPI
 import { useChecked } from "../../providers/user/";
 
-// helper
-import { postLogin } from "../../helper/users/";
-import { schemaLogin } from "../../helper/formValidation";
-
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
 
@@ -44,8 +40,6 @@ const FormLogin = () => {
   const { isChecked, setIsChecked, setUserId, setUser } = useChecked();
   const classes = useFormStyles();
   const history = useHistory();
-
-  const { isChecked, setIsChecked, setUserId } = useChecked();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaLogin),
   });
