@@ -56,7 +56,7 @@ const FormUpdateActivity = (props) => {
         helperText={errors.title?.message}
       />
       <Button type="submit" variant="contained" size="small" color="primary">
-        Atualizar Nome {props.actId}
+        Atualizar Nome
       </Button>
     </FormControl>
   );
