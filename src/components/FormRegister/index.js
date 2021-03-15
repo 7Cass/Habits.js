@@ -34,7 +34,7 @@ const FormRegister = () => {
       await API.post(postCreateUser(), data);
 
       reset();
-      history.push("/login");
+      history.push("/");
     } catch (error) {
       console.log(error);
     }

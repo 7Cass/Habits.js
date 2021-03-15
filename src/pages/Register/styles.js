@@ -83,7 +83,7 @@ export const Container = styled.div`
 
     & div.footer-container {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       min-height: 150px;
       height: 100%;

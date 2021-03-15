@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
-import NewGroup from "../pages/NewGroup";
 import GroupsPage from "../pages/Groups";
 import GroupPage from "../pages/Group";
 
