@@ -4,6 +4,7 @@ import API from "../../services/index.js";
 import { postLogin } from "../../helper/users/";
 import { schemaLogin } from "../../helper/formValidation";
 import { getOneUser } from "../../helper/users";
+import { getOneGroup } from "../../helper/groups";
 
 // JWT Decode
 import jwt_decode from "jwt-decode";
@@ -26,6 +27,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // ContextAPI
 import { useChecked } from "../../providers/user/";
+import { useId } from "../../providers/group";
 
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
@@ -38,6 +40,7 @@ import Button from "../Button";
 //-------------------------------------------------------
 const FormLogin = () => {
   const { isChecked, setIsChecked, setUserId, setUser } = useChecked();
+  const { setGroup } = useId();
   const classes = useFormStyles();
   const history = useHistory();
   const { register, handleSubmit, errors, reset } = useForm({
@@ -57,6 +60,11 @@ const FormLogin = () => {
       const takeUser = await API.get(getOneUser(user_id));
       setUser(takeUser.data);
 
+      if (takeUser.data.group) {
+        const takeUserGroup = await API.get(getOneGroup(takeUser.data.group));
+        setGroup(takeUserGroup.data);
+      }
+
       if (isChecked) {
         sessionStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
@@ -67,9 +75,7 @@ const FormLogin = () => {
 
       reset();
 
-      // *** PRECISA ATUALIZAR A ROTA ***
-      history.push("/");
-      // *** PRECISA ATUALIZAR A ROTA ***
+      history.push("/homepage");
     } catch (error) {
       console.error(error);
     }
