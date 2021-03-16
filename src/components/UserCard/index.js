@@ -1,4 +1,5 @@
 import { Card, Avatar, GroupCard } from "./styles";
+import ModalUpdateUser from "../ModalUpdateUser";
 import Button from "../Button";
 
 import image from "../../assets/perfil_large.png";
@@ -24,7 +25,7 @@ const UserCard = () => {
           Detalhes
         </Button>
       </GroupCard>
-      <Button styled="filled" size="large" children="Atualizar Dados" />
+      <ModalUpdateUser />
     </Card>
   );
 };
