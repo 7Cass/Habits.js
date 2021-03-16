@@ -1,6 +1,6 @@
 import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
-import FormUpdateActivity from "../FormUpdateActivity";
+import FormUpdateTitleGroup from "../FormUpdateTitleGroup";
 import { useModalStyles } from "../../styles/makeStyles";
 import getModalStyle from "../../styles/modalStyles";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -21,7 +21,7 @@ const ModalUpdateActivity = (props) => {
 
   const body = (
     <div style={modalStyle} className={classes.paperStyles}>
-      <FormUpdateActivity getGroup={props.getGroup} actId={props.actId} />
+      <FormUpdateTitleGroup getGroup={props.getGroup} groupId={props.groupId} />
     </div>
   );
 

@@ -1,41 +1,68 @@
+// react
+import { useEffect } from "react";
+
 // component
 import FormRegister from "../../components/FormRegister";
 
-// material ui
-import { Grid, Typography } from "@material-ui/core";
+// provider
+import { useChecked } from "../../providers/user";
 
-// styles
-import { usePageRegister } from "../../styles/makeStyles";
+// react router dom
+import { Redirect } from "react-router";
+
+// styles components
+import { Container } from "./styles";
+
+// assets
+import registerBg from "../../assets/register/register.svg";
+import bgCircles1 from "../../assets/bg_circles1.svg";
+import bgCircles2 from "../../assets/bg_circles2.svg";
 //--------------------------------------------
 
 //--------------------------------------------
 const Register = () => {
-  const classes = usePageRegister();
+  const { isAuth, checkAuth } = useChecked();
+
+  useEffect(() => {
+    checkAuth();
+    //eslint-disable-next-line
+  }, []);
+
   return (
-    <div className={classes.root}>
-      {/* <CssBaseline /> */}
-      <Grid container spacing={2}>
-        <Grid item container xs={12}>
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4}></Grid>
-          <Grid item xs={4}></Grid>
-        </Grid>
-        <Grid item container xs={12}>
-          <Grid className={classes.formStyle} item xs={4}>
-            <Typography variant="h4">Cadastro</Typography>
-            <FormRegister />
-          </Grid>
-          <Grid className={classes.registerBg} item xs={8}></Grid>
-        </Grid>
-        <Grid item container xs={12}>
-          <Grid className={classes.circlesBg} item xs={4}></Grid>
-          <Grid className={classes.devStyle} item xs={4}>
-            <Typography variant="h5">Desenvolvido por Squad1</Typography>
-          </Grid>
-          <Grid item xs={4}></Grid>
-        </Grid>
-      </Grid>
-    </div>
+    <>
+      {!isAuth ? (
+        <Container>
+          <div className="header-container">
+            <div className="title-container">
+              <h1>Habits.js</h1>
+            </div>
+            <div className="bgCircles1-container">
+              <img src={bgCircles2} alt="circle 1" />
+            </div>
+          </div>
+          <div className="inner-container">
+            <div className="form-container">
+              <FormRegister />
+            </div>
+            <div className="registerBg-container">
+              <img src={registerBg} alt="register Bg" />
+            </div>
+          </div>
+          <div className="footer-container">
+            <div className="bgCircles2-container">
+              <img src={bgCircles1} alt="circle 2" />
+            </div>
+            <div className="dev-container">
+              <h3>
+                Developed by <span>Squad1</span>
+              </h3>
+            </div>
+          </div>
+        </Container>
+      ) : (
+        <Redirect to={"/homepage"} />
+      )}
+    </>
   );
 };
 

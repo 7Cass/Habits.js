@@ -3,6 +3,7 @@ import { useState } from "react";
 import FormCreateGoal from "../FormCreateGoal";
 import { useModalStyles } from "../../styles/makeStyles";
 import getModalStyle from "../../styles/modalStyles";
+import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 
 //-----------------------------------------------
 const ModalCreateGoal = ({ getGroup }) => {
@@ -26,9 +27,13 @@ const ModalCreateGoal = ({ getGroup }) => {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <AddCircleOutlineOutlinedIcon
+        fontSize="large"
+        type="button"
+        onClick={handleOpen}
+      >
         Nova Meta
-      </button>
+      </AddCircleOutlineOutlinedIcon>
       <Modal open={open} onClose={handleClose}>
         {body}
       </Modal>

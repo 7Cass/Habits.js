@@ -1,12 +1,11 @@
 import Modal from "@material-ui/core/Modal";
 import { useState } from "react";
-import FormUpdateActivity from "../FormUpdateActivity";
+import FormUpdateUser from "../FormUpdateUser";
 import { useModalStyles } from "../../styles/makeStyles";
 import getModalStyle from "../../styles/modalStyles";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 
 //--------------------------------------------------
-const ModalUpdateActivity = (props) => {
+const ModalUpdateUser = () => {
   const classes = useModalStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -21,15 +20,15 @@ const ModalUpdateActivity = (props) => {
 
   const body = (
     <div style={modalStyle} className={classes.paperStyles}>
-      <FormUpdateActivity getGroup={props.getGroup} actId={props.actId} />
+      <FormUpdateUser />
     </div>
   );
 
   return (
     <div>
-      <EditOutlinedIcon type="button" onClick={handleOpen}>
-        Editar Nome
-      </EditOutlinedIcon>
+      <button type="button" onClick={handleOpen}>
+        Editar usuário
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -42,4 +41,4 @@ const ModalUpdateActivity = (props) => {
   );
 };
 
-export default ModalUpdateActivity;
+export default ModalUpdateUser;

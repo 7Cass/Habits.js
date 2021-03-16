@@ -2,7 +2,7 @@
 import API from "../../services";
 
 // material ui
-import { TextField, Typography, FormControl, Button } from "@material-ui/core";
+import { TextField, Typography, FormControl } from "@material-ui/core";
 
 // react router dom
 import { useHistory, Link } from "react-router-dom";
@@ -18,6 +18,9 @@ import { schemaRegister } from "../../helper/formValidation";
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
 
+// components
+import Button from "../Button";
+
 //--------------------------------------------
 const FormRegister = () => {
   const classes = useFormStyles();
@@ -31,7 +34,7 @@ const FormRegister = () => {
       await API.post(postCreateUser(), data);
 
       reset();
-      history.push("/login");
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -39,12 +42,12 @@ const FormRegister = () => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
+      <Typography variant="h2">Cadastro</Typography>
       <TextField
         className={classes.inputStyles}
         name="username"
         label="Nome de usuário"
         variant="outlined"
-        size="small"
         inputRef={register}
         error={!!errors.username}
         helperText={errors.username?.message}
@@ -54,7 +57,6 @@ const FormRegister = () => {
         name="password"
         label="Password"
         variant="outlined"
-        size="small"
         type="password"
         inputRef={register}
         error={!!errors.password}
@@ -65,17 +67,16 @@ const FormRegister = () => {
         name="email"
         label="E-mail"
         variant="outlined"
-        size="small"
         type="email"
         inputRef={register}
         error={!!errors.email}
         helperText={errors.email?.message}
       />
-      <Button type="submit" variant="contained" size="small" color="primary">
+      <Button type="submit" styled="outlined-light">
         Enviar
       </Button>
       <Typography>
-        Já registrado? <Link to="/login">login</Link>
+        Já registrado? <Link to="/">login</Link>
       </Typography>
     </FormControl>
   );

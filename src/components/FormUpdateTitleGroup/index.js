@@ -11,13 +11,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 //--------------------------------------------
-import { patchUpdateActivity } from "../../helper/activities";
-import { schemaUpdateActivity } from "../../helper/formValidation";
+import { patchUpdateGroup } from "../../helper/groups";
+import { schemaUpdateTitleGroup } from "../../helper/formValidation";
 //--------------------------------------------
 
 const FormUpdateActivity = (props) => {
   const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schemaUpdateActivity),
+    resolver: yupResolver(schemaUpdateTitleGroup),
   });
 
   const [token] = useState(() => {
@@ -31,7 +31,7 @@ const FormUpdateActivity = (props) => {
 
   const onRegister = async (data) => {
     try {
-      await API.patch(patchUpdateActivity(props.actId), data, {
+      await API.patch(patchUpdateGroup(props.groupId), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -46,14 +46,14 @@ const FormUpdateActivity = (props) => {
   return (
     <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
       <TextField
-        name="title"
-        label="Nome da Atividade"
+        name="name"
+        label="Nome da Grupo"
         variant="outlined"
         size="small"
         margin="dense"
         inputRef={register}
-        error={!!errors.title}
-        helperText={errors.title?.message}
+        error={!!errors.name}
+        helperText={errors.name?.message}
       />
       <Button type="submit" variant="contained" size="small" color="primary">
         Atualizar Nome

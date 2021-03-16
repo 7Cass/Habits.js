@@ -1,16 +1,14 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import jwt_decode from "jwt-decode";
-
+// API
 import API from "../../services/index.js";
+
 import { postLogin } from "../../helper/users/";
 import { schemaLogin } from "../../helper/formValidation";
+import { getOneUser } from "../../helper/users";
 
-import { Link, useHistory } from "react-router-dom";
+// JWT Decode
+import jwt_decode from "jwt-decode";
 
-import { useChecked } from "../../providers/user/";
-
+// material ui
 import {
   FormControl,
   TextField,
@@ -19,12 +17,28 @@ import {
   Typography,
 } from "@material-ui/core";
 
+// react router dom
+import { Link, useHistory } from "react-router-dom";
+
+// react hook form + yup + resolvers
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+// ContextAPI
+import { useChecked } from "../../providers/user/";
+
+// styles
+import { useFormStyles } from "../../styles/makeStyles";
+
+// components
 import Button from "../Button";
+
 //-------------------------------------------------------
 
 //-------------------------------------------------------
 const FormLogin = () => {
-  const { isChecked, setIsChecked, setUserId } = useChecked();
+  const { isChecked, setIsChecked, setUserId, setUser } = useChecked();
+  const classes = useFormStyles();
   const history = useHistory();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaLogin),
@@ -37,7 +51,11 @@ const FormLogin = () => {
       const response = await API.post(postLogin(), data);
 
       const { user_id } = jwt_decode(response.data.access);
+
       setUserId(user_id);
+
+      const takeUser = await API.get(getOneUser(user_id));
+      setUser(takeUser.data);
 
       if (isChecked) {
         sessionStorage.clear();
@@ -61,6 +79,7 @@ const FormLogin = () => {
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
       <Typography variant="h2">Entrar</Typography>
       <TextField
+        className={classes.inputStyles}
         variant="outlined"
         size="small"
         margin="dense"
@@ -71,6 +90,7 @@ const FormLogin = () => {
         helperText={errors.username?.message}
       />
       <TextField
+        className={classes.inputStyles}
         type="password"
         variant="outlined"
         size="small"
@@ -91,7 +111,7 @@ const FormLogin = () => {
         }
         label="Manter logado?"
       />
-      <Button type="submit" styled="outlined" children="Entrar" />
+      <Button type="submit" styled="outlined-light" children="Entrar" />
       <p>
         Não possui conta? <Link to="/register">Fazer cadastro</Link>
       </p>

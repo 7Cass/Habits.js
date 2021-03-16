@@ -4,7 +4,7 @@ const GroupContext = createContext();
 
 export const GroupProvider = ({ children }) => {
   const [groupId, setGroupId] = useState(0);
-  const [group, setGroup] = useState([]);
+  const [group, setGroup] = useState({});
 
   return (
     <GroupContext.Provider value={{ groupId, setGroupId, group, setGroup }}>
