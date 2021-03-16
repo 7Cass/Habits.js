@@ -68,7 +68,7 @@ const FormLogin = () => {
       reset();
 
       // *** PRECISA ATUALIZAR A ROTA ***
-      history.push("/");
+      history.push("/group");
       // *** PRECISA ATUALIZAR A ROTA ***
     } catch (error) {
       console.error(error);
@@ -81,7 +81,6 @@ const FormLogin = () => {
       <TextField
         className={classes.inputStyles}
         variant="outlined"
-        size="small"
         margin="dense"
         label="Usuário"
         name="username"
@@ -93,7 +92,6 @@ const FormLogin = () => {
         className={classes.inputStyles}
         type="password"
         variant="outlined"
-        size="small"
         margin="dense"
         label="Senha"
         name="password"
