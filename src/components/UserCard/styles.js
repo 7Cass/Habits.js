@@ -5,9 +5,10 @@ export const Card = styled.div`
   padding: 20px 10px;
   border: none;
   border-radius: 25px;
+  min-width: 270px;
   max-width: 300px;
   text-align: center;
-  margin: 15px 0;
+  margin-bottom: 15px;
 
   & h2,
   h4 {

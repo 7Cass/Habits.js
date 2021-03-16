@@ -24,7 +24,6 @@ export const MenuItem = styled.button`
     @media screen and (min-width: 425px) {
       display: inline;
       margin: 0 5px;
-      color: red;
     }
   }
 `;

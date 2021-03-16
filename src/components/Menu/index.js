@@ -13,11 +13,11 @@ const Menu = () => {
 
   return (
     <SectionMenu>
-      <MenuItem onClick={history.push("/homepage")}>
+      <MenuItem onClick={() => history.push("/homepage")}>
         <i class="fas fa-home"></i>
         Início
       </MenuItem>
-      <MenuItem onClick={history.push("/groups")}>Grupos</MenuItem>
+      <MenuItem onClick={() => history.push("/groups")}>Grupos</MenuItem>
       <MenuItem onClick={logout}>
         Sair
         <i class="fas fa-sign-out-alt"></i>
