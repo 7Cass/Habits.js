@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ButtonStyled = styled.button`
-  border: 5px solid;
+  border: 3px solid;
   border-color: ${(props) =>
     props.styled === "outlined" || props.styled === "filled"
       ? "#16181C"
@@ -9,7 +9,7 @@ export const ButtonStyled = styled.button`
       ? "#EFF7FE"
       : null};
   font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   border-radius: 10px;
   outline: none;
@@ -30,7 +30,7 @@ export const ButtonStyled = styled.button`
       ? "#eff7fe"
       : null};
   width: ${(props) =>
-    props.size === "small" ? "125px" : props.size === "large" ? "100%" : null};
+    props.size === "small" ? "135px" : props.size === "large" ? "100%" : null};
   padding: 15px;
 
   &:hover {

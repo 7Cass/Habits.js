@@ -1,5 +1,7 @@
-import { Card } from "./styles";
+import { Card, Accordion } from "./styles";
 import { useEffect, useState } from "react";
+import SimpleAccordion from "../Accordion";
+
 import API from "../../services";
 
 import { getPersonalHabit } from "../../helper/habits";
@@ -42,10 +44,10 @@ const HabitsCard = () => {
 
   return (
     <Card>
-      {/*
-       {habits &&
+      <h2>Seus hábitos</h2>
+      {habits &&
         habits.map((habit, index) => (
-          <div
+          <SimpleAccordion
             key={index}
             achieved={habit.achieved}
             category={habit.category}
@@ -53,8 +55,8 @@ const HabitsCard = () => {
             frequency={habit.frequency}
             how_much_achieved={habit.how_much_achieved}
             title={habit.title}
-          ></div>
-        ))} */}
+          ></SimpleAccordion>
+        ))}
     </Card>
   );
 };

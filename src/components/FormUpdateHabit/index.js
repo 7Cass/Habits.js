@@ -6,23 +6,28 @@ import { useState } from "react";
 
 // material ui
 import {
-  Typography,
   Box,
-  Button,
   FormControlLabel,
   Checkbox,
   Slider,
+  Hidden,
 } from "@material-ui/core";
 
 // global state
 import { useChecked } from "../../providers/user";
 
+import Button from "../Button";
+
 // helper
 import { patchUpdateHabit } from "../../helper/habits";
+
+import { SliderStyles } from "../../styles/makeStyles";
 //--------------------------------------------
 
 //--------------------------------------------
 const FormUpdateHabit = ({ id }) => {
+  const classes = SliderStyles();
+
   const [isAchieved, setIsAchieved] = useState(false);
   const [slider, setSlider] = useState(0);
   const { isChecked } = useChecked();
@@ -61,16 +66,7 @@ const FormUpdateHabit = ({ id }) => {
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      maxWidth="320px"
-      width="100%"
-      margin="15px"
-    >
-      <Typography id="discrete-slider" gutterBottom>
-        Editar hábito
-      </Typography>
+    <Box display="flex" flexDirection="column">
       <Slider
         defaultValue={0}
         getAriaValueText={valueText}
@@ -80,26 +76,22 @@ const FormUpdateHabit = ({ id }) => {
         marks
         min={0}
         max={100}
+        className={classes.slider}
       />
-      <FormControlLabel
-        disabled
-        control={
-          <Checkbox
-            color="primary"
-            checked={isAchieved}
-            onChange={handleChange}
-          />
-        }
-        label="Concluído"
-      />
-      <Button
-        variant="contained"
-        size="small"
-        color="primary"
-        onClick={onRegister}
-      >
-        Atualizar hábito
+      <Hidden xlDown>
+        <FormControlLabel
+          disabled
+          control={<Checkbox checked={isAchieved} onChange={handleChange} />}
+          label="Concluído"
+        ></FormControlLabel>
+      </Hidden>
+      <Button size="large" styled="outlined-light" onClick={onRegister}>
+        Atualizar Hábito
       </Button>
+      <button className={classes.removeButton}>
+        <i class="fas fa-trash-alt"></i>
+        Remover Hábito
+      </button>
     </Box>
   );
 };

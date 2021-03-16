@@ -7,9 +7,35 @@ export const Card = styled.div`
   border-radius: 25px;
   max-width: 300px;
   text-align: center;
+  margin: 15px 0;
+
+  & h2,
+  h4 {
+    margin: 10px;
+  }
 `;
 
 export const Avatar = styled.img`
   border-radius: 50%;
   width: 150px;
+`;
+
+export const GroupCard = styled.div`
+  border: 3px solid #16181c;
+  border-radius: 25px;
+  padding: 15px 25px;
+  margin: 10px 0;
+  & h3 {
+    color: #16181c;
+    font-weight: 700;
+  }
+  & h2 {
+    background: #16181c;
+    padding: 10px;
+    border-radius: 25px;
+  }
+  & i {
+    color: #eff7fe;
+    margin-right: 5px;
+  }
 `;

@@ -68,7 +68,7 @@ const FormLogin = () => {
       reset();
 
       // *** PRECISA ATUALIZAR A ROTA ***
-      history.push("/testforms");
+      history.push("/");
       // *** PRECISA ATUALIZAR A ROTA ***
     } catch (error) {
       console.error(error);

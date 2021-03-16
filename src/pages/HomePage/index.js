@@ -1,8 +1,8 @@
 import Menu from "../../components/Menu";
-// import UserCard from "../../components/UserCard";
-// import HabitsCard from "../../components/HabitsCard";
+import HabitsCard from "../../components/HabitsCard";
+import UserCard from "../../components/UserCard";
 
-import Button from "../../components/Button";
+import { Container } from "./styles";
 
 import { useChecked } from "../../providers/user";
 import { Redirect } from "react-router";
@@ -15,21 +15,13 @@ const HomePage = () => {
   return (
     <>
       {isAuth ? (
-        <div style={{ background: "blue" }}>
+        <>
           <Menu />
-          <Button styled="filled" size="small">
-            Button
-          </Button>
-          <Button styled="outlined" size="small">
-            Button
-          </Button>
-          <Button styled="filled-light" size="small">
-            Button
-          </Button>
-          <Button styled="outlined-light" size="small">
-            Button
-          </Button>
-        </div>
+          <Container>
+            <HabitsCard />
+            <UserCard />
+          </Container>
+        </>
       ) : (
         <Redirect to="/register" />
       )}
