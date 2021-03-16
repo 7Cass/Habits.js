@@ -81,7 +81,6 @@ const FormLogin = () => {
       <TextField
         className={classes.inputStyles}
         variant="outlined"
-        margin="dense"
         label="Usuário"
         name="username"
         inputRef={register}
@@ -92,7 +91,6 @@ const FormLogin = () => {
         className={classes.inputStyles}
         type="password"
         variant="outlined"
-        margin="dense"
         label="Senha"
         name="password"
         inputRef={register}

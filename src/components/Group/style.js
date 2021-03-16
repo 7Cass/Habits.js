@@ -59,11 +59,6 @@ export const ActivityCard = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  & h3 {
-    width: 50px;
-    overflow: hidden;
-  }
-
   @media (max-width: 445px) {
     width: 100%;
   }

@@ -11,15 +11,15 @@ export const formatDate = (date) => {
   let month = rawDate.getMonth();
   let year = rawDate.getFullYear();
 
-  let hours = rawDate.getHours() + 3;
-  let minutes = rawDate.getMinutes();
+  let hours = rawDate.getUTCHours();
+  let minutes = rawDate.getUTCMinutes();
 
-  let ampm = hours <= 12 ? "AM" : "PM";
+  hours = hours < 10 ? `0${hours}` : hours;
 
-  hours = hours % 12; // Relógio 12h
-  hours = hours ? hours : 12; // Meia noite deve ser 12h;
+  //   let ampm = hours >= 12 ? "AM" : "PM";
+  //   hours = hours % 12; // Relógio 12h
+  //   hours = hours ? hours : 12; // Meia noite deve ser 12h;
+  //   minutes = minutes < 10 ? `0${minutes}` : minutes; // Acrescenta 0 na frente se min < 10
 
-  console.log(hours);
-
-  return `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
 };
