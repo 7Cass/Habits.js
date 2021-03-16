@@ -23,7 +23,7 @@ const HomePage = () => {
           </Container>
         </>
       ) : (
-        <Redirect to="/register" />
+        <Redirect to="/" />
       )}
     </>
   );
