@@ -6,13 +6,14 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import Button from "../Button";
+import FormUpdateHabit from "../FormUpdateHabit";
 
 import { Tags, DetailsContainer } from "./styles.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    margin: "10px 0",
   },
   heading: {
     fontSize: "1.4rem",
@@ -43,8 +44,6 @@ export default function SimpleAccordion({
 }) {
   const classes = useStyles();
 
-  achieved = true;
-
   return (
     <div className={classes.root}>
       <Accordion className={classes.accordion}>
@@ -71,7 +70,7 @@ export default function SimpleAccordion({
           )}
           <Typography className={classes.heading}>{title}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails style={{ justifyContent: "center" }}>
           <DetailsContainer>
             <Tags>
               <h4>Categoria</h4>
@@ -81,11 +80,8 @@ export default function SimpleAccordion({
               <h4>Frequência</h4>
               <div>{frequency}</div>
             </Tags>
-            <h2>Performance do Hábito</h2>
             <h2>Atualizar Hábito</h2>
-            <Button size="large" styled="outlined-light">
-              Atualizar
-            </Button>
+            <FormUpdateHabit />
           </DetailsContainer>
         </AccordionDetails>
       </Accordion>

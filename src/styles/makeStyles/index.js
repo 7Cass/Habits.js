@@ -77,3 +77,35 @@ export const usePageRegister = makeStyles((theme) => ({
     justifyContent: "center",
   },
 }));
+
+export const SliderStyles = makeStyles((theme) => ({
+  slider: {
+    color: "#55a1e3",
+    margin: 0,
+  },
+  removeButton: {
+    color: "#BA3B4E",
+    border: "3px solid",
+    borderColor: "#BA3B4E",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "1.2rem",
+    fontWeight: "600",
+    borderRadius: "10px",
+    outline: "none",
+    cursor: "pointer",
+    transition: "0.4s",
+    background: "transparent",
+    width: "100%",
+    padding: "15px",
+    marginTop: "10px",
+
+    "&:hover": {
+      background: "#BA3B4E",
+      color: "#16181C",
+    },
+
+    "& i": {
+      marginRight: "5px",
+    },
+  },
+}));

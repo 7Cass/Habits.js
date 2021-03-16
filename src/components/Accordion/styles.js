@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   & h2 {
     margin: 15px 0;
@@ -19,6 +20,6 @@ export const Tags = styled.div`
     font-weight: bold;
     padding: 5px;
     border-radius: 25px;
-    margin: 10px 0;
+    margin: 10px;
   }
 `;
