@@ -76,6 +76,7 @@ const FormLogin = () => {
       reset();
 
       history.push("/homepage");
+
     } catch (error) {
       console.error(error);
     }
@@ -87,8 +88,6 @@ const FormLogin = () => {
       <TextField
         className={classes.inputStyles}
         variant="outlined"
-        size="small"
-        margin="dense"
         label="Usuário"
         name="username"
         inputRef={register}
@@ -99,8 +98,6 @@ const FormLogin = () => {
         className={classes.inputStyles}
         type="password"
         variant="outlined"
-        size="small"
-        margin="dense"
         label="Senha"
         name="password"
         inputRef={register}
