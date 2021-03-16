@@ -66,10 +66,7 @@ const FormLogin = () => {
       }
 
       reset();
-
-      // *** PRECISA ATUALIZAR A ROTA ***
-      history.push("/");
-      // *** PRECISA ATUALIZAR A ROTA ***
+      history.push("/homepage");
     } catch (error) {
       console.error(error);
     }
