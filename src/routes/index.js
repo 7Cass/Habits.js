@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import GroupsPage from "../pages/Groups";
+import GroupPage from "../pages/Group";
 
 // página de testes dos forms
 import TestForms from "../pages/TestForms";

@@ -9,7 +9,6 @@ import FormUpdateHabit from "../../components/FormUpdateHabit";
 import DeleteHabit from "../../components/DeleteHabit";
 import ModalUpdateUser from "../../components/ModalUpdateUser";
 import ModalCreateHabit from "../../components/ModalCreateHabit";
-import ModalUpdateGoal from "../../components/ModalUpdateGoal";
 
 //-------------------------------------
 const TestForms = () => {
@@ -22,9 +21,6 @@ const TestForms = () => {
       <ModalCreateHabit />
       <div>
         <ModalUpdateUser />
-      </div>
-      <div>
-        <ModalUpdateGoal />
       </div>
     </Box>
   );
