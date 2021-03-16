@@ -34,7 +34,7 @@ const FormRegister = () => {
       await API.post(postCreateUser(), data);
 
       reset();
-      history.push("/login");
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +76,7 @@ const FormRegister = () => {
         Enviar
       </Button>
       <Typography>
-        Já registrado? <Link to="/login">login</Link>
+        Já registrado? <Link to="/">login</Link>
       </Typography>
     </FormControl>
   );
