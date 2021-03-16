@@ -14,7 +14,7 @@ export const MenuItem = styled.button`
   background: transparent;
   border: none;
   font-weight: bold;
-  margin: 0 25px;
+  margin: 0 15px;
   cursor: pointer;
   outline: none;
 
@@ -24,7 +24,6 @@ export const MenuItem = styled.button`
     @media screen and (min-width: 425px) {
       display: inline;
       margin: 0 5px;
-      color: red;
     }
   }
 `;

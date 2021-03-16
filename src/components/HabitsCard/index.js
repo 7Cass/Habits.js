@@ -2,11 +2,11 @@ import { Card, Accordion } from "./styles";
 import { useEffect, useState } from "react";
 import SimpleAccordion from "../Accordion";
 
+import { useChecked } from "../../providers/user/index";
+
 import API from "../../services";
 
 import { getPersonalHabit } from "../../helper/habits";
-
-import { useChecked } from "../../providers/user";
 
 //----------------------------------------
 const HabitsCard = () => {
