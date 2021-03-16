@@ -35,7 +35,7 @@ const HomePage = () => {
           <Footer />
         </>
       ) : (
-        <Redirect to="/register" />
+        <Redirect to="/" />
       )}
     </>
   );

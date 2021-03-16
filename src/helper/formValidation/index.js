@@ -40,7 +40,7 @@ export const schemaCreateGoal = yup.object().shape({
 });
 
 export const schemaActivity = yup.object().shape({
-  title: yup.string().required(errorRequired),
+  title: yup.string().max(21, "Maximo 21 Caracteres").required(errorRequired),
   realization_time: yup.string().required(errorRequired),
 });
 

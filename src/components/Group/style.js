@@ -13,10 +13,10 @@ export const CardGroup = styled.div`
   max-width: 670px;
   align-items: center;
   padding: 15px;
-  border: 2px solid white;
   background: #16181c;
   border-radius: 25px;
   text-align: center;
+  height: 100vh;
   & h1 {
     color: #55a1e3;
     margin-right: 0.5rem;
@@ -33,12 +33,14 @@ export const TitleContent = styled.div`
 `;
 
 export const ActivitiesCard = styled.div`
+  overflow: scroll;
   padding: 5px;
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 38vh;
   max-width: 640px;
   margin: 15px;
   background-color: #55a1e3;
@@ -47,21 +49,21 @@ export const ActivitiesCard = styled.div`
     color: #eff7fe;
     width: 85%;
   }
+  & h3 {
+    max-width: 500px;
+    width: 100%;
+  }
 `;
 export const ActivityCard = styled.div`
   background-color: #363b45;
   margin: 0.5rem;
   padding: 5px;
   color: #eff7fe;
-  width: 80%;
-  height: 30px;
+  width: 100%;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media (max-width: 445px) {
-    width: 100%;
-  }
 `;
 
 export const ActivityAdd = styled.div`
@@ -86,12 +88,14 @@ export const ButtonsContent = styled.div`
 `;
 
 export const Goals = styled.div`
+  overflow: scroll;
   padding: 5px;
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 34vh;
   max-width: 640px;
   margin: 15px;
   background-color: #55a1e3;
@@ -113,8 +117,8 @@ export const GoalCard = styled.div`
   margin: 0.5rem;
   padding: 5px;
   color: #eff7fe;
-  width: 80%;
-  height: 30px;
+  width: 100%;
+  height: 33px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -129,6 +133,7 @@ export const GoalCard = styled.div`
 `;
 
 export const UserCard = styled.div`
+  overflow: scroll;
   align-items: center;
   padding: 5px;
   text-align: left;
@@ -136,6 +141,7 @@ export const UserCard = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 20vh;
   max-width: 640px;
   margin: 15px;
   background-color: #55a1e3;

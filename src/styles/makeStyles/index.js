@@ -7,6 +7,25 @@ import bgCircles1 from "../../assets/bg_circles1.svg";
 import bgCircles2 from "../../assets/bg_circles2.svg";
 
 //------------------------------------------------
+export const useModalUserGroup = makeStyles((theme) => ({
+  paperStyles1: {
+    position: "absolute",
+    width: "fit-content",
+    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: "transparente",
+    // border: "2px solid #000",
+    // boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    display: "flex",
+    justifyContent: "space-around",
+    outline: "none",
+    // eslint-disable-next-line
+    // ["@media (min-width:450px)"]: {
+    //   width: 400,
+    // },
+  },
+}));
+
 export const useModalStyles = makeStyles((theme) => ({
   paperStyles: {
     position: "absolute",
