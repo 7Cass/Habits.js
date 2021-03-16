@@ -48,6 +48,10 @@ export const schemaUpdateActivity = yup.object().shape({
   title: yup.string().required(errorRequired),
 });
 
+export const schemaUpdateUser = yup.object().shape({
+  username: yup.string().required(errorRequired),
+});
+
 export const schemaUpdateTitleGroup = yup.object().shape({
   name: yup.string().required(errorRequired),
 });

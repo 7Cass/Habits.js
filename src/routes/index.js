@@ -4,9 +4,10 @@ import HomePage from "../pages/HomePage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import GroupsPage from "../pages/Groups";
+import GroupPage from "../pages/Group";
 
 // página de testes dos forms
-import TestForms from "../pages/TestForms"
+import TestForms from "../pages/TestForms";
 
 //-----------------------------------------------
 // *** QUANDO FOR ADICIONAR NOVAS ROTAS, PROCURE DEIXAR
@@ -26,9 +27,9 @@ const Routes = () => {
       <Route exact path="/groups">
         <GroupsPage />
       </Route>
-       <Route exact path="/testforms">
+      <Route exact path="/testforms">
         <TestForms />
-      </Route> 
+      </Route>
     </Switch>
   );
 };

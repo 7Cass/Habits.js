@@ -58,6 +58,7 @@ export const ActivityCard = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   @media (max-width: 445px) {
     width: 100%;
   }
@@ -117,6 +118,11 @@ export const GoalCard = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & .goal-container {
+    display: flex;
+    align-items: center;
+  }
   @media (max-width: 445px) {
     width: 100%;
   }
