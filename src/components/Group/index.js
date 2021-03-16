@@ -108,8 +108,8 @@ const Group = (props) => {
             ? group.activities.map((activity, index) => (
                 <ActivityCard key={index}>
                   <h3>{activity.title}</h3>
-                  <h4>{formatDate(activity.realization_time)}</h4>
                   <ButtonsContent>
+                    <h4>{formatDate(activity.realization_time)}</h4>
                     <ModalUpdateActivity
                       getGroup={getGroup}
                       actId={activity.id}

@@ -30,8 +30,8 @@ export const useModalStyles = makeStyles((theme) => ({
   paperStyles: {
     position: "absolute",
     width: "100%",
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    backgroundColor: "#16181c",
+    border: "2px solid #16181c",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     display: "flex",
@@ -40,6 +40,7 @@ export const useModalStyles = makeStyles((theme) => ({
     ["@media (min-width:450px)"]: {
       width: 400,
     },
+    outline: "none",
   },
 }));
 

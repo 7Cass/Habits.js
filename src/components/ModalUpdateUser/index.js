@@ -4,6 +4,8 @@ import FormUpdateUser from "../FormUpdateUser";
 import { useModalStyles } from "../../styles/makeStyles";
 import getModalStyle from "../../styles/modalStyles";
 
+import Button from "../Button";
+
 //--------------------------------------------------
 const ModalUpdateUser = () => {
   const classes = useModalStyles();
@@ -26,9 +28,12 @@ const ModalUpdateUser = () => {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Editar usuário
-      </button>
+      <Button
+        styled="filled"
+        size="large"
+        children="Atualizar Dados"
+        onClick={handleOpen}
+      />
       <Modal
         open={open}
         onClose={handleClose}
