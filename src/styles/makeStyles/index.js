@@ -88,3 +88,9 @@ export const usePageRegister = makeStyles((theme) => ({
     justifyContent: "center",
   },
 }));
+
+export const useAcitivityButtons = makeStyles((theme) => ({
+  buttonStyle: {
+    margin: "0 5px",
+  },
+}));

@@ -3,6 +3,7 @@ import { useState } from "react";
 import FormActivity from "../FormActivity";
 import { useModalStyles } from "../../styles/makeStyles";
 import getModalStyle from "../../styles/modalStyles";
+import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 
 //------------------------------------------
 const ModalActivity = (props) => {
@@ -26,9 +27,11 @@ const ModalActivity = (props) => {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Adicionar Atividade
-      </button>
+      <AddCircleOutlineOutlinedIcon
+        fontSize="large"
+        type="button"
+        onClick={handleOpen}
+      ></AddCircleOutlineOutlinedIcon>
       <Modal
         open={open}
         onClose={handleClose}
