@@ -26,10 +26,12 @@ import GroupIcon from "@material-ui/icons/Group";
 import { useChecked } from "../../providers/user";
 import { useId } from "../../providers/group";
 import { useAcitivityButtons } from "../../styles/makeStyles";
+import { formatDate } from "../../helper/activities";
 
 import { getOneGroup } from "../../helper/groups";
 import { deleteActivity } from "../../helper/activities";
 import { deleteGoals } from "../../helper/goals";
+import CheckboxUpdateGoal from "../CheckboxUpdateGoal";
 
 //==============================================
 const Group = () => {
@@ -99,6 +101,7 @@ const Group = () => {
             ? group.activities.map((activity, index) => (
                 <ActivityCard key={index}>
                   <h3>{activity.title}</h3>
+                  <h4>{formatDate(activity.realization_time)}</h4>
                   <ButtonsContent>
                     <ModalUpdateActivity
                       getGroup={getGroup}
@@ -125,7 +128,12 @@ const Group = () => {
             ? group.goals.map((goal, index) => (
                 <GoalCard key={index}>
                   <h3>{goal.title}</h3>
-                  <ButtonsContent>
+                  <ButtonsContent className="goal-container">
+                    <p>{goal.difficulty}</p>
+                    <CheckboxUpdateGoal
+                      goalId={goal.id}
+                      goalAchieved={goal.achieved}
+                    />
                     <HighlightOffOutlinedIcon
                       onClick={() => onDeleteGoal(goal.id)}
                       className={classes.buttonStyle}
