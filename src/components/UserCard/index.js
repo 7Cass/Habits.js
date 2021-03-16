@@ -3,31 +3,13 @@ import Button from "../Button";
 
 import image from "../../assets/perfil_large.png";
 
-import API from "../../services";
-import { useState, useEffect } from "react";
-
 import { useId } from "../../providers/group";
-import { getOneUser } from "../../helper/users";
-import { getOneGroup } from "../../helper/groups";
 import { useChecked } from "../../providers/user";
 
 //---------------------------------------------
 const UserCard = () => {
-  const [user, setUser] = useState([]);
-  const [group, setGroup] = useState([]);
-  const { setGroupId } = useId();
-  const { userId } = useChecked();
-
-  const getData = (response) => {
-    setUser(response.data);
-    setGroupId(response.data.group);
-  };
-
-  useEffect(() => {
-    API.get(getOneUser(userId)).then((res) => getData(res));
-    API.get(getOneGroup(user.group)).then((res) => setGroup(res.data));
-    // eslint-disable-next-line
-  }, []);
+  const { group } = useId();
+  const { user } = useChecked();
 
   return (
     <Card>
