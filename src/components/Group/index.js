@@ -2,6 +2,7 @@ import API from "../../services";
 import { useEffect, useState } from "react";
 import {
   GroupContent,
+  TitleContent,
   CardGroup,
   UserCard,
   ActivitiesCard,
@@ -18,6 +19,7 @@ import {
 import ModalActivity from "../ModalActivity";
 import ModalUpdateActivity from "../ModalUpdateActivity";
 import ModalCreateGoal from "../ModalCreateGoal";
+import ModalUpdateTitleGroup from "../ModalUpdateTitleGroup";
 
 import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
 import GroupIcon from "@material-ui/icons/Group";
@@ -88,7 +90,10 @@ const Group = () => {
   return (
     <GroupContent>
       <CardGroup>
-        <h1>{group.name}</h1>
+        <TitleContent>
+          <h1>{group.name}</h1>
+          <ModalUpdateTitleGroup getGroup={getGroup} groupId={group.id} />
+        </TitleContent>
         <h4>{group.description}</h4>
         <CategoryBox>{group.category}</CategoryBox>
 

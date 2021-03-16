@@ -51,3 +51,7 @@ export const schemaUpdateActivity = yup.object().shape({
 export const schemaUpdateUser = yup.object().shape({
   username: yup.string().required(errorRequired),
 });
+
+export const schemaUpdateTitleGroup = yup.object().shape({
+  name: yup.string().required(errorRequired),
+});
