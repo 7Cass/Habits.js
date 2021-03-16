@@ -23,6 +23,7 @@ import ModalUpdateTitleGroup from "../ModalUpdateTitleGroup";
 
 import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
 import GroupIcon from "@material-ui/icons/Group";
+import CloseIcon from "@material-ui/icons/Close";
 
 //helpers =>
 import { useChecked } from "../../providers/user";
@@ -36,7 +37,7 @@ import { deleteGoals } from "../../helper/goals";
 import CheckboxUpdateGoal from "../CheckboxUpdateGoal";
 
 //==============================================
-const Group = () => {
+const Group = (props) => {
   const { group, setGroup } = useId();
   const classes = useAcitivityButtons();
   const { user } = useChecked();
@@ -90,6 +91,7 @@ const Group = () => {
   return (
     <GroupContent>
       <CardGroup>
+        <CloseIcon onClick={() => props.handleClose()}>Close</CloseIcon>
         <TitleContent>
           <h1>{group.name}</h1>
           <ModalUpdateTitleGroup getGroup={getGroup} groupId={group.id} />
