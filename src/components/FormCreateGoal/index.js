@@ -18,6 +18,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import { useFormStyles } from "../../styles/makeStyles";
 
 //--------------------------------------------------------
 const difficultyOptions = [
@@ -30,6 +31,7 @@ const difficultyOptions = [
 
 //--------------------------------------------------------
 const FormCreateGoal = ({ handleClose, getGroup }) => {
+  const classes = useFormStyles();
   const { isChecked } = useChecked();
   const { group } = useId();
   const { register, handleSubmit, errors, reset, control } = useForm({
@@ -75,10 +77,8 @@ const FormCreateGoal = ({ handleClose, getGroup }) => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      <Typography variant="h4" color="primary">
-        Adicionar Meta
-      </Typography>
       <TextField
+        className={classes.inputStyles}
         variant="outlined"
         size="small"
         margin="dense"
@@ -88,14 +88,15 @@ const FormCreateGoal = ({ handleClose, getGroup }) => {
         error={!!errors.title}
         helperText={errors.title?.message}
       />
-      <FormControl margin="dense">
+
+      <FormControl margin="dense" className={classes.menuItem}>
         <InputLabel>Dificuldade</InputLabel>
         <Controller
           name="difficulty"
           control={control}
           defaultValue={difficultyOptions[2]}
           as={
-            <Select>
+            <Select className={classes.inputStyles}>
               {difficultyOptions.map((difficult, index) => (
                 <MenuItem key={index} value={difficult}>
                   {difficult}
@@ -105,7 +106,7 @@ const FormCreateGoal = ({ handleClose, getGroup }) => {
           }
         />
       </FormControl>
-      <Button type="submit" styled="outlined">
+      <Button type="submit" styled="filled-light">
         Criar Meta
       </Button>
     </FormControl>
