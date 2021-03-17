@@ -33,6 +33,8 @@ import { useId } from "../../providers/group";
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
 
+import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
+
 // components
 import Button from "../Button";
 
@@ -93,43 +95,82 @@ const FormLogin = () => {
     }
   };
 
+  const CssTextField = withStyles({
+    root: {
+      "& label.Mui-focused": {
+        color: "green",
+      },
+      "& .MuiInput-underline:after": {
+        borderBottomColor: "green",
+      },
+      "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+          borderColor: "#55a1e3",
+          border: "2px solid",
+          borderRadius: "5px",
+        },
+        "&:hover fieldset": {
+          borderColor: "#55a1e3",
+        },
+        "&.Mui-focused fieldset": {
+          borderColor: "#55a1e3",
+        },
+        "& .MuiOutlinedInput-input": {
+          padding: "20px",
+          fontFamily: "Montserrat",
+        },
+      },
+    },
+  })(TextField);
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#55a1e3",
+      },
+    },
+  });
+
   return (
-    <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      <Typography variant="h2">Entrar</Typography>
-      <TextField
-        className={classes.inputStyles}
-        variant="outlined"
-        label="Usuário"
-        name="username"
-        inputRef={register}
-        error={!!errors.username}
-        helperText={errors.username?.message}
-      />
-      <TextField
-        className={classes.inputStyles}
-        type="password"
-        variant="outlined"
-        label="Senha"
-        name="password"
-        inputRef={register}
-        error={!!errors.password}
-        helperText={errors.password?.message}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            color="primary"
-            checked={isChecked}
-            onChange={handleChange}
-          />
-        }
-        label="Manter logado?"
-      />
-      <Button type="submit" styled="outlined-light" children="Entrar" />
-      <p>
-        Não possui conta? <Link to="/register">Fazer cadastro</Link>
-      </p>
-    </FormControl>
+    <ThemeProvider theme={theme}>
+      <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
+        <Typography variant="h2">Entrar</Typography>
+        <CssTextField
+          className={classes.inputStyles}
+          variant="outlined"
+          label="Usuário"
+          name="username"
+          inputRef={register}
+          error={!!errors.username}
+          helperText={errors.username?.message}
+        />
+        <CssTextField
+          className={classes.inputStyles}
+          type="password"
+          variant="outlined"
+          label="Senha"
+          name="password"
+          inputRef={register}
+          error={!!errors.password}
+          helperText={errors.password?.message}
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              style={{ color: "#55a1e3" }}
+              color="primary"
+              checked={isChecked}
+              onChange={handleChange}
+            />
+          }
+          label="Manter logado?"
+        />
+        <Button type="submit" styled="outlined-light" children="Entrar" />
+        <p>
+          Não possui conta? <Link to="/register">Fazer cadastro</Link>
+        </p>
+      </FormControl>
+    </ThemeProvider>
   );
 };
 

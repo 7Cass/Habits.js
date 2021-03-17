@@ -48,7 +48,7 @@ export const useFormStyles = makeStyles((theme) => ({
   inputStyles: {
     margin: "10px 0",
     "& .MuiInputBase-root": {
-      color: "#eff7fe",
+      color: "#55a1e3",
     },
     "& .MuiOutlinedInput-notchedOutline": {
       borderColor: "#eff7fe",
@@ -57,7 +57,7 @@ export const useFormStyles = makeStyles((theme) => ({
       borderColor: "#55a1e3",
     },
     "& .MuiFormLabel-root": {
-      color: "#eff7fe",
+      color: "#55a1e3",
     },
     "& .MuiFormLabel-root.Mui-focused": {
       color: "#55a1e3",
@@ -124,6 +124,7 @@ export const SliderStyles = makeStyles((theme) => ({
   },
   removeButton: {
     color: "#BA3B4E",
+    display: "flex",
     border: "3px solid",
     borderColor: "#BA3B4E",
     fontFamily: "Montserrat, sans-serif",
@@ -143,18 +144,24 @@ export const SliderStyles = makeStyles((theme) => ({
       color: "#16181C",
     },
 
+    "@media screen and (min-width: 900px)": {
+      marginTop: 0,
+      marginLeft: "10px",
+    },
+
     "& i": {
       marginRight: "5px",
     },
   },
   buttons: {
-    border: "1px solid red",
     display: "flex",
     flexDirection: "column",
     maxWidth: "400px",
-    alignItems: "center",
+    margin: "auto",
     "@media screen and (min-width: 900px)": {
       flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
     },
   },
 }));
