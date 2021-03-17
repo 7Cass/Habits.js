@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const GroupContent = styled.div`
   display: flex;
   justify-content: center;
+  width: 85%;
 `;
 
 export const CardGroup = styled.div`
