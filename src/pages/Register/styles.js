@@ -32,6 +32,10 @@ export const Container = styled.div`
     line-height: 1.5;
   }
 
+  h3 span {
+    cursor: pointer;
+  }
+
   & button {
     padding: 1rem 0;
     margin: 0.5rem 0;
@@ -40,6 +44,10 @@ export const Container = styled.div`
   & p {
     padding: 1rem 0;
     text-align: left;
+
+    & a {
+      color: #55a1e3;
+    }
   }
 
   @media screen and (min-width: 400px) {
@@ -99,10 +107,7 @@ export const Container = styled.div`
     }
 
     h1 {
-      font-size: 2.5rem;
-    }
-
-    h3 {
+      font-size: 4rem;
     }
 
     img {
