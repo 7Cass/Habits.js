@@ -26,7 +26,7 @@ import Button from "../Button";
 //-----------------------------------------
 const FormUpdateUser = () => {
   const classes = useFormStyles();
-  const { isChecked, userId } = useChecked();
+  const { isChecked, userId, user, setUser } = useChecked();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaUpdateUser),
   });
@@ -42,13 +42,13 @@ const FormUpdateUser = () => {
   });
 
   const onUpdate = async (data) => {
-    console.log(data);
-    console.log(userId);
-    console.log(token);
     try {
       await API.patch(patchUpdateUser(userId), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
+      const newUser = { ...user, username: data.username };
+      setUser(newUser);
 
       reset();
     } catch (error) {

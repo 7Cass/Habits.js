@@ -5,6 +5,7 @@ import { postLogin } from "../../helper/users/";
 import { schemaLogin } from "../../helper/formValidation";
 import { getOneUser } from "../../helper/users";
 import { getOneGroup } from "../../helper/groups";
+import { getPersonalHabit } from "../../helper/habits";
 
 // JWT Decode
 import jwt_decode from "jwt-decode";
@@ -39,7 +40,13 @@ import Button from "../Button";
 
 //-------------------------------------------------------
 const FormLogin = () => {
-  const { isChecked, setIsChecked, setUserId, setUser } = useChecked();
+  const {
+    isChecked,
+    setIsChecked,
+    setUserId,
+    setUser,
+    setHabits,
+  } = useChecked();
   const { setGroup } = useId();
   const classes = useFormStyles();
   const history = useHistory();
@@ -52,13 +59,18 @@ const FormLogin = () => {
   const handleForm = async (data) => {
     try {
       const response = await API.post(postLogin(), data);
-
-      const { user_id } = jwt_decode(response.data.access);
+      const token = response.data.access;
+      const { user_id } = jwt_decode(token);
 
       setUserId(user_id);
 
       const takeUser = await API.get(getOneUser(user_id));
       setUser(takeUser.data);
+
+      const takeHabits = await API.get(getPersonalHabit(), {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setHabits(takeHabits.data);
 
       if (takeUser.data.group) {
         const takeUserGroup = await API.get(getOneGroup(takeUser.data.group));
@@ -76,7 +88,6 @@ const FormLogin = () => {
       reset();
 
       history.push("/homepage");
-
     } catch (error) {
       console.error(error);
     }
