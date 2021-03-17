@@ -25,12 +25,11 @@ import { SliderStyles } from "../../styles/makeStyles";
 //--------------------------------------------
 
 //--------------------------------------------
-const FormUpdateHabit = ({ id }) => {
+const FormUpdateHabit = ({ id, how_much_achieved }) => {
   const classes = SliderStyles();
-
   const [isAchieved, setIsAchieved] = useState(false);
-  const [slider, setSlider] = useState(0);
-  const { isChecked } = useChecked();
+  const [slider, setSlider] = useState(how_much_achieved);
+  const { isChecked, habits, setHabits } = useChecked();
   const [token] = useState(() => {
     const Token = isChecked
       ? localStorage.getItem("token") || ""
@@ -57,6 +56,16 @@ const FormUpdateHabit = ({ id }) => {
     };
 
     try {
+      const newHabits = habits.map((element) => {
+        if (element.id === id) {
+          element.how_much_achieved = data.how_much_achieved;
+          element.achieved = data.achieved;
+        }
+        return element;
+      });
+
+      setHabits(newHabits);
+
       await API.patch(patchUpdateHabit(id), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -68,7 +77,7 @@ const FormUpdateHabit = ({ id }) => {
   return (
     <Box display="flex" flexDirection="column">
       <Slider
-        defaultValue={0}
+        defaultValue={how_much_achieved}
         getAriaValueText={valueText}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"

@@ -6,6 +6,7 @@ export const UserProvider = ({ children }) => {
   const [isChecked, setIsChecked] = useState(true);
   const [userId, setUserId] = useState(null);
   const [user, setUser] = useState({});
+  const [habits, setHabits] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
 
   const checkAuth = () => {
@@ -21,7 +22,18 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ isChecked, userId, isAuth, setIsChecked, setUserId, checkAuth, user, setUser }}
+      value={{
+        isChecked,
+        userId,
+        isAuth,
+        setIsChecked,
+        setUserId,
+        checkAuth,
+        user,
+        setUser,
+        habits,
+        setHabits,
+      }}
     >
       {children}
     </UserContext.Provider>

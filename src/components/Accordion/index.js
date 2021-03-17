@@ -41,6 +41,7 @@ export default function SimpleAccordion({
   frequency,
   how_much_achieved,
   title,
+  id,
 }) {
   const classes = useStyles();
 
@@ -81,7 +82,7 @@ export default function SimpleAccordion({
               <div>{frequency}</div>
             </Tags>
             <h2>Atualizar Hábito</h2>
-            <FormUpdateHabit />
+            <FormUpdateHabit id={id} how_much_achieved={how_much_achieved} />
           </DetailsContainer>
         </AccordionDetails>
       </Accordion>

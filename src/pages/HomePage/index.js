@@ -28,8 +28,8 @@ const HomePage = () => {
               <UserCard />
             </InnerContainer>
             <DevelopedBy>
-              Desenvolvido por{" "}
-              <span onClick={() => history("/developers")}>Squad 1</span>
+              Desenvolvido por
+              <span onClick={() => history("/developers")}> Squad 1</span>
             </DevelopedBy>
           </Container>
           <Footer />
