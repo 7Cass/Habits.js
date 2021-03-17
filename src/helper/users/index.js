@@ -1,4 +1,4 @@
-export const getUsers = () => `/users/`;
+export const getUsers = (numero) => `/users/?page=${numero}`;
 export const getOneUser = (userID) => `/users/${userID}/`;
 export const postLogin = () => `/sessions/`;
 export const postCreateUser = () => `/users/`;

@@ -18,6 +18,7 @@ const Menu = () => {
         Início
       </MenuItem>
       <MenuItem onClick={() => history.push("/groups")}>Grupos</MenuItem>
+      <MenuItem onClick={() => history.push("/users")}>Usuarios</MenuItem>
       <MenuItem onClick={logout}>
         Sair
         <i class="fas fa-sign-out-alt"></i>
