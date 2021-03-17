@@ -138,6 +138,8 @@ export const SliderStyles = makeStyles((theme) => ({
     width: "100%",
     padding: "15px",
     marginTop: "10px",
+    display: "flex",
+    justifyContent: "center",
 
     "&:hover": {
       background: "#BA3B4E",
