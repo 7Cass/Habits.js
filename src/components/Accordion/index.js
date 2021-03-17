@@ -74,12 +74,18 @@ export default function SimpleAccordion({
         <AccordionDetails style={{ justifyContent: "center" }}>
           <DetailsContainer>
             <Tags>
-              <h4>Categoria</h4>
-              <div>{category}</div>
-              <h4>Dificuldade</h4>
-              <div>{difficulty}</div>
-              <h4>Frequência</h4>
-              <div>{frequency}</div>
+              <div>
+                <h4>Categoria</h4>
+                <span>{category}</span>
+              </div>
+              <div>
+                <h4>Dificuldade</h4>
+                <span>{difficulty}</span>
+              </div>
+              <div>
+                <h4>Frequência</h4>
+                <span>{frequency}</span>
+              </div>
             </Tags>
             <h2>Atualizar Hábito</h2>
             <FormUpdateHabit id={id} how_much_achieved={how_much_achieved} />
