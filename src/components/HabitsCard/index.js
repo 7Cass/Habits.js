@@ -1,16 +1,17 @@
-import { Card } from "./styles";
+import { Card, Title } from "./styles";
 
 import SimpleAccordion from "../Accordion";
+import ModalCreateHabit from "../ModalCreateHabit";
 
 import { useChecked } from "../../providers/user/index";
 
 //----------------------------------------
 const HabitsCard = () => {
   const { habits } = useChecked();
-
   return (
-    <Card>
-      <h2>Seus hábitos</h2>
+    <Card className="area">
+      <Title>Seus hábitos</Title>
+      <ModalCreateHabit />
       {habits &&
         habits.map((habit, index) => (
           <SimpleAccordion

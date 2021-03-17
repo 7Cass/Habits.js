@@ -94,13 +94,15 @@ const FormUpdateHabit = ({ id, how_much_achieved }) => {
           label="Concluído"
         ></FormControlLabel>
       </Hidden>
-      <Button size="large" styled="outlined-light" onClick={onRegister}>
-        Atualizar Hábito
-      </Button>
-      <button className={classes.removeButton}>
-        <i class="fas fa-trash-alt"></i>
-        Remover Hábito
-      </button>
+      <div className={classes.buttons}>
+        <Button size="large" styled="outlined-light" onClick={onRegister}>
+          Atualizar Hábito
+        </Button>
+        <button className={classes.removeButton}>
+          <i class="fas fa-trash-alt"></i>
+          Remover Hábito
+        </button>
+      </div>
     </Box>
   );
 };

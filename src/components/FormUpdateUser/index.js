@@ -57,9 +57,13 @@ const FormUpdateUser = () => {
   };
 
   return (
-    <FormControl component="form" onSubmit={handleSubmit(onUpdate)}>
+    <FormControl
+      component="form"
+      onSubmit={handleSubmit(onUpdate)}
+      className={classes.formUpdate}
+    >
       <div>
-        <Typography>Atualizar usuário</Typography>
+        <h2>Atualizar usuário</h2>
       </div>
       <div>
         <TextField
@@ -73,7 +77,7 @@ const FormUpdateUser = () => {
         />
       </div>
       <div>
-        <Button type="submit" styled="outlined-light">
+        <Button type="submit" styled="outlined-light" size="large">
           Enviar
         </Button>
       </div>

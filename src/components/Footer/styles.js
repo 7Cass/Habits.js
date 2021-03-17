@@ -8,4 +8,15 @@ export const Card = styled.div`
   background-image: url(${background});
   background-size: cover;
   background-position: bottom;
+  position: absolute;
+  z-index: -1;
+  top: 90%;
+
+  @media screen and (max-width: 1092px) {
+    top: 100%;
+  }
+
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 `;

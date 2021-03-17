@@ -25,7 +25,12 @@ export const DevelopedBy = styled.h2`
   text-align: center;
   margin: 50px 0;
   & span {
-    color: #55a1e3;
+    color: #18161c;
     cursor: pointer;
+    @media screen and (max-width: 992px) {
+      color: #55a1e3;
+      margin: 0;
+      padding-bottom: 50px;
+    }
   }
 `;
