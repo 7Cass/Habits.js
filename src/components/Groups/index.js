@@ -1,6 +1,11 @@
+// services
 import API from "../../services";
+
+// react
 import { useEffect, useState } from "react";
-import { CardGroup, GroupsContent } from "./style";
+
+// components
+import CardGroup from "../../components/CardGroup";
 
 // helper
 import { getGroups } from "../../helper/groups";
@@ -9,28 +14,28 @@ import { getGroups } from "../../helper/groups";
 const Groups = () => {
   const [groups, setGroups] = useState([]);
 
-  const getAllGroups = () => {
-    API.get(getGroups()).then((res) => setGroups(res.data.results));
+  const getAllGroups = async () => {
+    try {
+      const response = await API.get(getGroups());
+      setGroups(response.data.results);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getAllGroups();
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <GroupsContent>
-      {groups
-        ? groups.map((group, index) => (
-            <div key={index}>
-              <CardGroup>
-                <h2>{group.name}</h2>
-                <h6>{group.description}</h6>
-                <button>Visit</button>
-              </CardGroup>
-            </div>
+    <>
+      {groups.length > 0
+        ? groups.map((element, index) => (
+            <CardGroup key={index} group={element} />
           ))
         : null}
-    </GroupsContent>
+    </>
   );
 };
 
