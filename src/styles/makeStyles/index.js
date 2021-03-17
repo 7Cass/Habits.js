@@ -63,6 +63,13 @@ export const useFormStyles = makeStyles((theme) => ({
       color: "#55a1e3",
     },
   },
+  formUpdate: {
+    textAlign: "center",
+
+    "& h2": {
+      margin: "15px 0",
+    },
+  },
 }));
 
 export const usePageRegister = makeStyles((theme) => ({
@@ -112,7 +119,8 @@ export const usePageRegister = makeStyles((theme) => ({
 export const SliderStyles = makeStyles((theme) => ({
   slider: {
     color: "#55a1e3",
-    margin: 0,
+    margin: "10px auto",
+    width: "80%",
   },
   removeButton: {
     color: "#BA3B4E",
@@ -137,6 +145,16 @@ export const SliderStyles = makeStyles((theme) => ({
 
     "& i": {
       marginRight: "5px",
+    },
+  },
+  buttons: {
+    border: "1px solid red",
+    display: "flex",
+    flexDirection: "column",
+    maxWidth: "400px",
+    alignItems: "center",
+    "@media screen and (min-width: 900px)": {
+      flexDirection: "row",
     },
   },
 }));

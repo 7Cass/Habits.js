@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useModalStyles } from "../../styles/makeStyles";
 import getModalStyle from "../../styles/modalStyles";
 import CreateHabitForm from "../FormCreateHabit";
+import Button from "../Button";
 
 //-----------------------------------------------
 const ModalCreateHabit = () => {
@@ -30,9 +31,9 @@ const ModalCreateHabit = () => {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Adicionar Atividade
-      </button>
+      <Button type="button" onClick={handleOpen} styled="filled">
+        Adicionar Hábito
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

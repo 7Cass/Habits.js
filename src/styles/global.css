@@ -31,3 +31,20 @@ body {
   background-color: #16181c;
   color: #eff7fe;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  margin: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #363b45;
+  border-radius: 10px;
+}
