@@ -8,7 +8,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import FormUpdateHabit from "../FormUpdateHabit";
 
-import { Tags, DetailsContainer } from "./styles.js";
+import { Tags, DetailsContainer, Title } from "./styles.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,7 +69,7 @@ export default function SimpleAccordion({
               style={{ fontSize: "2rem", marginRight: "10px" }}
             ></i>
           )}
-          <Typography className={classes.heading}>{title}</Typography>
+          <Title className={classes.heading}>{title}</Title>
         </AccordionSummary>
         <AccordionDetails style={{ justifyContent: "center" }}>
           <DetailsContainer>

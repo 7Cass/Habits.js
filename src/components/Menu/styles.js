@@ -14,7 +14,7 @@ export const MenuItem = styled.button`
   background: transparent;
   border: none;
   font-weight: bold;
-  margin: 0 15px;
+  margin: 0 10px;
   cursor: pointer;
   outline: none;
 

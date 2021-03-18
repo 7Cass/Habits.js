@@ -64,13 +64,14 @@ export const useFormStyles = makeStyles((theme) => ({
   calendar: {
     margin: "10px 0",
     "& .MuiInputBase-root": {
-      background: "#eff7fe",
-      borderRadius: "3px",
+      background: "transparent",
+      borderRadius: "10px",
     },
     "& .MuiOutlinedInput-notchedOutline": {
       borderColor: "#eff7fe",
     },
     "& .fieldset.PrivateNotchedOutline-root-8.MuiOutlinedInput-notchedOutline": {
+      padding: "25px 20px 0",
       borderColor: "#55a1e3",
     },
     "& .MuiFormLabel-root": {
@@ -79,13 +80,16 @@ export const useFormStyles = makeStyles((theme) => ({
     "& .MuiFormLabel-root.Mui-focused": {
       color: "#55a1e3",
     },
+    "& .MuiInputBase-input": {
+      color: "#55a1e3",
+    },
   },
 
   menuItem: {
     margin: "10px 0",
     "& .MuiInputBase-root": {
-      background: "#eff7fe",
-      borderRadius: "3px",
+      background: "transparent",
+      borderRadius: "10px",
       padding: "0 0.25rem",
     },
     "& .MuiOutlinedInput-notchedOutline": {
@@ -112,6 +116,13 @@ export const useFormStyles = makeStyles((theme) => ({
   link: {
     color: "#55a1e3",
     fontWeight: "bold",
+  },
+  title: {
+    margin: "15px auto",
+    textAlign: "center",
+  },
+  label: {
+    color: "red",
   },
 }));
 
