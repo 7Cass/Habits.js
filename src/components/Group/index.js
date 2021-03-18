@@ -1,5 +1,4 @@
 import API from "../../services";
-import { useEffect } from "react";
 import {
   GroupContent,
   TitleContent,

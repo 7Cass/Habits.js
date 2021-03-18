@@ -1,6 +1,7 @@
 // API
 import API from "../../services/index.js";
 
+// helpers
 import { postLogin } from "../../helper/users/";
 import { schemaLogin } from "../../helper/formValidation";
 import { getOneUser } from "../../helper/users";
@@ -72,33 +73,34 @@ const FormLogin = () => {
       const takeHabits = await API.get(getPersonalHabit(), {
         headers: { Authorization: `Bearer ${response.data.access}` },
       });
+      takeHabits.data.sort((a, b) => a.id - b.id);
       setHabits(takeHabits.data);
 
       if (takeUser.data.group) {
         const takeUserGroup = await API.get(getOneGroup(takeUser.data.group));
         setGroup(takeUserGroup.data);
 
-        isChecked
-          ? localStorage.setItem(
-              "userGroup",
-              JSON.stringify(takeUserGroup.data)
-            )
-          : sessionStorage.setItem(
-              "userGroup",
-              JSON.stringify(takeUserGroup.data)
-            );
+        // isChecked
+        //   ? localStorage.setItem(
+        //       "userGroup",
+        //       JSON.stringify(takeUserGroup.data)
+        //     )
+        //   : sessionStorage.setItem(
+        //       "userGroup",
+        //       JSON.stringify(takeUserGroup.data)
+        //     );
       }
 
       if (isChecked) {
         sessionStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
-        localStorage.setItem("user", JSON.stringify(takeUser.data));
-        localStorage.setItem("habits", JSON.stringify(takeHabits.data));
+        // localStorage.setItem("user", JSON.stringify(takeUser.data));
+        // localStorage.setItem("habits", JSON.stringify(takeHabits.data));
       } else {
         localStorage.clear();
         sessionStorage.setItem("token", JSON.stringify(response.data.access));
-        sessionStorage.setItem("user", JSON.stringify(takeUser.data));
-        sessionStorage.setItem("habits", JSON.stringify(takeHabits.data));
+        // sessionStorage.setItem("user", JSON.stringify(takeUser.data));
+        // sessionStorage.setItem("habits", JSON.stringify(takeHabits.data));
       }
 
       reset();

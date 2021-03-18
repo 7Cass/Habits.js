@@ -1,11 +1,14 @@
 import { UserProvider } from "./user";
 import { GroupProvider } from "./group";
+import { UserListProvider } from "./userList";
 
 const Providers = ({ children }) => {
   return (
-    <UserProvider>
-      <GroupProvider>{children}</GroupProvider>
-    </UserProvider>
+    <UserListProvider>
+      <UserProvider>
+        <GroupProvider>{children}</GroupProvider>
+      </UserProvider>
+    </UserListProvider>
   );
 };
 

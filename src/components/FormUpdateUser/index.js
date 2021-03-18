@@ -1,9 +1,6 @@
 // API
 import API from "../../services";
 
-// react
-import { useState } from "react";
-
 // react hook form
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

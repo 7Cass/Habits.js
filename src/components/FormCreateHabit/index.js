@@ -1,22 +1,30 @@
+// react hook form
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+// services
 import API from "../../services/index.js";
-import { postCreateHabit } from "../../helper/habits";
-import { useChecked } from "../../providers/user";
-import { schemaCreateHabit } from "../../helper/formValidation";
 
+// helpers
+import { postCreateHabit } from "../../helper/habits";
+import { schemaCreateHabit } from "../../helper/formValidation";
+import { getPersonalHabit } from "../../helper/habits";
+
+// providers
+import { useChecked } from "../../providers/user";
+
+// material ui
 import {
   TextField,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
-  Typography,
 } from "@material-ui/core";
-
-import Button from "../Button";
 import { useFormStyles } from "../../styles/makeStyles/index.js";
+
+// components
+import Button from "../Button";
 
 import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
 
@@ -40,34 +48,33 @@ const frequencyOptions = [
 //----------------------------------------------
 const FormCreateHabit = ({ handleClose }) => {
   const classes = useFormStyles();
-  const { isChecked, userId } = useChecked();
+  const { user, setHabits, token } = useChecked();
   const { register, handleSubmit, errors, reset, control } = useForm({
     resolver: yupResolver(schemaCreateHabit),
   });
 
   const handleForm = async (data) => {
-    const token = isChecked
-      ? JSON.parse(localStorage.getItem("token"))
-      : JSON.parse(sessionStorage.getItem("token"));
+    const newData = {
+      ...data,
+      achieved: false,
+      how_much_achieved: 0,
+      user: user.id,
+    };
 
     try {
-      await API.post(
-        postCreateHabit(),
-        {
-          title: data.title,
-          category: data.category,
-          difficulty: data.difficulty,
-          frequency: data.frequency,
-          achieved: false,
-          how_much_achieved: 0,
-          user: userId,
+      await API.post(postCreateHabit(), newData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      });
+
+      const takeHabits = await API.get(getPersonalHabit(), {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      takeHabits.data.sort((a, b) => a.id - b.id);
+      setHabits(takeHabits.data);
+      console.log("nova lista de hábitos: ", takeHabits.data);
+
       reset();
       setTimeout(() => {
         handleClose();
@@ -98,11 +105,8 @@ const FormCreateHabit = ({ handleClose }) => {
           borderColor: "#55a1e3",
         },
         "& .MuiOutlinedInput-input": {
-          padding: "20px",
-          fontFamily: "Montserrat",
-        },
-        "& .MuiOutlinedInput-input": {
           padding: "10px 20px 15px",
+          fontFamily: "Montserrat",
         },
       },
     },

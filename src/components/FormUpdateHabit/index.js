@@ -12,36 +12,25 @@ import {
   Slider,
   Hidden,
 } from "@material-ui/core";
+import { SliderStyles } from "../../styles/makeStyles";
 
 // global state
 import { useChecked } from "../../providers/user";
 
-import Button from "../Button";
-
 // helper
 import { patchUpdateHabit } from "../../helper/habits";
+import { getPersonalHabit } from "../../helper/habits";
 
-import { SliderStyles } from "../../styles/makeStyles";
+// components
 import DeleteHabit from "../DeleteHabit";
-
-//--------------------------------------------
+import Button from "../Button";
 
 //--------------------------------------------
 const FormUpdateHabit = ({ id, how_much_achieved }) => {
   const classes = SliderStyles();
   const [isAchieved, setIsAchieved] = useState(false);
   const [slider, setSlider] = useState(how_much_achieved);
-  const { isChecked, habits, setHabits } = useChecked();
-  const [token] = useState(() => {
-    const Token = isChecked
-      ? localStorage.getItem("token") || ""
-      : sessionStorage.getItem("token") || "";
-
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
+  const { token, setHabits } = useChecked();
 
   const handleChange = () => setIsAchieved(!isAchieved);
 
@@ -58,19 +47,15 @@ const FormUpdateHabit = ({ id, how_much_achieved }) => {
     };
 
     try {
-      const newHabits = habits.map((element) => {
-        if (element.id === id) {
-          element.how_much_achieved = data.how_much_achieved;
-          element.achieved = data.achieved;
-        }
-        return element;
-      });
-
-      setHabits(newHabits);
-
       await API.patch(patchUpdateHabit(id), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
+      const takeHabits = await API.get(getPersonalHabit(), {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      takeHabits.data.sort((a, b) => a.id - b.id);
+      setHabits(takeHabits.data);
     } catch (error) {
       console.log(error);
     }

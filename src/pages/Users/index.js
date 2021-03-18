@@ -29,7 +29,7 @@ const UsersPage = () => {
         <>
           <Menu />
           <Container>
-            <h1>Usuarios</h1>
+            <h1>Usuários</h1>
             <UsersContainer>
               <Users />
             </UsersContainer>
