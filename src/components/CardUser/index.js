@@ -1,8 +1,5 @@
 // styles
-import { Card, Category, Name, Description } from "./styles";
-
-// components
-import ModalGroupDetail from "../ModalGroupDetail";
+import { Card, Name, Description } from "./styles";
 
 //----------------------------------
 const CardGroup = ({ user }) => {
