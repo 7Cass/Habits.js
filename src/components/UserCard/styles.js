@@ -12,7 +12,7 @@ export const Card = styled.div`
 
   & h2,
   h4 {
-    margin: 10px;
+    margin: 1.5rem;
   }
 `;
 
@@ -22,10 +22,8 @@ export const Avatar = styled.img`
 `;
 
 export const GroupCard = styled.div`
-  border: 3px solid #16181c;
   border-radius: 25px;
   padding: 15px 25px;
-  margin: 10px 0;
   & h3 {
     color: #16181c;
     font-weight: 700;

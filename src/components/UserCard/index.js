@@ -18,8 +18,6 @@ const UserCard = () => {
       <h4>{user.email}</h4>
       {group ? (
         <GroupCard>
-          <h3>Seu Grupo</h3>
-          <h2>{group.name}</h2>
           <ModalUserGroup group={group} />
         </GroupCard>
       ) : (
