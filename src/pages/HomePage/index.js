@@ -8,7 +8,7 @@ import UserCard from "../../components/UserCard";
 import Footer from "../../components/Footer";
 
 // styles
-import { Container, InnerContainer, DevelopedBy } from "./styles";
+import { PrincipalDiv, Container, InnerContainer, DevelopedBy } from "./styles";
 
 // providers
 import { useChecked } from "../../providers/user";
@@ -30,7 +30,7 @@ const HomePage = () => {
   return (
     <>
       {isAuth ? (
-        <>
+        <PrincipalDiv>
           <Menu />
           <Container>
             <InnerContainer>
@@ -43,7 +43,7 @@ const HomePage = () => {
             </DevelopedBy>
           </Container>
           <Footer />
-        </>
+        </PrincipalDiv>
       ) : (
         <Redirect to="/" />
       )}

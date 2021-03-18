@@ -31,6 +31,7 @@ const ModalActivity = (props) => {
         fontSize="large"
         type="button"
         onClick={handleOpen}
+        style={{ cursor: "pointer" }}
       ></AddCircleOutlineOutlinedIcon>
       <Modal
         open={open}

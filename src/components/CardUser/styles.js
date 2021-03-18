@@ -6,7 +6,7 @@ export const Card = styled.div`
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 10px;
   background-color: #16181c;
   max-width: 260px;
   width: 100%;
@@ -32,7 +32,7 @@ export const Description = styled.div`
 
 export const Category = styled.div`
   background-color: #55a1e3;
-  border-radius: 15px;
+  border-radius: 10px;
   width: 100%;
   max-width: 200px;
   padding: 5px;
