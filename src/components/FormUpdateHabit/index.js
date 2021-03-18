@@ -23,6 +23,7 @@ import { patchUpdateHabit } from "../../helper/habits";
 
 import { SliderStyles } from "../../styles/makeStyles";
 import DeleteHabit from "../DeleteHabit";
+
 //--------------------------------------------
 
 //--------------------------------------------
@@ -99,11 +100,7 @@ const FormUpdateHabit = ({ id, how_much_achieved }) => {
         <Button size="large" styled="outlined-light" onClick={onRegister}>
           Atualizar
         </Button>
-        <DeleteHabit />
-        <button className={classes.removeButton}>
-          <i class="fas fa-trash-alt"></i>
-          Remover
-        </button>
+        <DeleteHabit habitID={id} />
       </div>
     </Box>
   );
