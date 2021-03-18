@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 // material ui
-import { Typography, FormControl, TextField } from "@material-ui/core";
+import { FormControl, TextField } from "@material-ui/core";
 
 // global state
 import { useChecked } from "../../providers/user";
@@ -17,6 +17,7 @@ import { useChecked } from "../../providers/user";
 // helper
 import { patchUpdateUser } from "../../helper/users";
 import { schemaUpdateUser } from "../../helper/formValidation";
+import { getOneGroup } from "../../helper/groups";
 
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
@@ -28,20 +29,20 @@ import Button from "../Button";
 //-----------------------------------------
 const FormUpdateUser = () => {
   const classes = useFormStyles();
-  const { isChecked, userId, user, setUser } = useChecked();
+  const { userId, user, setUser, group, setGroup, token } = useChecked();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaUpdateUser),
   });
-  const [token] = useState(() => {
-    const Token = isChecked
-      ? localStorage.getItem("token") || ""
-      : sessionStorage.getItem("token") || "";
+  // const [token] = useState(() => {
+  //   const Token = isChecked
+  //     ? localStorage.getItem("token") || ""
+  //     : sessionStorage.getItem("token") || "";
 
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
+  //   if (!Token) {
+  //     return "";
+  //   }
+  //   return JSON.parse(Token);
+  // });
 
   const onUpdate = async (data) => {
     try {
@@ -51,6 +52,9 @@ const FormUpdateUser = () => {
 
       const newUser = { ...user, username: data.username };
       setUser(newUser);
+
+      const takeUserGroup = await API.get(getOneGroup(group.id));
+      setGroup(takeUserGroup.data);
 
       reset();
     } catch (error) {

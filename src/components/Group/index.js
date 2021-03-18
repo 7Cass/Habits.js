@@ -1,5 +1,5 @@
 import API from "../../services";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   GroupContent,
   TitleContent,
@@ -27,7 +27,6 @@ import CloseIcon from "@material-ui/icons/Close";
 
 //helpers =>
 import { useChecked } from "../../providers/user";
-import { useId } from "../../providers/group";
 import { useAcitivityButtons } from "../../styles/makeStyles";
 import { formatDate } from "../../helper/activities";
 
@@ -38,27 +37,27 @@ import CheckboxUpdateGoal from "../CheckboxUpdateGoal";
 
 //==============================================
 const Group = (props) => {
-  const { group, setGroup } = useId();
+  // const { group, setGroup } = useId();
   const classes = useAcitivityButtons();
-  const { user } = useChecked();
+  const { user, group, setGroup, token } = useChecked();
 
-  const [token] = useState(() => {
-    const Token = localStorage.getItem("token") || "";
+  // const [token] = useState(() => {
+  //   const Token = localStorage.getItem("token") || "";
 
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
+  //   if (!Token) {
+  //     return "";
+  //   }
+  //   return JSON.parse(Token);
+  // });
 
-  const getGroup = async () => {
-    try {
-      const takeGroup = await API.get(getOneGroup(user.group));
-      setGroup(takeGroup.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getGroup = async () => {
+  //   try {
+  //     const takeGroup = await API.get(getOneGroup(user.group));
+  //     setGroup(takeGroup.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const onDeleteAct = async (actId) => {
     try {
@@ -66,7 +65,9 @@ const Group = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      getGroup();
+      const takeGroup = await API.get(getOneGroup(group.id));
+      setGroup(takeGroup.data);
+      // getGroup();
     } catch (error) {
       console.log(error);
     }
@@ -77,14 +78,17 @@ const Group = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      getGroup();
+      const takeGroup = await API.get(getOneGroup(user.group));
+      setGroup(takeGroup.data);
+
+      // getGroup();
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getGroup();
+    // getGroup();
     // eslint-disable-next-line
   }, []);
 
@@ -94,7 +98,7 @@ const Group = (props) => {
         <CloseIcon onClick={() => props.handleClose()}>Close</CloseIcon>
         <TitleContent>
           <h1>{group.name}</h1>
-          <ModalUpdateTitleGroup getGroup={getGroup} groupId={group.id} />
+          <ModalUpdateTitleGroup group={group} />
         </TitleContent>
         <h4>{group.description}</h4>
         <CategoryBox>{group.category}</CategoryBox>
@@ -102,7 +106,7 @@ const Group = (props) => {
         <ActivitiesCard>
           <ActivityAdd>
             <h2>Atividades</h2>
-            <ModalActivity getGroup={getGroup} />
+            <ModalActivity group={group} />
           </ActivityAdd>
           {group.activities !== undefined
             ? group.activities.map((activity, index) => (
@@ -110,10 +114,7 @@ const Group = (props) => {
                   <h3>{activity.title}</h3>
                   <ButtonsContent>
                     <h4>{formatDate(activity.realization_time)}</h4>
-                    <ModalUpdateActivity
-                      getGroup={getGroup}
-                      actId={activity.id}
-                    />
+                    <ModalUpdateActivity activity={activity} />
                     <HighlightOffOutlinedIcon
                       onClick={() => onDeleteAct(activity.id)}
                       className={classes.buttonStyle}
@@ -129,7 +130,7 @@ const Group = (props) => {
         <Goals>
           <GoalsAdd>
             <h2>Metas</h2>
-            <ModalCreateGoal getGroup={getGroup} />
+            <ModalCreateGoal />
           </GoalsAdd>
           {group.goals !== undefined
             ? group.goals.map((goal, index) => (

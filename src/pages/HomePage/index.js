@@ -1,21 +1,31 @@
+// react
+import { useEffect } from "react";
+
+// components
 import Menu from "../../components/Menu";
 import HabitsCard from "../../components/HabitsCard";
 import UserCard from "../../components/UserCard";
 import Footer from "../../components/Footer";
 
+// styles
 import { Container, InnerContainer, DevelopedBy } from "./styles";
 
+// providers
 import { useChecked } from "../../providers/user";
-import { Redirect } from "react-router";
 
+// react router dom
+import { Redirect } from "react-router";
 import { useHistory } from "react-router-dom";
 
+//---------------------------------------------
 const HomePage = () => {
   const history = useHistory();
-
   const { isAuth, checkAuth } = useChecked();
 
-  checkAuth();
+  useEffect(() => {
+    checkAuth();
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <>

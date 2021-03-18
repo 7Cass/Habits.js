@@ -28,7 +28,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // ContextAPI
 import { useChecked } from "../../providers/user/";
-import { useId } from "../../providers/group";
 
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
@@ -48,8 +47,9 @@ const FormLogin = () => {
     setUserId,
     setUser,
     setHabits,
+    setGroup,
+    setToken,
   } = useChecked();
-  const { setGroup } = useId();
   const classes = useFormStyles();
   const history = useHistory();
   const { register, handleSubmit, errors, reset } = useForm({
@@ -61,30 +61,45 @@ const FormLogin = () => {
   const handleForm = async (data) => {
     try {
       const response = await API.post(postLogin(), data);
-      const token = response.data.access;
-      const { user_id } = jwt_decode(token);
+      const { user_id } = jwt_decode(response.data.access);
 
+      setToken(response.data.access);
       setUserId(user_id);
 
       const takeUser = await API.get(getOneUser(user_id));
       setUser(takeUser.data);
 
       const takeHabits = await API.get(getPersonalHabit(), {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${response.data.access}` },
       });
       setHabits(takeHabits.data);
 
       if (takeUser.data.group) {
+        console.log("Não deveria entrar aqui");
         const takeUserGroup = await API.get(getOneGroup(takeUser.data.group));
         setGroup(takeUserGroup.data);
+
+        isChecked
+          ? localStorage.setItem(
+              "userGroup",
+              JSON.stringify(takeUserGroup.data)
+            )
+          : sessionStorage.setItem(
+              "userGroup",
+              JSON.stringify(takeUserGroup.data)
+            );
       }
 
       if (isChecked) {
         sessionStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
+        localStorage.setItem("user", JSON.stringify(takeUser.data));
+        localStorage.setItem("habits", JSON.stringify(takeHabits.data));
       } else {
         localStorage.clear();
         sessionStorage.setItem("token", JSON.stringify(response.data.access));
+        sessionStorage.setItem("user", JSON.stringify(takeUser.data));
+        sessionStorage.setItem("habits", JSON.stringify(takeHabits.data));
       }
 
       reset();

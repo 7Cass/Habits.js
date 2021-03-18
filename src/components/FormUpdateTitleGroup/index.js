@@ -1,8 +1,6 @@
 // API
 import API from "../../services";
 
-import { useState } from "react";
-
 // material ui
 import { TextField, FormControl } from "@material-ui/core";
 
@@ -10,12 +8,17 @@ import { TextField, FormControl } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+// providers
+import { useChecked } from "../../providers/user";
 // component
 import Button from "../Button";
 
-//--------------------------------------------
+// helpers
 import { patchUpdateGroup } from "../../helper/groups";
 import { schemaUpdateTitleGroup } from "../../helper/formValidation";
+import { getOneGroup } from "../../helper/groups";
+
+// styles
 import { useFormStyles } from "../../styles/makeStyles";
 //--------------------------------------------
 
@@ -24,23 +27,27 @@ const FormUpdateActivity = (props) => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaUpdateTitleGroup),
   });
+  const { token, group, setGroup } = useChecked();
 
-  const [token] = useState(() => {
-    const Token = localStorage.getItem("token") || "";
+  // const [token] = useState(() => {
+  //   const Token = localStorage.getItem("token") || "";
 
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
+  //   if (!Token) {
+  //     return "";
+  //   }
+  //   return JSON.parse(Token);
+  // });
 
   const onRegister = async (data) => {
     try {
-      await API.patch(patchUpdateGroup(props.groupId), data, {
+      await API.patch(patchUpdateGroup(group.id), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      props.getGroup();
+      const takeUserGroup = await API.get(getOneGroup(group.id));
+      setGroup(takeUserGroup.data);
+
+      // props.getGroup();
 
       reset();
     } catch (error) {

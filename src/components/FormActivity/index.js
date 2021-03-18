@@ -1,8 +1,6 @@
 // API
 import API from "../../services";
 
-import { useState } from "react";
-
 // material ui
 import { TextField, FormControl } from "@material-ui/core";
 
@@ -16,7 +14,8 @@ import Button from "../Button";
 //--------------------------------------------
 import { postCreateActivity } from "../../helper/activities";
 import { schemaActivity } from "../../helper/formValidation";
-import { useId } from "../../providers/group";
+import { useChecked } from "../../providers/user";
+import { getOneGroup } from "../../helper/groups";
 //--------------------------------------------
 import { useFormStyles } from "../../styles/makeStyles";
 //--------------------------------------------
@@ -26,17 +25,7 @@ const FormActivity = (props) => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaActivity),
   });
-
-  const [token] = useState(() => {
-    const Token = localStorage.getItem("token") || "";
-
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
-
-  const { group } = useId();
+  const { token, group, setGroup } = useChecked();
 
   const onRegister = async (data) => {
     const newData = {
@@ -49,7 +38,10 @@ const FormActivity = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      props.getGroup();
+      const takeGroup = await API.get(getOneGroup(group.id));
+      setGroup(takeGroup.data);
+
+      // props.getGroup();
       reset();
     } catch (error) {
       console.log(error);

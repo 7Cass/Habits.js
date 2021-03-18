@@ -1,8 +1,6 @@
 // API
 import API from "../../services";
 
-import { useState } from "react";
-
 // material ui
 import { TextField, FormControl } from "@material-ui/core";
 
@@ -10,10 +8,18 @@ import { TextField, FormControl } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-//--------------------------------------------
+// providers
+import { useChecked } from "../../providers/user";
+
+// components
+import Button from "../Button";
+
+// helpers
 import { patchUpdateActivity } from "../../helper/activities";
 import { schemaUpdateActivity } from "../../helper/formValidation";
-import Button from "../Button";
+import { getOneGroup } from "../../helper/groups";
+
+// styles
 import { useFormStyles } from "../../styles/makeStyles";
 //--------------------------------------------
 
@@ -22,23 +28,27 @@ const FormUpdateActivity = (props) => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaUpdateActivity),
   });
+  const { token, group, setGroup } = useChecked();
+  // const [token] = useState(() => {
+  //   const Token = localStorage.getItem("token") || "";
 
-  const [token] = useState(() => {
-    const Token = localStorage.getItem("token") || "";
-
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
+  //   if (!Token) {
+  //     return "";
+  //   }
+  //   return JSON.parse(Token);
+  // });
 
   const onRegister = async (data) => {
+    console.log("atualização de atividade: ", props.activity);
+    console.log("dados passados: ", data);
     try {
-      await API.patch(patchUpdateActivity(props.actId), data, {
+      await API.patch(patchUpdateActivity(props.activity.id), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      props.getGroup();
+      const takeGroup = await API.get(getOneGroup(group.id));
+      setGroup(takeGroup.data);
+      // props.getGroup();
 
       reset();
     } catch (error) {

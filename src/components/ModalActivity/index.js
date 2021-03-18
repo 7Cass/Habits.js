@@ -21,7 +21,7 @@ const ModalActivity = (props) => {
 
   const body = (
     <div style={modalStyle} className={classes.paperStyles}>
-      <FormActivity getGroup={props.getGroup} />
+      <FormActivity group={props.group} />
     </div>
   );
 

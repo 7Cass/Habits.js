@@ -7,19 +7,11 @@ import { patchUpdateGoals } from "../../helper/goals";
 // material ui
 import { Checkbox } from "@material-ui/core";
 
-import { useState } from "react";
-import { useId } from "../../providers/group";
+// providers
+import { useChecked } from "../../providers/user";
 
 const CheckboxUpdateGoal = ({ goalId, goalAchieved }) => {
-  const { group, setGroup } = useId();
-  const [token] = useState(() => {
-    const Token = localStorage.getItem("token") || "";
-
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
+  const { token, group, setGroup } = useChecked();
 
   const onUpdate = async () => {
     try {

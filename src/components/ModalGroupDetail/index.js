@@ -27,7 +27,7 @@ const ModalGroupDetail = ({ group }) => {
 
   return (
     <div>
-      <Button size="small" styled="outlined-light" onClick={() => handleOpen()}>
+      <Button size="large" styled="outlined-light" onClick={() => handleOpen()}>
         <i class="fas fa-info-circle" /> Detalhes
       </Button>
       <Modal
