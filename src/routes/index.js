@@ -7,6 +7,7 @@ import GroupsPage from "../pages/Groups";
 import GroupPage from "../pages/Group";
 import UsersPage from "../pages/Users";
 import Developers from "../pages/Developers";
+import NotFound from "../pages/NotFound";
 
 const Routes = () => {
   return (
@@ -31,6 +32,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/developers">
         <Developers />
+      </Route>
+      <Route>
+        <NotFound />
       </Route>
     </Switch>
   );
