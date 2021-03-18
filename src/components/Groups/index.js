@@ -1,37 +1,17 @@
-// services
-import API from "../../services";
-
-// react
-import { useEffect, useState } from "react";
-
 // components
 import CardGroup from "../../components/CardGroup";
 
-// helper
-import { getGroups } from "../../helper/groups";
+// providers
+import { useId } from "../../providers/group";
 
 //-----------------------------------------------
 const Groups = () => {
-  const [groups, setGroups] = useState([]);
-
-  const getAllGroups = async () => {
-    try {
-      const response = await API.get(getGroups());
-      setGroups(response.data.results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getAllGroups();
-    // eslint-disable-next-line
-  }, []);
+  const { allGroups } = useId();
 
   return (
     <>
-      {groups.length > 0
-        ? groups.map((element, index) => (
+      {allGroups.length > 0
+        ? allGroups.map((element, index) => (
             <CardGroup key={index} group={element} />
           ))
         : null}

@@ -4,10 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import API from "../../services/";
 import { postCreateGoal } from "../../helper/goals";
 import { schemaCreateGoal } from "../../helper/formValidation";
+import { getOneGroup } from "../../helper/groups";
 
-import { useState } from "react";
 import { useChecked } from "../../providers/user";
-import { useId } from "../../providers/group";
 
 import Button from "../Button";
 import {
@@ -29,41 +28,26 @@ const difficultyOptions = [
 ];
 
 //--------------------------------------------------------
-const FormCreateGoal = ({ handleClose, getGroup }) => {
-  const { isChecked } = useChecked();
-  const { group } = useId();
+const FormCreateGoal = ({ handleClose }) => {
+  const { group, token, setGroup } = useChecked();
   const { register, handleSubmit, errors, reset, control } = useForm({
     resolver: yupResolver(schemaCreateGoal),
   });
-  const [token] = useState(() => {
-    const Token = isChecked
-      ? localStorage.getItem("token") || ""
-      : sessionStorage.getItem("token") || "";
-
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
 
   const handleForm = async (data) => {
-    try {
-      await API.post(
-        postCreateGoal(),
-        {
-          title: data.title,
-          difficulty: data.difficulty,
-          how_much_achieved: 0,
-          group: group.id, //Para testar passe o id referente ao grupo do usuário = 29
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    const newData = { ...data, how_much_achieved: 0, group: group.id };
 
-      getGroup();
+    try {
+      await API.post(postCreateGoal(), newData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const takeGroup = await API.get(getOneGroup(group.id));
+      setGroup(takeGroup.data);
+
+      // getGroup();
       reset();
       setTimeout(() => {
         handleClose();

@@ -1,36 +1,30 @@
 // API
 import API from "../../services";
 
-import { useState } from "react";
-
 // material ui
 import { TextField, FormControl, Button } from "@material-ui/core";
 
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+// providers
+import { useChecked } from "../../providers/user";
 //--------------------------------------------
-import { getGroups, postSubscribeGroup } from "../../helper/groups";
+import { postCreateGroup, postSubscribeGroup } from "../../helper/groups";
 import { schemaNewGroup } from "../../helper/formValidation";
+import { getOneGroup } from "../../helper/groups";
 
 //--------------------------------------------
 const FormNewGroup = () => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaNewGroup),
   });
-
-  const [token] = useState(() => {
-    const Token = localStorage.getItem("token") || "";
-
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
+  const { token, setGroup, isChecked } = useChecked();
 
   const onRegister = async (data) => {
     try {
-      const response = await API.post(getGroups(), data, {
+      const response = await API.post(postCreateGroup(), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -38,6 +32,18 @@ const FormNewGroup = () => {
       await API.post(postSubscribeGroup(groupID), data, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
+      const takeUserGroup = await API.get(getOneGroup(groupID));
+      setGroup(takeUserGroup.data);
+
+      console.log("Grupo criado :", takeUserGroup);
+
+      isChecked
+        ? localStorage.setItem("userGroup", JSON.stringify(takeUserGroup.data))
+        : sessionStorage.setItem(
+            "userGroup",
+            JSON.stringify(takeUserGroup.data)
+          );
 
       reset();
     } catch (error) {

@@ -15,6 +15,7 @@ export const formatDate = (date) => {
   let minutes = rawDate.getUTCMinutes();
 
   hours = hours < 10 ? `0${hours}` : hours;
+  minutes = minutes < 10 ? `0${minutes}` : minutes;
 
   //   let ampm = hours >= 12 ? "AM" : "PM";
   //   hours = hours % 12; // Relógio 12h
