@@ -97,7 +97,11 @@ const Group = (props) => {
                       <HighlightOffOutlinedIcon
                         onClick={() => onDeleteAct(activity.id)}
                         className={classes.buttonStyle}
-                        style={{ fontSize: "2.5rem", margin: "5px" }}
+                        style={{
+                          fontSize: "2.5rem",
+                          margin: "5px",
+                          cursor: "pointer",
+                        }}
                       >
                         Delete
                       </HighlightOffOutlinedIcon>
@@ -118,14 +122,17 @@ const Group = (props) => {
                 <GoalCard key={index}>
                   <h3>{goal.title}</h3>
                   <ButtonsContent className="goal-container">
-                    <p>{goal.difficulty}</p>
-                    <CheckboxUpdateGoal
-                      goalId={goal.id}
-                      goalAchieved={goal.achieved}
-                    />
+                    <Buttons>
+                      <p>{goal.difficulty}</p>
+                      <CheckboxUpdateGoal
+                        goalId={goal.id}
+                        goalAchieved={goal.achieved}
+                      />
+                    </Buttons>
                     <HighlightOffOutlinedIcon
                       onClick={() => onDeleteGoal(goal.id)}
                       className={classes.buttonStyle}
+                      style={{ fontSize: "2.5rem", cursor: "pointer" }}
                     />
                   </ButtonsContent>
                 </GoalCard>
@@ -141,7 +148,9 @@ const Group = (props) => {
           <UsersContent>
             {group.users !== undefined
               ? group.users.map((user, index) => (
-                  <div key={index}>{user.username}</div>
+                  <div key={index} style={{ margin: "5px" }}>
+                    {user.username}
+                  </div>
                 ))
               : null}
           </UsersContent>

@@ -81,14 +81,6 @@ const FormActivity = (props) => {
       primary: {
         main: "#55a1e3",
       },
-      background: {
-        paper: "#f00",
-        default: "#f00",
-      },
-      common: {
-        black: "#f00",
-        white: "#f00",
-      },
     },
   });
 

@@ -30,7 +30,7 @@ const ModalUpdateActivity = (props) => {
       <EditOutlinedIcon
         type="button"
         onClick={handleOpen}
-        style={{ fontSize: "2.5rem", margin: "5px" }}
+        style={{ fontSize: "2.5rem", margin: "5px", cursor: "pointer" }}
       >
         Editar Nome
       </EditOutlinedIcon>
