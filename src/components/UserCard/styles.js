@@ -26,9 +26,9 @@ export const Avatar = styled.img`
 `;
 
 export const GroupCard = styled.div`
-  border: 3px solid #16181c;
   border-radius: 10px;
   padding: 15px 25px;
+  margin-bottom: 1.5rem;
   & h3 {
     color: #16181c;
     font-weight: 700;
@@ -37,9 +37,5 @@ export const GroupCard = styled.div`
     background: #16181c;
     padding: 10px;
     border-radius: 10px;
-  }
-  & i {
-    color: #eff7fe;
-    margin-right: 5px;
   }
 `;
