@@ -27,7 +27,7 @@ const ModalUserGroup = () => {
 
   return (
     <div>
-      <Button size="small" styled="filled" onClick={() => handleOpen()}>
+      <Button size="large" styled="filled" onClick={() => handleOpen()}>
         Crie Seu Grupo
       </Button>
       <Modal

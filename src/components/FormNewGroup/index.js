@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // providers
 import { useChecked } from "../../providers/user";
+import { useFormStyles } from "../../styles/makeStyles";
 //--------------------------------------------
 import { postCreateGroup, postSubscribeGroup } from "../../helper/groups";
 import { schemaNewGroup } from "../../helper/formValidation";
@@ -20,6 +21,8 @@ import { getOneGroup } from "../../helper/groups";
 
 //--------------------------------------------
 const FormNewGroup = () => {
+  const classes = useFormStyles();
+
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaNewGroup),
   });
@@ -102,6 +105,7 @@ const FormNewGroup = () => {
           inputRef={register}
           error={!!errors.name}
           helperText={errors.name?.message}
+          className={classes.inputStyles}
         />
         <CssTextField
           name="description"
@@ -114,6 +118,7 @@ const FormNewGroup = () => {
           inputRef={register}
           error={!!errors.description}
           helperText={errors.description?.message}
+          className={classes.inputStyles}
         />
         <CssTextField
           name="category"
@@ -124,8 +129,9 @@ const FormNewGroup = () => {
           inputRef={register}
           error={!!errors.category}
           helperText={errors.category?.message}
+          className={classes.inputStyles}
         />
-        <Button type="submit" size="large" styled="outlined-light">
+        <Button type="submit" styled="outlined-light">
           Criar Grupo
         </Button>
       </FormControl>
