@@ -35,7 +35,6 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     getUserData();
-    console.log("Grupo useEffect :", group);
     // eslint-disable-next-line
   }, []);
 

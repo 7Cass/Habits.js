@@ -41,7 +41,6 @@ const FormActivity = (props) => {
       const takeGroup = await API.get(getOneGroup(group.id));
       setGroup(takeGroup.data);
 
-      // props.getGroup();
       reset();
     } catch (error) {
       console.log(error);

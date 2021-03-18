@@ -11,18 +11,11 @@ export const useModalUserGroup = makeStyles((theme) => ({
   paperStyles1: {
     position: "absolute",
     width: "100%",
-    // backgroundColor: theme.palette.background.paper,
     backgroundColor: "transparente",
-    // border: "2px solid #000",
-    // boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     display: "flex",
     justifyContent: "space-around",
     outline: "none",
-    // eslint-disable-next-line
-    // ["@media (min-width:450px)"]: {
-    //   width: 400,
-    // },
   },
 }));
 

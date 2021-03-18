@@ -28,16 +28,6 @@ const FormUpdateActivity = (props) => {
     resolver: yupResolver(schemaUpdateTitleGroup),
   });
   const { token, group, setGroup } = useChecked();
-
-  // const [token] = useState(() => {
-  //   const Token = localStorage.getItem("token") || "";
-
-  //   if (!Token) {
-  //     return "";
-  //   }
-  //   return JSON.parse(Token);
-  // });
-
   const onRegister = async (data) => {
     try {
       await API.patch(patchUpdateGroup(group.id), data, {
@@ -46,8 +36,6 @@ const FormUpdateActivity = (props) => {
 
       const takeUserGroup = await API.get(getOneGroup(group.id));
       setGroup(takeUserGroup.data);
-
-      // props.getGroup();
 
       reset();
     } catch (error) {

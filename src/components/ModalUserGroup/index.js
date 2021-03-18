@@ -28,8 +28,7 @@ const ModalUserGroup = ({ group }) => {
   return (
     <div>
       <Button size="large" styled="filled" onClick={() => handleOpen()}>
-        <i class="fas fa-info-circle"></i>
-        Detalhes
+        {group.name}
       </Button>
       <Modal
         onClose={handleClose}
