@@ -36,8 +36,6 @@ const FormNewGroup = () => {
       const takeUserGroup = await API.get(getOneGroup(groupID));
       setGroup(takeUserGroup.data);
 
-      console.log("Grupo criado :", takeUserGroup);
-
       isChecked
         ? localStorage.setItem("userGroup", JSON.stringify(takeUserGroup.data))
         : sessionStorage.setItem(

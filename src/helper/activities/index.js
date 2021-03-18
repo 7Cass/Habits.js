@@ -17,10 +17,5 @@ export const formatDate = (date) => {
   hours = hours < 10 ? `0${hours}` : hours;
   minutes = minutes < 10 ? `0${minutes}` : minutes;
 
-  //   let ampm = hours >= 12 ? "AM" : "PM";
-  //   hours = hours % 12; // Relógio 12h
-  //   hours = hours ? hours : 12; // Meia noite deve ser 12h;
-  //   minutes = minutes < 10 ? `0${minutes}` : minutes; // Acrescenta 0 na frente se min < 10
-
   return `${day}/${month}/${year} ${hours}:${minutes}`;
 };

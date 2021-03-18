@@ -111,7 +111,6 @@ export const GroupProvider = ({ children }) => {
 
   return (
     <GroupContext.Provider
-      // value={{ groupId, setGroupId, group, setGroup, allGroups }}
       value={{
         groupId,
         setGroupId,

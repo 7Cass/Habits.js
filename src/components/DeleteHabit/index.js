@@ -50,8 +50,6 @@ const DeleteHabit = ({ habitID }) => {
     onDelete();
   };
 
-  //<input value={habit} onChange={(e) => setHabit(e.target.value)} />
-
   return (
     <Box>
       <button className={classes.removeButton} onClick={trigger}>

@@ -55,8 +55,6 @@ const FormCreateGoal = ({ handleClose }) => {
 
       const takeGroup = await API.get(getOneGroup(group.id));
       setGroup(takeGroup.data);
-
-      // getGroup();
       reset();
       setTimeout(() => {
         handleClose();

@@ -10,7 +10,6 @@ import { useChecked } from "../../providers/user";
 //---------------------------------------------
 const UserCard = () => {
   const { user, group } = useChecked();
-  console.log(group);
 
   return (
     <Card>

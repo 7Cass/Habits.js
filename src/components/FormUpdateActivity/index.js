@@ -29,18 +29,8 @@ const FormUpdateActivity = (props) => {
     resolver: yupResolver(schemaUpdateActivity),
   });
   const { token, group, setGroup } = useChecked();
-  // const [token] = useState(() => {
-  //   const Token = localStorage.getItem("token") || "";
-
-  //   if (!Token) {
-  //     return "";
-  //   }
-  //   return JSON.parse(Token);
-  // });
 
   const onRegister = async (data) => {
-    console.log("atualização de atividade: ", props.activity);
-    console.log("dados passados: ", data);
     try {
       await API.patch(patchUpdateActivity(props.activity.id), data, {
         headers: { Authorization: `Bearer ${token}` },

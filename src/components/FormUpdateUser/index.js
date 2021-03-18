@@ -33,16 +33,6 @@ const FormUpdateUser = () => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaUpdateUser),
   });
-  // const [token] = useState(() => {
-  //   const Token = isChecked
-  //     ? localStorage.getItem("token") || ""
-  //     : sessionStorage.getItem("token") || "";
-
-  //   if (!Token) {
-  //     return "";
-  //   }
-  //   return JSON.parse(Token);
-  // });
 
   const onUpdate = async (data) => {
     try {
