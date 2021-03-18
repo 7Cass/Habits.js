@@ -5,13 +5,8 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import GroupsPage from "../pages/Groups";
 import GroupPage from "../pages/Group";
+import UsersPage from "../pages/Users";
 
-// página de testes dos forms
-import TestForms from "../pages/TestForms";
-
-//-----------------------------------------------
-// *** QUANDO FOR ADICIONAR NOVAS ROTAS, PROCURE DEIXAR
-// *** A TESTE POR ÚLTIMO ***
 const Routes = () => {
   return (
     <Switch>
@@ -30,8 +25,8 @@ const Routes = () => {
       <Route exact path="/group">
         <GroupPage />
       </Route>
-      <Route exact path="/testforms">
-        <TestForms />
+      <Route exact path="/users">
+        <UsersPage />
       </Route>
     </Switch>
   );

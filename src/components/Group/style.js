@@ -160,5 +160,8 @@ export const Users = styled.div`
 
 export const UsersContent = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: row;
   justify-content: space-around;
 `;

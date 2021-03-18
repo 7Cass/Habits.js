@@ -159,7 +159,7 @@ const Group = (props) => {
           <UsersContent>
             {group.users !== undefined
               ? group.users.map((user, index) => (
-                  <h3 key={index}>{user.username}</h3>
+                  <div key={index}>{user.username}</div>
                 ))
               : null}
           </UsersContent>
