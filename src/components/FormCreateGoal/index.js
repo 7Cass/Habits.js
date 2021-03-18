@@ -1,22 +1,30 @@
+// react hook form + resolvers
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+// services
 import API from "../../services/";
+
+// helper
 import { postCreateGoal } from "../../helper/goals";
 import { schemaCreateGoal } from "../../helper/formValidation";
 import { getOneGroup } from "../../helper/groups";
 
+// providers
 import { useChecked } from "../../providers/user";
 
+// components
 import Button from "../Button";
+
+// material ui
 import {
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   TextField,
-  Typography,
 } from "@material-ui/core";
+import { useFormStyles } from "../../styles/makeStyles";
 
 //--------------------------------------------------------
 const difficultyOptions = [
@@ -30,6 +38,7 @@ const difficultyOptions = [
 //--------------------------------------------------------
 const FormCreateGoal = ({ handleClose }) => {
   const { group, token, setGroup } = useChecked();
+  const classes = useFormStyles();
   const { register, handleSubmit, errors, reset, control } = useForm({
     resolver: yupResolver(schemaCreateGoal),
   });
@@ -59,10 +68,8 @@ const FormCreateGoal = ({ handleClose }) => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      <Typography variant="h4" color="primary">
-        Adicionar Meta
-      </Typography>
       <TextField
+        className={classes.inputStyles}
         variant="outlined"
         size="small"
         margin="dense"
@@ -72,14 +79,15 @@ const FormCreateGoal = ({ handleClose }) => {
         error={!!errors.title}
         helperText={errors.title?.message}
       />
-      <FormControl margin="dense">
+
+      <FormControl margin="dense" className={classes.menuItem}>
         <InputLabel>Dificuldade</InputLabel>
         <Controller
           name="difficulty"
           control={control}
           defaultValue={difficultyOptions[2]}
           as={
-            <Select>
+            <Select className={classes.inputStyles}>
               {difficultyOptions.map((difficult, index) => (
                 <MenuItem key={index} value={difficult}>
                   {difficult}
@@ -89,7 +97,7 @@ const FormCreateGoal = ({ handleClose }) => {
           }
         />
       </FormControl>
-      <Button type="submit" styled="outlined">
+      <Button type="submit" styled="filled-light">
         Criar Meta
       </Button>
     </FormControl>

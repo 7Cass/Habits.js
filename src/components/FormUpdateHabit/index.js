@@ -22,6 +22,7 @@ import Button from "../Button";
 import { patchUpdateHabit } from "../../helper/habits";
 
 import { SliderStyles } from "../../styles/makeStyles";
+import DeleteHabit from "../DeleteHabit";
 //--------------------------------------------
 
 //--------------------------------------------
@@ -96,11 +97,12 @@ const FormUpdateHabit = ({ id, how_much_achieved }) => {
       </Hidden>
       <div className={classes.buttons}>
         <Button size="large" styled="outlined-light" onClick={onRegister}>
-          Atualizar Hábito
+          Atualizar
         </Button>
+        <DeleteHabit />
         <button className={classes.removeButton}>
           <i class="fas fa-trash-alt"></i>
-          Remover Hábito
+          Remover
         </button>
       </div>
     </Box>

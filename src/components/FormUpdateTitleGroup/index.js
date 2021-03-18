@@ -2,7 +2,7 @@
 import API from "../../services";
 
 // material ui
-import { TextField, FormControl, Button } from "@material-ui/core";
+import { TextField, FormControl } from "@material-ui/core";
 
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
@@ -10,14 +10,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // providers
 import { useChecked } from "../../providers/user";
+// component
+import Button from "../Button";
 
-//--------------------------------------------
+// helpers
 import { patchUpdateGroup } from "../../helper/groups";
 import { schemaUpdateTitleGroup } from "../../helper/formValidation";
 import { getOneGroup } from "../../helper/groups";
+
+// styles
+import { useFormStyles } from "../../styles/makeStyles";
 //--------------------------------------------
 
 const FormUpdateActivity = (props) => {
+  const classes = useFormStyles();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaUpdateTitleGroup),
   });
@@ -52,6 +58,7 @@ const FormUpdateActivity = (props) => {
   return (
     <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
       <TextField
+        className={classes.inputStyles}
         name="name"
         label="Nome da Grupo"
         variant="outlined"
@@ -61,7 +68,7 @@ const FormUpdateActivity = (props) => {
         error={!!errors.name}
         helperText={errors.name?.message}
       />
-      <Button type="submit" variant="contained" size="small" color="primary">
+      <Button type="submit" styled="filled-light">
         Atualizar Nome
       </Button>
     </FormControl>
