@@ -8,10 +8,11 @@ export const Card = styled.div`
   text-align: center;
   border-radius: 10px;
   background-color: #16181c;
-  max-width: 260px;
-  width: 100%;
+  /* max-width: 230px; */
+  width: 230px;
   height: 250px;
-  margin: 10px;
+  margin: 0.5rem;
+  padding: 0.5rem;
 `;
 
 export const Name = styled.div`

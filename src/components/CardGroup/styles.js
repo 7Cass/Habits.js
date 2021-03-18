@@ -10,8 +10,8 @@ export const Card = styled.div`
   background-color: #16181c;
   width: 230px;
   height: 250px;
-  margin: 5px;
-  padding: 10px 5px;
+  margin: 0.5rem;
+  padding: 0.5rem;
 `;
 
 export const Name = styled.div`

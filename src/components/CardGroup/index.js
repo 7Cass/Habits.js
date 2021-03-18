@@ -19,7 +19,7 @@ import Button from "../Button";
 
 //----------------------------------
 const CardGroup = ({ group }) => {
-  const { token, setGroup, isChecked } = useChecked();
+  const { token, setGroup } = useChecked();
   const history = useHistory();
 
   const onSubmit = async () => {
@@ -37,12 +37,6 @@ const CardGroup = ({ group }) => {
       const takeUserGroup = await API.get(getOneGroup(group.id));
       setGroup(takeUserGroup.data);
 
-      isChecked
-        ? localStorage.setItem("userGroup", JSON.stringify(takeUserGroup.data))
-        : sessionStorage.setItem(
-            "userGroup",
-            JSON.stringify(takeUserGroup.data)
-          );
       history.push("/homepage");
     } catch (error) {
       console.log(error);
