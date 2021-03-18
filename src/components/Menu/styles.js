@@ -4,7 +4,7 @@ export const SectionMenu = styled.section`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 35px 0;
+  padding: 30px 0;
 `;
 
 export const MenuItem = styled.button`

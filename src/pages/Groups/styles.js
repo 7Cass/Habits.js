@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
+export const PrincipalDiv = styled.div`
+  height: 100%;
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   text-align: center;
-  background-color: #55a1e3;
   border-radius: 10px;
-  max-width: 1400px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
@@ -34,14 +37,12 @@ export const GroupContainer = styled.div`
     flex-flow: row wrap;
     justify-content: space-evenly;
     max-width: 580px;
-    width: 95%;
   }
 
   @media screen and (min-width: 800px) {
     flex-flow: row wrap;
     justify-content: space-evenly;
-    max-width: 1400px;
-    width: 95%;
+    max-width: 1200px;
   }
 `;
 
@@ -62,7 +63,7 @@ export const MenuItem = styled.button`
   width: 30px;
   text-align: center;
   font-weight: bold;
-  margin: 0 15px;
+  margin: 0 5px;
   cursor: pointer;
   outline: none;
 `;

@@ -9,7 +9,13 @@ import Groups from "../../components/Groups";
 import Menu from "../../components/Menu";
 
 // styles
-import { Container, GroupContainer, SectionMenu, MenuItem } from "./styles";
+import {
+  Container,
+  GroupContainer,
+  SectionMenu,
+  MenuItem,
+  PrincipalDiv,
+} from "./styles";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
@@ -36,30 +42,30 @@ const GroupsPage = () => {
   return (
     <>
       {isAuth ? (
-        <>
+        <PrincipalDiv>
           <Menu />
           <Container>
+            <SectionMenu>
+              <MenuItem>
+                <ArrowBackIosIcon
+                  disabled={previousPage}
+                  onClick={previousPageGroup}
+                />
+              </MenuItem>
+              <MenuItem>{page}</MenuItem>
+              <MenuItem>
+                <ArrowForwardIosIcon
+                  disabled={nextPage}
+                  onClick={nextPageGroup}
+                />
+              </MenuItem>
+            </SectionMenu>
             <GroupContainer>
-              <h1>Grupos</h1>
-              <SectionMenu>
-                <MenuItem>
-                  <ArrowBackIosIcon
-                    disabled={previousPage}
-                    onClick={previousPageGroup}
-                  />
-                </MenuItem>
-                <MenuItem>{page}</MenuItem>
-                <MenuItem>
-                  <ArrowForwardIosIcon
-                    disabled={nextPage}
-                    onClick={nextPageGroup}
-                  />
-                </MenuItem>
-              </SectionMenu>
+              {/* <h1>Grupos</h1> */}
               <Groups />
             </GroupContainer>
           </Container>
-        </>
+        </PrincipalDiv>
       ) : (
         <Redirect to={"/register"} />
       )}
