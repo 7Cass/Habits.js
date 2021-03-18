@@ -38,27 +38,8 @@ import CheckboxUpdateGoal from "../CheckboxUpdateGoal";
 
 //==============================================
 const Group = (props) => {
-  // const { group, setGroup } = useId();
   const classes = useAcitivityButtons();
   const { user, group, setGroup, token } = useChecked();
-
-  // const [token] = useState(() => {
-  //   const Token = localStorage.getItem("token") || "";
-
-  //   if (!Token) {
-  //     return "";
-  //   }
-  //   return JSON.parse(Token);
-  // });
-
-  // const getGroup = async () => {
-  //   try {
-  //     const takeGroup = await API.get(getOneGroup(user.group));
-  //     setGroup(takeGroup.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const onDeleteAct = async (actId) => {
     try {
@@ -68,7 +49,6 @@ const Group = (props) => {
 
       const takeGroup = await API.get(getOneGroup(group.id));
       setGroup(takeGroup.data);
-      // getGroup();
     } catch (error) {
       console.log(error);
     }
@@ -81,17 +61,10 @@ const Group = (props) => {
 
       const takeGroup = await API.get(getOneGroup(user.group));
       setGroup(takeGroup.data);
-
-      // getGroup();
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    // getGroup();
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <GroupContent>

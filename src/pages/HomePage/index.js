@@ -39,7 +39,7 @@ const HomePage = () => {
             </InnerContainer>
             <DevelopedBy>
               Desenvolvido por
-              <span onClick={() => history("/developers")}> Squad 1</span>
+              <span onClick={() => history.push("/developers")}> Squad 1</span>
             </DevelopedBy>
           </Container>
           <Footer />

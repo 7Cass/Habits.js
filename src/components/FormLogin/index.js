@@ -75,7 +75,6 @@ const FormLogin = () => {
       setHabits(takeHabits.data);
 
       if (takeUser.data.group) {
-        console.log("Não deveria entrar aqui");
         const takeUserGroup = await API.get(getOneGroup(takeUser.data.group));
         setGroup(takeUserGroup.data);
 

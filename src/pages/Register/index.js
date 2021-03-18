@@ -56,7 +56,10 @@ const Register = () => {
             <div className="dev-container">
               <h3>
                 Developed by
-                <span onClick={() => history("/developers")}> Squad 1</span>
+                <span onClick={() => history.push("/developers")}>
+                  {" "}
+                  Squad 1
+                </span>
               </h3>
             </div>
           </div>

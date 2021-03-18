@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import GroupsPage from "../pages/Groups";
 import GroupPage from "../pages/Group";
 import UsersPage from "../pages/Users";
+import Developers from "../pages/Developers";
 
 const Routes = () => {
   return (
@@ -27,6 +28,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/users">
         <UsersPage />
+      </Route>
+      <Route exact path="/developers">
+        <Developers />
       </Route>
     </Switch>
   );

@@ -5,13 +5,6 @@
   box-sizing: border-box;
   font-family: "Montserrat";
 }
-
-/* Variáveis 
-root:{
-   Adicionar se for preciso
-}
-*/
-
 /* Proporção no tamanho das fontes */
 @media (max-width: 1080px) {
   html {
