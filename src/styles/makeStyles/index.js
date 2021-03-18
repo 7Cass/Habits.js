@@ -188,7 +188,6 @@ export const SliderStyles = makeStyles((theme) => ({
     width: "100%",
     padding: "15px",
     marginTop: "10px",
-    display: "flex",
     justifyContent: "center",
 
     "&:hover": {
@@ -221,5 +220,28 @@ export const SliderStyles = makeStyles((theme) => ({
 export const useAcitivityButtons = makeStyles((theme) => ({
   buttonStyle: {
     margin: "0 5px",
+  },
+}));
+
+export const useAccordionStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+    margin: "10px 0",
+  },
+  heading: {
+    fontSize: "1.4rem",
+    fontFamily: "Montserrat",
+    fontWeight: "bold",
+  },
+  accordion: {
+    background: "#16181c",
+    color: "#eff7fe",
+    margin: "10px 0",
+  },
+  accordionText: {
+    fontFamily: "Montserrat",
+  },
+  icon: {
+    margin: "5px 0",
   },
 }));

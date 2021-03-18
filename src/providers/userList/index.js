@@ -5,23 +5,21 @@ import { createContext, useContext, useState, useEffect } from "react";
 import API from "../../services";
 
 // helper
-import { getGroups } from "../../helper/groups";
+import { getUsers } from "../../helper/users";
+// ------------------------------------------------
+const UserListContext = createContext();
 
-// -------------------------------------------------
-const GroupContext = createContext();
-
-// -------------------------------------------------
-export const GroupProvider = ({ children }) => {
-  const [groupId, setGroupId] = useState(0);
-  const [allGroups, setAllGroups] = useState([]);
+// ------------------------------------------------
+export const UserListProvider = ({ children }) => {
+  const [allUsers, setAllUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [nextPage, setNextPage] = useState(0);
   const [previousPage, setPreviousPage] = useState(0);
 
-  const getAllGroups = async () => {
+  const getAllUser = async () => {
     try {
-      const response = await API.get(getGroups(1));
-      setAllGroups(response.data.results);
+      const response = await API.get(getUsers(page));
+      setAllUsers(response.data.results);
 
       if (response.data.next) {
         const next = response.data.next.split("=");
@@ -41,11 +39,11 @@ export const GroupProvider = ({ children }) => {
     }
   };
 
-  const nextPageGroup = async () => {
+  const getNextPage = async () => {
     try {
       if (nextPage) {
-        const response = await API.get(getGroups(nextPage));
-        setAllGroups(response.data.results);
+        const response = await API.get(getUsers(nextPage));
+        setAllUsers(response.data.results);
 
         if (response.data.next) {
           const next = response.data.next.split("=");
@@ -64,7 +62,6 @@ export const GroupProvider = ({ children }) => {
         } else {
           setPreviousPage(0);
         }
-
         setPage(page + 1);
       }
     } catch (error) {
@@ -72,11 +69,11 @@ export const GroupProvider = ({ children }) => {
     }
   };
 
-  const previousPageGroup = async () => {
+  const getPreviousPage = async () => {
     try {
       if (previousPage) {
-        const response = await API.get(getGroups(previousPage));
-        setAllGroups(response.data.results);
+        const response = await API.get(getUsers(previousPage));
+        setAllUsers(response.data.results);
 
         if (response.data.next) {
           const next = response.data.next.split("=");
@@ -104,26 +101,28 @@ export const GroupProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getAllGroups();
+    getAllUser();
     // eslint-disable-next-line
   }, []);
 
   return (
-    <GroupContext.Provider
+    <UserListContext.Provider
       value={{
-        groupId,
-        setGroupId,
-        allGroups,
         page,
+        setPage,
+        allUsers,
+        setAllUsers,
         nextPage,
+        setNextPage,
         previousPage,
-        previousPageGroup,
-        nextPageGroup,
+        setPreviousPage,
+        getNextPage,
+        getPreviousPage,
       }}
     >
       {children}
-    </GroupContext.Provider>
+    </UserListContext.Provider>
   );
 };
 
-export const useId = () => useContext(GroupContext);
+export const useUserList = () => useContext(UserListContext);

@@ -1,39 +1,21 @@
+// react
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
+// material ui
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
+// components
 import FormUpdateHabit from "../FormUpdateHabit";
 
+// styles
+import { useAccordionStyles } from "../../styles/makeStyles";
 import { Tags, DetailsContainer } from "./styles.js";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    margin: "10px 0",
-  },
-  heading: {
-    fontSize: "1.4rem",
-    fontWeight: theme.typography.fontWeightRegular,
-    fontFamily: "Montserrat",
-    fontWeight: "bold",
-  },
-  accordion: {
-    background: "#16181c",
-    color: "#eff7fe",
-    margin: "10px 0",
-  },
-  accordionText: {
-    fontFamily: "Montserrat",
-  },
-  icon: {
-    margin: "5px 0",
-  },
-}));
-
+//----------------------------------------------------
 export default function SimpleAccordion({
   achieved,
   category,
@@ -43,7 +25,7 @@ export default function SimpleAccordion({
   title,
   id,
 }) {
-  const classes = useStyles();
+  const classes = useAccordionStyles();
 
   return (
     <div className={classes.root}>
@@ -62,12 +44,12 @@ export default function SimpleAccordion({
                 fontSize: "2rem",
                 marginRight: "10px",
               }}
-            ></i>
+            />
           ) : (
             <i
               class="far fa-calendar-alt"
               style={{ fontSize: "2rem", marginRight: "10px" }}
-            ></i>
+            />
           )}
           <Typography className={classes.heading}>{title}</Typography>
         </AccordionSummary>
