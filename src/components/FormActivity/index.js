@@ -1,37 +1,31 @@
 // API
 import API from "../../services";
 
-import { useState } from "react";
-
 // material ui
-import { TextField, FormControl, Button } from "@material-ui/core";
+import { TextField, FormControl } from "@material-ui/core";
 
 // react hook form + yup + resolvers
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+// components
+import Button from "../Button";
+
 //--------------------------------------------
 import { postCreateActivity } from "../../helper/activities";
 import { schemaActivity } from "../../helper/formValidation";
-import { useId } from "../../providers/group";
+import { useChecked } from "../../providers/user";
+import { getOneGroup } from "../../helper/groups";
 //--------------------------------------------
-
+import { useFormStyles } from "../../styles/makeStyles";
 //--------------------------------------------
 const FormActivity = (props) => {
+  const classes = useFormStyles();
+
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaActivity),
   });
-
-  const [token] = useState(() => {
-    const Token = localStorage.getItem("token") || "";
-
-    if (!Token) {
-      return "";
-    }
-    return JSON.parse(Token);
-  });
-
-  const { group } = useId();
+  const { token, group, setGroup } = useChecked();
 
   const onRegister = async (data) => {
     const newData = {
@@ -44,7 +38,10 @@ const FormActivity = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      props.getGroup();
+      const takeGroup = await API.get(getOneGroup(group.id));
+      setGroup(takeGroup.data);
+
+      // props.getGroup();
       reset();
     } catch (error) {
       console.log(error);
@@ -54,6 +51,7 @@ const FormActivity = (props) => {
   return (
     <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
       <TextField
+        className={classes.inputStyles}
         name="title"
         label="Nome da Atividade"
         variant="outlined"
@@ -64,6 +62,7 @@ const FormActivity = (props) => {
         helperText={errors.title?.message}
       />
       <TextField
+        className={classes.calendar}
         name="realization_time"
         id="date"
         label="Tempo de Realização"
@@ -74,7 +73,7 @@ const FormActivity = (props) => {
           shrink: true,
         }}
       />
-      <Button type="submit" variant="contained" size="small" color="primary">
+      <Button type="submit" styled="filled-light">
         Criar Atividade
       </Button>
     </FormControl>

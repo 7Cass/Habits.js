@@ -6,7 +6,7 @@ import getModalStyle from "../../styles/modalStyles";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 
 //-----------------------------------------------
-const ModalCreateGoal = ({ getGroup }) => {
+const ModalCreateGoal = () => {
   const classes = useModalStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ const ModalCreateGoal = ({ getGroup }) => {
 
   const body = (
     <div style={modalStyle} className={classes.paperStyles}>
-      <FormCreateGoal handleClose={handleClose} getGroup={getGroup} />
+      <FormCreateGoal handleClose={handleClose} />
     </div>
   );
 

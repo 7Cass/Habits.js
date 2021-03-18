@@ -6,7 +6,7 @@ import getModalStyle from "../../styles/modalStyles";
 import Button from "../Button";
 
 //--------------------------------------------------
-const ModalUserGroup = () => {
+const ModalUserGroup = ({ group }) => {
   const classes = useModalUserGroup();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ const ModalUserGroup = () => {
 
   const body = (
     <div style={modalStyle} className={classes.paperStyles1}>
-      <Group handleClose={handleClose} />
+      <Group group={group} handleClose={handleClose} />
     </div>
   );
 
@@ -32,6 +32,7 @@ const ModalUserGroup = () => {
         Detalhes
       </Button>
       <Modal
+        onClose={handleClose}
         open={open}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

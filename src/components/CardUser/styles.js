@@ -8,24 +8,25 @@ export const Card = styled.div`
   text-align: center;
   border-radius: 15px;
   background-color: #16181c;
-  width: 230px;
+  max-width: 260px;
+  width: 100%;
   height: 250px;
-  margin: 5px;
-  padding: 10px 5px;
+  margin: 10px;
 `;
 
 export const Name = styled.div`
   padding: 5px;
   color: #55a1e3;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin: 5px 0;
 `;
 
 export const Description = styled.div`
   padding: 5px;
+  width: 100%;
+  word-wrap: break-word;
   color: #eff7fe;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: bold;
 `;
 
@@ -37,5 +38,4 @@ export const Category = styled.div`
   padding: 5px;
   color: #eff7fe;
   font-weight: bold;
-  margin: 5px 0;
 `;

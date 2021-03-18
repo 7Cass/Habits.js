@@ -6,9 +6,10 @@ import { Container } from "./styles";
 
 import { useEffect } from "react";
 import { useChecked } from "../../providers/user";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 
 const Login = () => {
+  const history = useHistory();
   const { isAuth, checkAuth } = useChecked();
 
   useEffect(() => {
@@ -32,7 +33,8 @@ const Login = () => {
             </div>
           </div>
           <h3>
-            Developed by <span>Squad1</span>
+            Developed by
+            <span onClick={() => history("/developers")}> Squad 1</span>
           </h3>
         </Container>
       )}

@@ -21,9 +21,6 @@ export const Container = styled.div`
     background-position: center;
   }
 
-  & form * {
-  }
-
   & img {
     display: none;
   }

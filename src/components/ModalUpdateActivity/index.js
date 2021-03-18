@@ -21,7 +21,7 @@ const ModalUpdateActivity = (props) => {
 
   const body = (
     <div style={modalStyle} className={classes.paperStyles}>
-      <FormUpdateActivity getGroup={props.getGroup} actId={props.actId} />
+      <FormUpdateActivity activity={props.activity} />
     </div>
   );
 

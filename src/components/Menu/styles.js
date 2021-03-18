@@ -18,6 +18,10 @@ export const MenuItem = styled.button`
   cursor: pointer;
   outline: none;
 
+  @media (max-width: 374px) {
+    font-size: 1.2rem;
+  }
+
   & i {
     display: none;
 
