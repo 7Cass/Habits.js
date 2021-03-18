@@ -46,6 +46,10 @@ export const Container = styled.div`
   & div.dev-container {
   }
 
+  & span {
+    color: #16181c;
+  }
+
   @media screen and (min-width: 400px) {
     form {
       min-width: 85%;
@@ -67,6 +71,15 @@ export const Container = styled.div`
 
       & div.form-container {
         width: 100%;
+      }
+
+      & div.registerBg-container {
+        display: flex;
+        align-items: center;
+
+        & img {
+          margin: auto;
+        }
       }
     }
 
@@ -121,6 +134,13 @@ export const Container = styled.div`
 
     form h2 {
       padding-bottom: 1rem;
+    }
+    & span {
+      color: #55a1e3;
+    }
+
+    & div.bgCircles1-container {
+      top: 50px;
     }
   } ;
 `;

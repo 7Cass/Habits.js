@@ -70,6 +70,10 @@ export const useFormStyles = makeStyles((theme) => ({
       margin: "15px 0",
     },
   },
+  link: {
+    color: "#55a1e3",
+    fontWeight: "bold",
+  },
 }));
 
 export const usePageRegister = makeStyles((theme) => ({

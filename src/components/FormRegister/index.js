@@ -118,7 +118,7 @@ const FormRegister = () => {
         </Button>
         <Typography style={{ textAlign: "center", paddingBottom: 0 }}>
           Já registrado?{" "}
-          <Link to="/" style={{ color: "#16181c", fontWeight: "bold" }}>
+          <Link to="/" className={classes.link}>
             Login
           </Link>
         </Typography>
