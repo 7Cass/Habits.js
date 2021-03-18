@@ -18,9 +18,6 @@ export const Container = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
 
-  & form * {
-  }
-
   & img {
     display: none;
   }
@@ -42,6 +39,7 @@ export const Container = styled.div`
 
   & h3 span {
     color: #16181c;
+    cursor: pointer;
   }
 
   & button {

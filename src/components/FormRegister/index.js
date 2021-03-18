@@ -76,7 +76,7 @@ const FormRegister = () => {
         Enviar
       </Button>
       <Typography>
-        Já registrado? <Link to="/">login</Link>
+        Já registrado? <Link to="/">Login</Link>
       </Typography>
     </FormControl>
   );

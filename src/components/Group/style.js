@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const GroupContent = styled.div`
   display: flex;
   justify-content: center;
+  width: 85%;
 `;
 
 export const CardGroup = styled.div`
@@ -33,7 +34,7 @@ export const TitleContent = styled.div`
 `;
 
 export const ActivitiesCard = styled.div`
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 5px;
   text-align: left;
   display: flex;
@@ -88,7 +89,7 @@ export const ButtonsContent = styled.div`
 `;
 
 export const Goals = styled.div`
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 5px;
   text-align: left;
   display: flex;
@@ -133,7 +134,6 @@ export const GoalCard = styled.div`
 `;
 
 export const UserCard = styled.div`
-  overflow: scroll;
   align-items: center;
   padding: 5px;
   text-align: left;
