@@ -49,7 +49,7 @@ export const ActivitiesCard = styled.div`
   width: 100%;
   height: 38vh;
   max-width: 640px;
-  margin: 15px;
+  margin: 5px;
   background-color: #55a1e3;
   border-radius: 10px;
   & h2 {
@@ -76,19 +76,32 @@ export const ActivityCard = styled.div`
   & h3 {
     text-align: center;
     font-size: 1.25rem;
-    margin: 5px;
+    margin: 5px 20px;
+    width: auto;
   }
 
   & h4 {
     text-align: center;
     font-size: 1.25rem;
     margin: 5px;
+    @media screen and (min-width: 500px) {
+      margin: auto 20px;
+    }
+  }
+
+  @media screen and (min-width: 425px) {
+    flex-direction: row;
   }
 `;
 
 export const Buttons = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  & p {
+    font-size: 1.5rem;
+  }
 `;
 
 export const ActivityAdd = styled.div`
@@ -102,7 +115,7 @@ export const ActivityAdd = styled.div`
 
 export const CategoryBox = styled.div`
   min-width: 50px;
-  margin-top: 0.5rem;
+  margin: 0.5rem;
   padding: 0.7rem;
   font-size: 1.4rem;
   border-radius: 10px;
@@ -112,6 +125,11 @@ export const CategoryBox = styled.div`
 export const ButtonsContent = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media screen and (min-width: 425px) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 `;
 
 export const Goals = styled.div`
@@ -124,7 +142,7 @@ export const Goals = styled.div`
   width: 100%;
   height: 34vh;
   max-width: 640px;
-  margin: 15px;
+  margin: 5px;
   background-color: #55a1e3;
   border-radius: 10px;
   & h2 {
@@ -137,6 +155,8 @@ export const GoalsAdd = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  padding: 0 5px;
 `;
 
 export const GoalCard = styled.div`
@@ -145,17 +165,26 @@ export const GoalCard = styled.div`
   padding: 5px;
   color: #eff7fe;
   width: 100%;
-  height: 33px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  border-radius: 10px;
 
   & .goal-container {
     display: flex;
     align-items: center;
   }
-  @media (max-width: 445px) {
-    width: 100%;
+
+  & h3 {
+    text-align: center;
+    font-size: 1.25rem;
+    margin: 5px 20px;
+    width: auto;
+  }
+
+  @media screen and (min-width: 425px) {
+    flex-direction: row;
   }
 `;
 
@@ -169,7 +198,7 @@ export const UserCard = styled.div`
   width: 100%;
   height: 20vh;
   max-width: 640px;
-  margin: 15px;
+  margin: 5px;
   background-color: #55a1e3;
   border-radius: 10px;
   & h2 {
@@ -182,6 +211,8 @@ export const Users = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  padding: 0 5px;
 `;
 
 export const UsersContent = styled.div`
