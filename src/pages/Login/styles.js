@@ -1,12 +1,11 @@
 import styled from "styled-components";
-
 import BackgroundImage from "../../assets/wave_bg.svg";
 
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
 
-  padding: 4rem;
+  padding: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -28,10 +27,6 @@ export const Container = styled.div`
   & h1 {
     font-weight: 600;
     font-size: 3rem;
-    margin-bottom: 15px;
-    @media screen and (min-width: 800px) {
-      margin: 15px 0 0;
-    }
   }
 
   & h2 {

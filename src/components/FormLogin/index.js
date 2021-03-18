@@ -79,28 +79,14 @@ const FormLogin = () => {
       if (takeUser.data.group) {
         const takeUserGroup = await API.get(getOneGroup(takeUser.data.group));
         setGroup(takeUserGroup.data);
-
-        // isChecked
-        //   ? localStorage.setItem(
-        //       "userGroup",
-        //       JSON.stringify(takeUserGroup.data)
-        //     )
-        //   : sessionStorage.setItem(
-        //       "userGroup",
-        //       JSON.stringify(takeUserGroup.data)
-        //     );
       }
 
       if (isChecked) {
         sessionStorage.clear();
         localStorage.setItem("token", JSON.stringify(response.data.access));
-        // localStorage.setItem("user", JSON.stringify(takeUser.data));
-        // localStorage.setItem("habits", JSON.stringify(takeHabits.data));
       } else {
         localStorage.clear();
         sessionStorage.setItem("token", JSON.stringify(response.data.access));
-        // sessionStorage.setItem("user", JSON.stringify(takeUser.data));
-        // sessionStorage.setItem("habits", JSON.stringify(takeHabits.data));
       }
 
       reset();
@@ -183,7 +169,10 @@ const FormLogin = () => {
         />
         <Button type="submit" styled="outlined-light" children="Entrar" />
         <p>
-          Não possui conta? <Link to="/register">Fazer cadastro</Link>
+          Não possui conta?{" "}
+          <Link to="/register" className={classes.link}>
+            Fazer cadastro
+          </Link>
         </p>
       </FormControl>
     </ThemeProvider>

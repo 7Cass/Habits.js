@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 
-  padding: 0 2rem;
+  padding: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -24,7 +24,6 @@ export const Container = styled.div`
   & h1 {
     font-size: 3rem;
     font-weight: 600;
-    margin-top: 20px;
   }
 
   & h2 {
@@ -49,9 +48,6 @@ export const Container = styled.div`
     & a {
       color: #55a1e3;
     }
-  }
-
-  & div.dev-container {
   }
 
   & span {
@@ -95,7 +91,7 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0.5rem 0 1rem 0;
+      margin: 0.9rem 0 1rem 0;
       position: relative;
       min-height: 150px;
       height: 100%;
@@ -121,10 +117,6 @@ export const Container = styled.div`
         max-width: 220px;
         width: 100%;
       }
-    }
-
-    h1 {
-      font-size: 4rem;
     }
 
     img {
