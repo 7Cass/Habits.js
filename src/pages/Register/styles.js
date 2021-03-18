@@ -22,8 +22,9 @@ export const Container = styled.div`
   }
 
   & h1 {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 600;
+    margin-top: 20px;
   }
 
   & h2 {
@@ -40,6 +41,9 @@ export const Container = styled.div`
   & p {
     padding: 1rem 0;
     text-align: left;
+  }
+
+  & div.dev-container {
   }
 
   @media screen and (min-width: 400px) {

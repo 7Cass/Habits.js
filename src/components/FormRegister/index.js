@@ -75,6 +75,9 @@ const FormRegister = () => {
         main: "#55a1e3",
       },
     },
+    typography: {
+      fontFamily: "Montserrat",
+    },
   });
 
   return (
@@ -113,8 +116,11 @@ const FormRegister = () => {
         <Button type="submit" styled="outlined-light">
           Enviar
         </Button>
-        <Typography>
-          Já registrado? <Link to="/">login</Link>
+        <Typography style={{ textAlign: "center", paddingBottom: 0 }}>
+          Já registrado?{" "}
+          <Link to="/" style={{ color: "#16181c", fontWeight: "bold" }}>
+            Login
+          </Link>
         </Typography>
       </FormControl>
     </ThemeProvider>
