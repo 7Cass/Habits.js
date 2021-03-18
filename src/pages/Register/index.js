@@ -8,7 +8,7 @@ import FormRegister from "../../components/FormRegister";
 import { useChecked } from "../../providers/user";
 
 // react router dom
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 
 // styles components
 import { Container } from "./styles";
@@ -21,6 +21,7 @@ import bgCircles2 from "../../assets/bg_circles2.svg";
 
 //--------------------------------------------
 const Register = () => {
+  const history = useHistory();
   const { isAuth, checkAuth } = useChecked();
 
   useEffect(() => {
@@ -54,7 +55,8 @@ const Register = () => {
             </div>
             <div className="dev-container">
               <h3>
-                Developed by <span>Squad1</span>
+                Developed by
+                <span onClick={() => history("/developers")}> Squad 1</span>
               </h3>
             </div>
           </div>

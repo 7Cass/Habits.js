@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 
 import Button from "../Button";
+import { useFormStyles } from "../../styles/makeStyles/index.js";
 
 //----------------------------------------------
 const difficultyOptions = [
@@ -36,6 +37,7 @@ const frequencyOptions = [
 ];
 //----------------------------------------------
 const FormCreateHabit = ({ handleClose }) => {
+  const classes = useFormStyles();
   const { isChecked, userId } = useChecked();
   const { register, handleSubmit, errors, reset, control } = useForm({
     resolver: yupResolver(schemaCreateHabit),
@@ -75,10 +77,8 @@ const FormCreateHabit = ({ handleClose }) => {
 
   return (
     <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      <Typography variant="h4" color="primary">
-        Adicionar Hábito
-      </Typography>
       <TextField
+        className={classes.inputStyles}
         variant="outlined"
         size="small"
         margin="dense"
@@ -89,6 +89,7 @@ const FormCreateHabit = ({ handleClose }) => {
         helperText={errors.title?.message}
       />
       <TextField
+        className={classes.inputStyles}
         variant="outlined"
         size="small"
         margin="dense"
@@ -98,7 +99,7 @@ const FormCreateHabit = ({ handleClose }) => {
         error={!!errors.category}
         helperText={errors.category?.message}
       />
-      <FormControl margin="dense">
+      <FormControl margin="dense" className={classes.menuItem}>
         <InputLabel>Dificuldade</InputLabel>
         <Controller
           name="difficulty"
@@ -115,7 +116,8 @@ const FormCreateHabit = ({ handleClose }) => {
           }
         />
       </FormControl>
-      <FormControl margin="dense">
+
+      <FormControl margin="dense" className={classes.menuItem}>
         <InputLabel>Frequência</InputLabel>
         <Controller
           name="frequency"
@@ -132,7 +134,7 @@ const FormCreateHabit = ({ handleClose }) => {
           }
         />
       </FormControl>
-      <Button type="submit" styled="outlined">
+      <Button type="submit" styled="filled-light">
         Adicionar
       </Button>
     </FormControl>

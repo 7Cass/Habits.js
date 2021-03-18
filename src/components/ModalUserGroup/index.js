@@ -32,6 +32,7 @@ const ModalUserGroup = () => {
         Detalhes
       </Button>
       <Modal
+        onClose={handleClose}
         open={open}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

@@ -10,7 +10,7 @@ import bgCircles2 from "../../assets/bg_circles2.svg";
 export const useModalUserGroup = makeStyles((theme) => ({
   paperStyles1: {
     position: "absolute",
-    width: "fit-content",
+    width: "100%",
     // backgroundColor: theme.palette.background.paper,
     backgroundColor: "transparente",
     // border: "2px solid #000",
@@ -32,6 +32,7 @@ export const useModalStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: "#16181c",
     border: "2px solid #16181c",
+    borderRadius: "10px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     display: "flex",
@@ -45,6 +46,9 @@ export const useModalStyles = makeStyles((theme) => ({
 }));
 
 export const useFormStyles = makeStyles((theme) => ({
+  root: {
+    background: "red",
+  },
   inputStyles: {
     margin: "10px 0",
     "& .MuiInputBase-root": {
@@ -63,6 +67,48 @@ export const useFormStyles = makeStyles((theme) => ({
       color: "#55a1e3",
     },
   },
+
+  calendar: {
+    margin: "10px 0",
+    "& .MuiInputBase-root": {
+      background: "#eff7fe",
+      borderRadius: "3px",
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#eff7fe",
+    },
+    "& .fieldset.PrivateNotchedOutline-root-8.MuiOutlinedInput-notchedOutline": {
+      borderColor: "#55a1e3",
+    },
+    "& .MuiFormLabel-root": {
+      color: "#eff7fe",
+    },
+    "& .MuiFormLabel-root.Mui-focused": {
+      color: "#55a1e3",
+    },
+  },
+
+  menuItem: {
+    margin: "10px 0",
+    "& .MuiInputBase-root": {
+      background: "#eff7fe",
+      borderRadius: "3px",
+      padding: "0 0.25rem",
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#eff7fe",
+    },
+    "& .fieldset.PrivateNotchedOutline-root-8.MuiOutlinedInput-notchedOutline": {
+      borderColor: "#55a1e3",
+    },
+    "& .MuiFormLabel-root": {
+      color: "#eff7fe",
+    },
+    "& .MuiFormLabel-root.Mui-focused": {
+      color: "#55a1e3",
+    },
+  },
+
   formUpdate: {
     textAlign: "center",
 
