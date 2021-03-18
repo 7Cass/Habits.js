@@ -12,6 +12,7 @@ import { useChecked } from "../../providers/user";
 
 // material ui
 import { Box, Typography } from "@material-ui/core";
+import { SliderStyles } from "../../styles/makeStyles";
 
 // components
 import Button from "../Button";
@@ -19,6 +20,7 @@ import Button from "../Button";
 
 //--------------------------------------------------
 const DeleteHabit = ({ habitID }) => {
+  const classes = SliderStyles();
   //state para teste
   const [habit, setHabit] = useState(0);
   const { isChecked } = useChecked();
@@ -38,18 +40,24 @@ const DeleteHabit = ({ habitID }) => {
       await API.delete(deleteHabit(habit), {
         headers: { Authorization: `Bearer ${token}` },
       });
+      setHabit(habitID);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const trigger = () => {
+    onDelete();
+  };
+
+  //<input value={habit} onChange={(e) => setHabit(e.target.value)} />
+
   return (
     <Box>
-      <input value={habit} onChange={(e) => setHabit(e.target.value)} />
-      <Typography gutterBottom>Delete Habit</Typography>
-      <Button styled="outlined" size="small" onClick={() => onDelete()}>
-        Delete
-      </Button>
+      <button className={classes.removeButton} onClick={trigger}>
+        <i class="fas fa-trash-alt"></i>
+        Remover
+      </button>
     </Box>
   );
 };

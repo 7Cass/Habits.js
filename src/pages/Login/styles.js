@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 100vh;
   width: 100%;
 
-  padding: 0 2rem;
+  padding: 4rem;
 
   display: flex;
   flex-direction: column;
@@ -14,17 +14,24 @@ export const Container = styled.div`
   justify-content: space-around;
   text-align: center;
 
-  background-image: url(${BackgroundImage});
-  background-size: cover;
-  background-repeat: no-repeat;
+  @media screen and (min-width: 1100px) {
+    background-image: url(${BackgroundImage});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
   & img {
     display: none;
   }
 
   & h1 {
-    font-size: 4rem;
     font-weight: 600;
+    font-size: 3rem;
+    margin-bottom: 15px;
+    @media screen and (min-width: 800px) {
+      margin: 15px 0 0;
+    }
   }
 
   & h2 {
@@ -35,11 +42,17 @@ export const Container = styled.div`
 
   & h3 {
     font-size: 1.25rem;
+    @media screen and (max-width: 1100px) {
+      margin-top: 20px;
+    }
   }
 
   & h3 span {
     color: #16181c;
     cursor: pointer;
+    @media screen and (max-width: 1100px) {
+      color: #55a1e3;
+    }
   }
 
   & button {
@@ -50,10 +63,17 @@ export const Container = styled.div`
   & p {
     padding: 1rem 0;
     text-align: left;
+
+    @media screen and (max-width: 1100px) {
+      text-align: center;
+    }
   }
 
   & p a {
     color: #55a1e3;
+    @media screen and (max-width: 400px) {
+      display: block;
+    }
   }
 
   @media screen and (min-width: 400px) {
@@ -84,8 +104,8 @@ export const Container = styled.div`
 
     img {
       display: block;
-      max-width: 95%;
-      max-height: 95%;
+      max-width: 90%;
+      max-height: 90%;
     }
 
     form h2 {
