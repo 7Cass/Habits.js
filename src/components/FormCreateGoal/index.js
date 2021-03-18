@@ -25,6 +25,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { useFormStyles } from "../../styles/makeStyles";
+import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
 
 //--------------------------------------------------------
 const difficultyOptions = [
@@ -64,41 +65,92 @@ const FormCreateGoal = ({ handleClose }) => {
     }
   };
 
-  return (
-    <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
-      <TextField
-        className={classes.inputStyles}
-        variant="outlined"
-        size="small"
-        margin="dense"
-        label="Título"
-        name="title"
-        inputRef={register}
-        error={!!errors.title}
-        helperText={errors.title?.message}
-      />
+  const CssTextField = withStyles({
+    root: {
+      "& label.Mui-focused": {
+        color: "green",
+      },
+      "& .MuiInput-underline:after": {
+        borderBottomColor: "green",
+      },
+      "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+          borderColor: "#55a1e3",
+          border: "2px solid",
+          borderRadius: "5px",
+        },
+        "&:hover fieldset": {
+          borderColor: "#55a1e3",
+        },
+        "&.Mui-focused fieldset": {
+          borderColor: "#55a1e3",
+        },
+        "& .MuiOutlinedInput-input": {
+          padding: "10px 20px 15px",
+          fontFamily: "Montserrat",
+        },
+      },
+    },
+  })(TextField);
 
-      <FormControl margin="dense" className={classes.menuItem}>
-        <InputLabel>Dificuldade</InputLabel>
-        <Controller
-          name="difficulty"
-          control={control}
-          defaultValue={difficultyOptions[2]}
-          as={
-            <Select className={classes.inputStyles}>
-              {difficultyOptions.map((difficult, index) => (
-                <MenuItem key={index} value={difficult}>
-                  {difficult}
-                </MenuItem>
-              ))}
-            </Select>
-          }
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#55a1e3",
+      },
+      text: {
+        primary: "#55a1e3",
+      },
+      action: {
+        active: "#55a1e3",
+        hover: "#eff7fe",
+        selected: "#eff7fe",
+        disabledBackground: "#55a1e3",
+      },
+      background: {
+        paper: "#16181c",
+      },
+    },
+  });
+
+  return (
+    <ThemeProvider theme={theme}>
+      <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
+        <h1 className={classes.title}>Criar Meta</h1>
+        <CssTextField
+          className={classes.inputStyles}
+          variant="outlined"
+          size="small"
+          margin="dense"
+          label="Título"
+          name="title"
+          inputRef={register}
+          error={!!errors.title}
+          helperText={errors.title?.message}
         />
+
+        <FormControl margin="dense" className={classes.menuItem}>
+          <InputLabel>Dificuldade</InputLabel>
+          <Controller
+            name="difficulty"
+            control={control}
+            defaultValue={difficultyOptions[2]}
+            as={
+              <Select className={classes.inputStyles}>
+                {difficultyOptions.map((difficult, index) => (
+                  <MenuItem key={index} value={difficult}>
+                    {difficult}
+                  </MenuItem>
+                ))}
+              </Select>
+            }
+          />
+        </FormControl>
+        <Button type="submit" styled="outlined-light">
+          Criar
+        </Button>
       </FormControl>
-      <Button type="submit" styled="filled-light">
-        Criar Meta
-      </Button>
-    </FormControl>
+    </ThemeProvider>
   );
 };
 

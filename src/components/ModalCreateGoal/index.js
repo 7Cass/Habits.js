@@ -31,6 +31,7 @@ const ModalCreateGoal = () => {
         fontSize="large"
         type="button"
         onClick={handleOpen}
+        style={{ cursor: "pointer" }}
       >
         Nova Meta
       </AddCircleOutlineOutlinedIcon>

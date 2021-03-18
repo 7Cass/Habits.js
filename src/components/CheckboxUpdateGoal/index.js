@@ -9,6 +9,7 @@ import { Checkbox } from "@material-ui/core";
 
 // providers
 import { useChecked } from "../../providers/user";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 const CheckboxUpdateGoal = ({ goalId, goalAchieved }) => {
   const { token, group, setGroup } = useChecked();
@@ -38,8 +39,23 @@ const CheckboxUpdateGoal = ({ goalId, goalAchieved }) => {
     }
   };
 
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#55a1e3",
+      },
+    },
+  });
+
   return (
-    <Checkbox color="primary" checked={goalAchieved} onChange={onUpdate} />
+    <ThemeProvider theme={theme}>
+      <Checkbox
+        color="primary"
+        checked={goalAchieved}
+        onChange={onUpdate}
+        style={{ color: "#55a1e3" }}
+      />
+    </ThemeProvider>
   );
 };
 
