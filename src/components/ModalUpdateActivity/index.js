@@ -27,7 +27,11 @@ const ModalUpdateActivity = (props) => {
 
   return (
     <div>
-      <EditOutlinedIcon type="button" onClick={handleOpen}>
+      <EditOutlinedIcon
+        type="button"
+        onClick={handleOpen}
+        style={{ fontSize: "2.5rem", margin: "5px" }}
+      >
         Editar Nome
       </EditOutlinedIcon>
       <Modal

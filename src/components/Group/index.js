@@ -1,5 +1,4 @@
 import API from "../../services";
-import { useEffect } from "react";
 import {
   GroupContent,
   TitleContent,
@@ -15,6 +14,7 @@ import {
   GoalCard,
   Users,
   UsersContent,
+  Buttons,
 } from "./style";
 import ModalActivity from "../ModalActivity";
 import ModalUpdateActivity from "../ModalUpdateActivity";
@@ -37,27 +37,8 @@ import CheckboxUpdateGoal from "../CheckboxUpdateGoal";
 
 //==============================================
 const Group = (props) => {
-  // const { group, setGroup } = useId();
   const classes = useAcitivityButtons();
   const { user, group, setGroup, token } = useChecked();
-
-  // const [token] = useState(() => {
-  //   const Token = localStorage.getItem("token") || "";
-
-  //   if (!Token) {
-  //     return "";
-  //   }
-  //   return JSON.parse(Token);
-  // });
-
-  // const getGroup = async () => {
-  //   try {
-  //     const takeGroup = await API.get(getOneGroup(user.group));
-  //     setGroup(takeGroup.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const onDeleteAct = async (actId) => {
     try {
@@ -67,7 +48,6 @@ const Group = (props) => {
 
       const takeGroup = await API.get(getOneGroup(group.id));
       setGroup(takeGroup.data);
-      // getGroup();
     } catch (error) {
       console.log(error);
     }
@@ -80,22 +60,20 @@ const Group = (props) => {
 
       const takeGroup = await API.get(getOneGroup(user.group));
       setGroup(takeGroup.data);
-
-      // getGroup();
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    // getGroup();
-    // eslint-disable-next-line
-  }, []);
-
   return (
     <GroupContent>
       <CardGroup>
-        <CloseIcon onClick={() => props.handleClose()}>Close</CloseIcon>
+        <CloseIcon
+          style={{ cursor: "pointer" }}
+          onClick={() => props.handleClose()}
+        >
+          Close
+        </CloseIcon>
         <TitleContent>
           <h1>{group.name}</h1>
           <ModalUpdateTitleGroup group={group} />
@@ -114,13 +92,16 @@ const Group = (props) => {
                   <h3>{activity.title}</h3>
                   <ButtonsContent>
                     <h4>{formatDate(activity.realization_time)}</h4>
-                    <ModalUpdateActivity activity={activity} />
-                    <HighlightOffOutlinedIcon
-                      onClick={() => onDeleteAct(activity.id)}
-                      className={classes.buttonStyle}
-                    >
-                      Delete
-                    </HighlightOffOutlinedIcon>
+                    <Buttons>
+                      <ModalUpdateActivity activity={activity} />
+                      <HighlightOffOutlinedIcon
+                        onClick={() => onDeleteAct(activity.id)}
+                        className={classes.buttonStyle}
+                        style={{ fontSize: "2.5rem", margin: "5px" }}
+                      >
+                        Delete
+                      </HighlightOffOutlinedIcon>
+                    </Buttons>
                   </ButtonsContent>
                 </ActivityCard>
               ))

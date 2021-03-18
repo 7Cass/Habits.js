@@ -21,6 +21,7 @@ import { getOneGroup } from "../../helper/groups";
 
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
+import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
 //--------------------------------------------
 
 const FormUpdateActivity = (props) => {
@@ -29,18 +30,8 @@ const FormUpdateActivity = (props) => {
     resolver: yupResolver(schemaUpdateActivity),
   });
   const { token, group, setGroup } = useChecked();
-  // const [token] = useState(() => {
-  //   const Token = localStorage.getItem("token") || "";
-
-  //   if (!Token) {
-  //     return "";
-  //   }
-  //   return JSON.parse(Token);
-  // });
 
   const onRegister = async (data) => {
-    console.log("atualização de atividade: ", props.activity);
-    console.log("dados passados: ", data);
     try {
       await API.patch(patchUpdateActivity(props.activity.id), data, {
         headers: { Authorization: `Bearer ${token}` },
@@ -56,23 +47,62 @@ const FormUpdateActivity = (props) => {
     }
   };
 
+  const CssTextField = withStyles({
+    root: {
+      "& label.Mui-focused": {
+        color: "green",
+      },
+      "& .MuiInput-underline:after": {
+        borderBottomColor: "green",
+      },
+      "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+          borderColor: "#55a1e3",
+          border: "2px solid",
+          borderRadius: "5px",
+        },
+        "&:hover fieldset": {
+          borderColor: "#55a1e3",
+        },
+        "&.Mui-focused fieldset": {
+          borderColor: "#55a1e3",
+        },
+        "& .MuiOutlinedInput-input": {
+          padding: "10px 20px 15px",
+          fontFamily: "Montserrat",
+        },
+      },
+    },
+  })(TextField);
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#55a1e3",
+      },
+    },
+  });
+
   return (
-    <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
-      <TextField
-        className={classes.inputStyles}
-        name="title"
-        label="Nome da Atividade"
-        variant="outlined"
-        size="small"
-        margin="dense"
-        inputRef={register}
-        error={!!errors.title}
-        helperText={errors.title?.message}
-      />
-      <Button type="submit" styled="filled-light">
-        Atualizar Nome
-      </Button>
-    </FormControl>
+    <ThemeProvider theme={theme}>
+      <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
+        <h1 className={classes.title}>Atualizar Atividade</h1>
+        <CssTextField
+          className={classes.inputStyles}
+          name="title"
+          label="Nome da Atividade"
+          variant="outlined"
+          size="small"
+          margin="dense"
+          inputRef={register}
+          error={!!errors.title}
+          helperText={errors.title?.message}
+        />
+        <Button type="submit" styled="outlined-light">
+          Atualizar
+        </Button>
+      </FormControl>
+    </ThemeProvider>
   );
 };
 

@@ -21,7 +21,6 @@ const Menu = () => {
     setHabits(null);
     setUser(null);
     history.push("/");
-    console.log("passou pelo logout");
   };
 
   return (

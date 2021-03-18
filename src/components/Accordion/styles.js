@@ -10,6 +10,11 @@ export const DetailsContainer = styled.div`
   }
 `;
 
+export const Title = styled.h2`
+  width: 100%;
+  text-align: center;
+`;
+
 export const Tags = styled.div`
   width: 100%;
   display: flex;
@@ -34,7 +39,8 @@ export const Tags = styled.div`
       background: #55a1e3;
       font-weight: bold;
       padding: 10px;
-      border-radius: 25px;
+      border-radius: 10px;
+      :25px ;
       display: block;
       width: 100%;
       margin: auto;

@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   text-align: center;
   background-color: #55a1e3;
-  border-radius: 15px;
+  border-radius: 10px;
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
@@ -19,7 +19,7 @@ export const GroupContainer = styled.div`
   align-items: center;
   text-align: center;
   background-color: #55a1e3;
-  border-radius: 15px;
+  border-radius: 10px;
   max-width: 300px;
   width: 100%;
   margin: 0 auto;

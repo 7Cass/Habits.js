@@ -123,7 +123,7 @@ const FormLogin = () => {
         "& fieldset": {
           borderColor: "#55a1e3",
           border: "2px solid",
-          borderRadius: "5px",
+          borderRadius: "10px",
         },
         "&:hover fieldset": {
           borderColor: "#55a1e3",

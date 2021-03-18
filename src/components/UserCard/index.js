@@ -10,7 +10,6 @@ import { useChecked } from "../../providers/user";
 //---------------------------------------------
 const UserCard = () => {
   const { user, group } = useChecked();
-  console.log(group);
 
   return (
     <Card>
@@ -19,8 +18,6 @@ const UserCard = () => {
       <h4>{user.email}</h4>
       {group ? (
         <GroupCard>
-          <h3>Seu Grupo</h3>
-          <h2>{group.name}</h2>
           <ModalUserGroup group={group} />
         </GroupCard>
       ) : (

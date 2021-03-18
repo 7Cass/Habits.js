@@ -30,16 +30,6 @@ const FormUpdateUser = () => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaUpdateUser),
   });
-  // const [token] = useState(() => {
-  //   const Token = isChecked
-  //     ? localStorage.getItem("token") || ""
-  //     : sessionStorage.getItem("token") || "";
-
-  //   if (!Token) {
-  //     return "";
-  //   }
-  //   return JSON.parse(Token);
-  // });
 
   const onUpdate = async (data) => {
     try {
@@ -71,7 +61,7 @@ const FormUpdateUser = () => {
         "& fieldset": {
           borderColor: "#55a1e3",
           border: "2px solid",
-          borderRadius: "5px",
+          borderRadius: "10px",
         },
         "&:hover fieldset": {
           borderColor: "#55a1e3",
