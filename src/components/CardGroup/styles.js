@@ -19,11 +19,11 @@ export const Name = styled.div`
   color: #55a1e3;
   font-size: 1rem;
   font-weight: bold;
-  margin: 5px 0;
 `;
 
 export const Description = styled.div`
-  padding: 5px;
+  padding: 0.5rem;
+  width: 100%;
   color: #eff7fe;
   font-size: 0.9rem;
   font-weight: bold;
