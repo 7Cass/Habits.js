@@ -24,8 +24,9 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
+import clsx from "clsx";
 import { useFormStyles } from "../../styles/makeStyles";
-import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 //--------------------------------------------------------
 const difficultyOptions = [
@@ -65,34 +66,6 @@ const FormCreateGoal = ({ handleClose }) => {
     }
   };
 
-  const CssTextField = withStyles({
-    root: {
-      "& label.Mui-focused": {
-        color: "green",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "green",
-      },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#55a1e3",
-          border: "2px solid",
-          borderRadius: "5px",
-        },
-        "&:hover fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "& .MuiOutlinedInput-input": {
-          padding: "10px 20px 15px",
-          fontFamily: "Montserrat",
-        },
-      },
-    },
-  })(TextField);
-
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -115,9 +88,13 @@ const FormCreateGoal = ({ handleClose }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
+      <FormControl
+        className={classes.formControlStyles}
+        component="form"
+        onSubmit={handleSubmit(handleForm)}
+      >
         <h1 className={classes.title}>Criar Meta</h1>
-        <CssTextField
+        <TextField
           className={classes.inputStyles}
           variant="outlined"
           size="small"
@@ -129,7 +106,10 @@ const FormCreateGoal = ({ handleClose }) => {
           helperText={errors.title?.message}
         />
 
-        <FormControl margin="dense" className={classes.menuItem}>
+        <FormControl
+          margin="dense"
+          className={clsx(classes.menuItem, classes.formControlStyles)}
+        >
           <InputLabel>Dificuldade</InputLabel>
           <Controller
             name="difficulty"

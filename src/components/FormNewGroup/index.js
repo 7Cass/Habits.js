@@ -3,7 +3,7 @@ import API from "../../services";
 
 // material ui
 import { TextField, FormControl } from "@material-ui/core";
-import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 import Button from "../Button";
 
@@ -26,7 +26,7 @@ const FormNewGroup = () => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schemaNewGroup),
   });
-  const { token, setGroup, isChecked } = useChecked();
+  const { token, setGroup } = useChecked();
 
   const onRegister = async (data) => {
     try {
@@ -42,45 +42,11 @@ const FormNewGroup = () => {
       const takeUserGroup = await API.get(getOneGroup(groupID));
       setGroup(takeUserGroup.data);
 
-      isChecked
-        ? localStorage.setItem("userGroup", JSON.stringify(takeUserGroup.data))
-        : sessionStorage.setItem(
-            "userGroup",
-            JSON.stringify(takeUserGroup.data)
-          );
-
       reset();
     } catch (error) {
       console.log(error);
     }
   };
-
-  const CssTextField = withStyles({
-    root: {
-      "& label.Mui-focused": {
-        color: "#55a1e3",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "green",
-      },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#55a1e3",
-          border: "2px solid",
-          borderRadius: "10px",
-        },
-        "&:hover fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "& .MuiOutlinedInput-input": {
-          fontFamily: "Montserrat",
-        },
-      },
-    },
-  })(TextField);
 
   const theme = createMuiTheme({
     palette: {
@@ -95,8 +61,12 @@ const FormNewGroup = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
-        <CssTextField
+      <FormControl
+        className={classes.formControlStyles}
+        component="form"
+        onSubmit={handleSubmit(onRegister)}
+      >
+        <TextField
           name="name"
           label="Nome do Grupo"
           variant="outlined"
@@ -107,7 +77,7 @@ const FormNewGroup = () => {
           helperText={errors.name?.message}
           className={classes.inputStyles}
         />
-        <CssTextField
+        <TextField
           name="description"
           label="Descrição"
           variant="outlined"
@@ -120,7 +90,7 @@ const FormNewGroup = () => {
           helperText={errors.description?.message}
           className={classes.inputStyles}
         />
-        <CssTextField
+        <TextField
           name="category"
           label="Categoria"
           variant="outlined"
