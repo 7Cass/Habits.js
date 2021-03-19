@@ -18,6 +18,11 @@ import { Redirect, useHistory } from "react-router";
 
 // motion
 import { motion } from "framer-motion";
+import {
+  pageVariants,
+  pageTransition,
+  pageStyle,
+} from "../../helper/animation";
 
 // ------------------------------------------------------
 const Login = () => {
@@ -31,9 +36,12 @@ const Login = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      style={pageStyle}
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
     >
       {isAuth ? (
         <Redirect to={"/homepage"} />

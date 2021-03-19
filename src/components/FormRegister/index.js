@@ -17,6 +17,7 @@ import { schemaRegister } from "../../helper/formValidation";
 
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 // components
 import Button from "../Button";
@@ -40,52 +41,65 @@ const FormRegister = () => {
     }
   };
 
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#55a1e3",
+      },
+      text: {
+        primary: "#55a1e3",
+      },
+    },
+  });
+
   return (
-    <FormControl
-      className={classes.formControlStyles}
-      component="form"
-      onSubmit={handleSubmit(onRegister)}
-    >
-      <Typography variant="h2">Cadastro</Typography>
-      <TextField
-        className={classes.inputStyles}
-        name="username"
-        label="Nome de usuário"
-        variant="outlined"
-        inputRef={register}
-        error={!!errors.username}
-        helperText={errors.username?.message}
-      />
-      <TextField
-        className={classes.inputStyles}
-        name="password"
-        label="Password"
-        variant="outlined"
-        type="password"
-        inputRef={register}
-        error={!!errors.password}
-        helperText={errors.password?.message}
-      />
-      <TextField
-        className={classes.inputStyles}
-        name="email"
-        label="E-mail"
-        variant="outlined"
-        type="email"
-        inputRef={register}
-        error={!!errors.email}
-        helperText={errors.email?.message}
-      />
-      <Button type="submit" styled="outlined-light">
-        Enviar
-      </Button>
-      <Typography style={{ textAlign: "center", paddingBottom: 0 }}>
-        Já registrado?{" "}
-        <Link to="/" className={classes.link}>
-          Login
-        </Link>
-      </Typography>
-    </FormControl>
+    <ThemeProvider theme={theme}>
+      <FormControl
+        className={classes.formControlStyles}
+        component="form"
+        onSubmit={handleSubmit(onRegister)}
+      >
+        <Typography variant="h2">Cadastro</Typography>
+        <TextField
+          className={classes.inputStyles}
+          name="username"
+          label="Nome de usuário"
+          variant="outlined"
+          inputRef={register}
+          error={!!errors.username}
+          helperText={errors.username?.message}
+        />
+        <TextField
+          className={classes.inputStyles}
+          name="password"
+          label="Password"
+          variant="outlined"
+          type="password"
+          inputRef={register}
+          error={!!errors.password}
+          helperText={errors.password?.message}
+        />
+        <TextField
+          className={classes.inputStyles}
+          name="email"
+          label="E-mail"
+          variant="outlined"
+          type="email"
+          inputRef={register}
+          error={!!errors.email}
+          helperText={errors.email?.message}
+        />
+        <Button type="submit" styled="outlined-light">
+          Enviar
+        </Button>
+        <Typography style={{ textAlign: "center", paddingBottom: 0 }}>
+          Já registrado?{" "}
+          <Link to="/" className={classes.link}>
+            Login
+          </Link>
+        </Typography>
+      </FormControl>
+    </ThemeProvider>
   );
 };
 

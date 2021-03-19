@@ -1,5 +1,5 @@
 // react router dom
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 
 // pages
 import HomePage from "../pages/HomePage";
@@ -16,9 +16,11 @@ import { AnimatePresence } from "framer-motion";
 
 // -----------------------------------------------
 const Routes = () => {
+  const location = useLocation();
+
   return (
     <AnimatePresence>
-      <Switch>
+      <Switch location={location} key={location.pathname}>
         <Route exact path="/">
           <Login />
         </Route>
