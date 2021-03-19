@@ -18,7 +18,7 @@ import { useChecked } from "../../providers/user";
 import { getOneGroup } from "../../helper/groups";
 //--------------------------------------------
 import { useFormStyles } from "../../styles/makeStyles";
-import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 //--------------------------------------------
 const FormActivity = (props) => {
   const classes = useFormStyles();
@@ -48,34 +48,6 @@ const FormActivity = (props) => {
     }
   };
 
-  const CssTextField = withStyles({
-    root: {
-      "& label.Mui-focused": {
-        color: "green",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "green",
-      },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#55a1e3",
-          border: "2px solid",
-          borderRadius: "10px",
-        },
-        "&:hover fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "& .MuiOutlinedInput-input": {
-          padding: "10px 15px 15px",
-          fontFamily: "Montserrat",
-        },
-      },
-    },
-  })(TextField);
-
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -86,11 +58,15 @@ const FormActivity = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
+      <FormControl
+        className={classes.formControlStyles}
+        component="form"
+        onSubmit={handleSubmit(onRegister)}
+      >
         <h1 className={classes.title} style={{ fontSize: "1.7rem" }}>
           Adicionar Atividade
         </h1>
-        <CssTextField
+        <TextField
           className={classes.inputStyles}
           name="title"
           label="Nome da Atividade"

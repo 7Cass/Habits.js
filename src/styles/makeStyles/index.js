@@ -39,25 +39,31 @@ export const useModalStyles = makeStyles((theme) => ({
 }));
 
 export const useFormStyles = makeStyles((theme) => ({
-  root: {
-    background: "red",
-  },
   inputStyles: {
-    margin: "10px 0",
-    "& .MuiInputBase-root": {
+    "& .MuiInputLabel-formControl": {
       color: "#55a1e3",
     },
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#eff7fe",
-    },
-    "& .fieldset.PrivateNotchedOutline-root-8.MuiOutlinedInput-notchedOutline": {
-      borderColor: "#55a1e3",
-    },
-    "& .MuiFormLabel-root": {
+    "& label.Mui-focused": {
       color: "#55a1e3",
     },
-    "& .MuiFormLabel-root.Mui-focused": {
-      color: "#55a1e3",
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#55a1e3",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#55a1e3",
+      },
+      "&:hover fieldset": {
+        borderColor: "#55a1e3",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#55a1e3",
+      },
+    },
+  },
+  formControlStyles: {
+    "& .MuiFormControl-root": {
+      margin: "10px 0",
     },
   },
 

@@ -20,7 +20,7 @@ import { getOneGroup } from "../../helper/groups";
 
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
-import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 //--------------------------------------------
 
@@ -45,34 +45,6 @@ const FormUpdateActivity = (props) => {
     }
   };
 
-  const CssTextField = withStyles({
-    root: {
-      "& label.Mui-focused": {
-        color: "green",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "green",
-      },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#55a1e3",
-          border: "2px solid",
-          borderRadius: "10px",
-        },
-        "&:hover fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "& .MuiOutlinedInput-input": {
-          padding: "15px 20px 15px",
-          fontFamily: "Montserrat",
-        },
-      },
-    },
-  })(TextField);
-
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -83,9 +55,13 @@ const FormUpdateActivity = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <FormControl component="form" onSubmit={handleSubmit(onRegister)}>
+      <FormControl
+        className={classes.formControlStyles}
+        component="form"
+        onSubmit={handleSubmit(onRegister)}
+      >
         <h1 className={classes.title}>Atualizar Nome</h1>
-        <CssTextField
+        <TextField
           className={classes.inputStyles}
           name="name"
           label="Nome do Grupo"

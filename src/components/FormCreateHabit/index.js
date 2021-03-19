@@ -21,12 +21,13 @@ import {
   Select,
   MenuItem,
 } from "@material-ui/core";
+import clsx from "clsx";
 import { useFormStyles } from "../../styles/makeStyles/index.js";
 
 // components
 import Button from "../Button";
 
-import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 //----------------------------------------------
 const difficultyOptions = [
@@ -83,34 +84,6 @@ const FormCreateHabit = ({ handleClose }) => {
     }
   };
 
-  const CssTextField = withStyles({
-    root: {
-      "& label.Mui-focused": {
-        color: "green",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "green",
-      },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#55a1e3",
-          border: "2px solid",
-          borderRadius: "10px",
-        },
-        "&:hover fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "& .MuiOutlinedInput-input": {
-          padding: "10px 20px 15px",
-          fontFamily: "Montserrat",
-        },
-      },
-    },
-  })(TextField);
-
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -133,9 +106,13 @@ const FormCreateHabit = ({ handleClose }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
+      <FormControl
+        className={classes.formControlStyles}
+        component="form"
+        onSubmit={handleSubmit(handleForm)}
+      >
         <h2 className={classes.title}>Adicionar Hábito</h2>
-        <CssTextField
+        <TextField
           className={classes.inputStyles}
           variant="outlined"
           size="small"
@@ -146,7 +123,7 @@ const FormCreateHabit = ({ handleClose }) => {
           error={!!errors.title}
           helperText={errors.title?.message}
         />
-        <CssTextField
+        <TextField
           className={classes.inputStyles}
           variant="outlined"
           size="small"
@@ -157,7 +134,10 @@ const FormCreateHabit = ({ handleClose }) => {
           error={!!errors.category}
           helperText={errors.category?.message}
         />
-        <FormControl margin="dense" className={classes.menuItem}>
+        <FormControl
+          margin="dense"
+          className={clsx(classes.menuItem, classes.formControlStyles)}
+        >
           <InputLabel>Dificuldade</InputLabel>
           <Controller
             name="difficulty"
@@ -175,7 +155,10 @@ const FormCreateHabit = ({ handleClose }) => {
           />
         </FormControl>
 
-        <FormControl margin="dense" className={classes.menuItem}>
+        <FormControl
+          margin="dense"
+          className={clsx(classes.menuItem, classes.formControlStyles)}
+        >
           <InputLabel>Frequência</InputLabel>
           <Controller
             name="frequency"

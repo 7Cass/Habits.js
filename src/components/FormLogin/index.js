@@ -32,8 +32,7 @@ import { useChecked } from "../../providers/user/";
 
 // styles
 import { useFormStyles } from "../../styles/makeStyles";
-
-import { ThemeProvider, withStyles, createMuiTheme } from "@material-ui/core";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 // components
 import Button from "../Button";
@@ -63,6 +62,7 @@ const FormLogin = () => {
     try {
       const response = await API.post(postLogin(), data);
       const { user_id } = jwt_decode(response.data.access);
+      console.log("retorno da API para login: ", response);
 
       setToken(response.data.access);
       setUserId(user_id);
@@ -97,34 +97,6 @@ const FormLogin = () => {
     }
   };
 
-  const CssTextField = withStyles({
-    root: {
-      "& label.Mui-focused": {
-        color: "green",
-      },
-      "& .MuiInput-underline:after": {
-        borderBottomColor: "green",
-      },
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          borderColor: "#55a1e3",
-          border: "2px solid",
-          borderRadius: "10px",
-        },
-        "&:hover fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "&.Mui-focused fieldset": {
-          borderColor: "#55a1e3",
-        },
-        "& .MuiOutlinedInput-input": {
-          padding: "20px",
-          fontFamily: "Montserrat",
-        },
-      },
-    },
-  })(TextField);
-
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -135,9 +107,13 @@ const FormLogin = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <FormControl component="form" onSubmit={handleSubmit(handleForm)}>
+      <FormControl
+        className={classes.formControlStyles}
+        component="form"
+        onSubmit={handleSubmit(handleForm)}
+      >
         <Typography variant="h2">Entrar</Typography>
-        <CssTextField
+        <TextField
           className={classes.inputStyles}
           variant="outlined"
           label="Usuário"
@@ -146,7 +122,7 @@ const FormLogin = () => {
           error={!!errors.username}
           helperText={errors.username?.message}
         />
-        <CssTextField
+        <TextField
           className={classes.inputStyles}
           type="password"
           variant="outlined"
