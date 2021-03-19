@@ -11,15 +11,13 @@ import { useChecked } from "../../providers/user";
 
 const Menu = () => {
   const history = useHistory();
-  const { setToken, setGroup, setHabits, setUser } = useChecked();
+  const { setToken } = useChecked();
 
   const logout = () => {
     localStorage.clear();
     sessionStorage.clear();
     setToken(null);
-    setGroup(null);
-    setHabits(null);
-    setUser(null);
+
     history.push("/");
   };
 
@@ -29,7 +27,7 @@ const Menu = () => {
         <i class="fas fa-home" /> Início
       </MenuItem>
       <MenuItem onClick={() => history.push("/groups")}>Grupos</MenuItem>
-      <MenuItem onClick={() => history.push("/users")}>Usuarios</MenuItem>
+      <MenuItem onClick={() => history.push("/users")}>Usuários</MenuItem>
       <MenuItem onClick={logout}>
         Sair <i class="fas fa-sign-out-alt" />
       </MenuItem>

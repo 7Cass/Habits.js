@@ -52,6 +52,9 @@ const FormUpdateActivity = (props) => {
       primary: {
         main: "#55a1e3",
       },
+      text: {
+        primary: "#55a1e3",
+      },
     },
   });
 

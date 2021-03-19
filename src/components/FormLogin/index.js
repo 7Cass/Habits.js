@@ -60,7 +60,6 @@ const FormLogin = () => {
     try {
       const response = await API.post(postLogin(), data);
       const { user_id } = jwt_decode(response.data.access);
-      console.log("retorno da API para login: ", response);
 
       setToken(response.data.access);
       setUserId(user_id);
@@ -99,6 +98,9 @@ const FormLogin = () => {
     palette: {
       primary: {
         main: "#55a1e3",
+      },
+      text: {
+        primary: "#55a1e3",
       },
     },
   });

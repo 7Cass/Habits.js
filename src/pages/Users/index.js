@@ -25,6 +25,11 @@ import { useUserList } from "../../providers/userList";
 
 // motion
 import { motion } from "framer-motion";
+import {
+  pageVariants,
+  pageTransition,
+  pageStyle,
+} from "../../helper/animation";
 //-----------------------------------------------
 const UsersPage = () => {
   const { isAuth, checkAuth } = useChecked();
@@ -43,9 +48,12 @@ const UsersPage = () => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      style={pageStyle}
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
     >
       {isAuth ? (
         <PrincipalDiv>

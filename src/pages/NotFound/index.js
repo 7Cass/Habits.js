@@ -9,13 +9,22 @@ import bg_404 from "../../assets/not_found/404.svg";
 
 // motion
 import { motion } from "framer-motion";
+import {
+  pageVariants,
+  pageTransition,
+  pageStyle,
+} from "../../helper/animation";
 
+// ---------------------------------------------
 const NotFound = () => {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      style={pageStyle}
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
     >
       <Container>
         <h1>Página não encontrada</h1>
