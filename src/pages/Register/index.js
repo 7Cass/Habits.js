@@ -13,6 +13,9 @@ import { Redirect, useHistory } from "react-router";
 // styles components
 import { Container } from "./styles";
 
+// motion
+import { motion } from "framer-motion";
+
 // assets
 import registerBg from "../../assets/register/register.svg";
 import bgCircles1 from "../../assets/bg_circles1.svg";
@@ -30,7 +33,11 @@ const Register = () => {
   }, []);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {!isAuth ? (
         <Container>
           <div className="header-container">
@@ -67,7 +74,7 @@ const Register = () => {
       ) : (
         <Redirect to={"/homepage"} />
       )}
-    </>
+    </motion.div>
   );
 };
 

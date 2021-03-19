@@ -23,6 +23,8 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { useChecked } from "../../providers/user";
 import { useId } from "../../providers/group";
 
+// motion
+import { motion } from "framer-motion";
 //-----------------------------------------------
 const GroupsPage = () => {
   const { isAuth, checkAuth } = useChecked();
@@ -40,7 +42,11 @@ const GroupsPage = () => {
   }, []);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {isAuth ? (
         <PrincipalDiv>
           <Menu />
@@ -69,7 +75,7 @@ const GroupsPage = () => {
       ) : (
         <Redirect to={"/register"} />
       )}
-    </>
+    </motion.div>
   );
 };
 

@@ -38,7 +38,7 @@ import CheckboxUpdateGoal from "../CheckboxUpdateGoal";
 //==============================================
 const Group = (props) => {
   const classes = useAcitivityButtons();
-  const { user, group, setGroup, token } = useChecked();
+  const { group, setGroup, token } = useChecked();
 
   const onDeleteAct = async (actId) => {
     try {
@@ -52,13 +52,14 @@ const Group = (props) => {
       console.log(error);
     }
   };
+
   const onDeleteGoal = async (goalId) => {
     try {
       await API.delete(deleteGoals(goalId), {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      const takeGroup = await API.get(getOneGroup(user.group));
+      const takeGroup = await API.get(getOneGroup(group.id));
       setGroup(takeGroup.data);
     } catch (error) {
       console.log(error);
