@@ -17,6 +17,8 @@ import { useChecked } from "../../providers/user";
 import { Redirect } from "react-router";
 import { useHistory } from "react-router-dom";
 
+// motion
+import { motion } from "framer-motion";
 //---------------------------------------------
 const HomePage = () => {
   const history = useHistory();
@@ -28,7 +30,11 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {isAuth ? (
         <PrincipalDiv>
           <Menu />
@@ -47,7 +53,7 @@ const HomePage = () => {
       ) : (
         <Redirect to="/" />
       )}
-    </>
+    </motion.div>
   );
 };
 

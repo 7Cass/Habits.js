@@ -1,13 +1,25 @@
+// react
+import { useEffect } from "react";
+
+// components
 import FormLogin from "../../components/FormLogin";
 
+// assets
 import Image from "../../assets/login/login.svg";
 
+// styles
 import { Container } from "./styles";
 
-import { useEffect } from "react";
+// provider
 import { useChecked } from "../../providers/user";
+
+// react router dom
 import { Redirect, useHistory } from "react-router";
 
+// motion
+import { motion } from "framer-motion";
+
+// ------------------------------------------------------
 const Login = () => {
   const history = useHistory();
   const { isAuth, checkAuth } = useChecked();
@@ -18,7 +30,11 @@ const Login = () => {
   }, []);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {isAuth ? (
         <Redirect to={"/homepage"} />
       ) : (
@@ -38,7 +54,7 @@ const Login = () => {
           </h3>
         </Container>
       )}
-    </>
+    </motion.div>
   );
 };
 

@@ -73,7 +73,6 @@ const FormCreateHabit = ({ handleClose }) => {
       });
       takeHabits.data.sort((a, b) => a.id - b.id);
       setHabits(takeHabits.data);
-      console.log("nova lista de hábitos: ", takeHabits.data);
 
       reset();
       setTimeout(() => {

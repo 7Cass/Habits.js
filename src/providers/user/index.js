@@ -36,26 +36,22 @@ export const UserProvider = ({ children }) => {
 
   const getUserData = async () => {
     if (token) {
-      console.log("token do storage: ", token);
       setToken(token);
 
       const { user_id } = jwt_decode(token);
 
       const takeUser = await API.get(getOneUser(user_id));
       setUser(takeUser.data);
-      console.log("Dados do usuário: ", takeUser.data);
 
       const takeHabits = await API.get(getPersonalHabit(), {
         headers: { Authorization: `Bearer ${token}` },
       });
       takeHabits.data.sort((a, b) => a.id - b.id);
       setHabits(takeHabits.data);
-      console.log("Dados dos hábitos: ", takeHabits.data);
 
       if (takeUser.data.group) {
         const takeUserGroup = await API.get(getOneGroup(takeUser.data.group));
         setGroup(takeUserGroup.data);
-        console.log("Dados do grupo: ", takeUserGroup.data);
       }
     }
   };

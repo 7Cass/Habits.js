@@ -8,10 +8,10 @@ export const Card = styled.div`
   text-align: center;
   border-radius: 10px;
   background-color: #16181c;
-  max-width: 260px;
-  width: 100%;
+  width: 230px;
   height: 250px;
-  margin: 10px;
+  margin: 0.5rem;
+  padding: 0.5rem;
 `;
 
 export const Name = styled.div`
@@ -22,20 +22,10 @@ export const Name = styled.div`
 `;
 
 export const Description = styled.div`
-  padding: 5px;
+  padding: 0.5rem;
   width: 100%;
   word-wrap: break-word;
   color: #eff7fe;
   font-size: 1rem;
-  font-weight: bold;
-`;
-
-export const Category = styled.div`
-  background-color: #55a1e3;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 200px;
-  padding: 5px;
-  color: #eff7fe;
   font-weight: bold;
 `;
