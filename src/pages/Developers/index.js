@@ -46,7 +46,7 @@ const squad = [
   },
   {
     name: "João Pedro Arruda",
-    position: "Qualiy Assurance",
+    position: "Quality Assurance",
     img: img_joao,
     links: {
       linkedIn: "https://linkedin.com/in/jparruda",
